@@ -1,0 +1,17 @@
+@import  "../base/base";
+
+#footer{
+    height: 12rem;
+    background-color: $primaryColorDark;
+    color: white;
+    font-size: 0.9rem;
+    line-height: normal;
+}
+
+#footer a{
+    color: white;
+    text-decoration: none;
+    &:hover{
+        font-weight: 700;
+    }
+}
