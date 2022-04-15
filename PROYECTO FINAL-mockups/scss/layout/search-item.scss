@@ -1,0 +1,9 @@
+@import "../base/base";
+.element-container{
+    height: 20rem;
+    background-color: rgba($color: $primaryColor, $alpha: .2);
+    border-radius: 10px;
+    img{
+        max-height: 15rem;
+    }
+}

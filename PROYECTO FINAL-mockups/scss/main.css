@@ -1,13 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;800&family=Montserrat:wght@300;400;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;800&family=Montserrat:wght@300;400;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;800&family=Montserrat:wght@300;400;700;800&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+p, h3, h4, h5, a {
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar-brand, h2 {
+  font-family: "Lexend Deca", sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+p, h3, h4, h5, a {
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar-brand, h2 {
+  font-family: "Lexend Deca", sans-serif;
 }
 
 * {
@@ -16,8 +35,9 @@
 }
 
 #header {
-  background-color: #2091BF;
+  background: #55aacc;
   height: 7rem;
+  border-bottom: 1px solid white;
 }
 
 /* NAVBAR */
@@ -71,7 +91,7 @@
 
 /* MODAL LOGIN */
 .modal-content {
-  background: linear-gradient(0deg, rgba(255, 172, 17, 0.527) 0%, rgba(250, 193, 71, 0.959) 36%);
+  background: linear-gradient(0deg, rgba(255, 172, 17, 0.9) 0%, rgba(250, 193, 71, 0.9) 36%);
 }
 
 #loginModal .modal-body, .modal-header, .modal-footer {
@@ -221,6 +241,14 @@ textarea.form-control {
   box-sizing: border-box;
 }
 
+p, h3, h4, h5, a {
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar-brand, h2 {
+  font-family: "Lexend Deca", sans-serif;
+}
+
 #footer {
   height: 12rem;
   background-color: #192340;
@@ -251,6 +279,53 @@ menu-container {
 }
 
 .menu-item img {
-  width: 80%;
+  width: 100%;
   box-shadow: 3px 4px 20px -3px #000000;
+}
+
+/* hover effect */
+.img__wrap {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem;
+}
+
+.img__img {
+  vertical-align: bottom;
+}
+
+.img__description_layer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #55aacc;
+  color: white;
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* transition effect. not necessary */
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.img__wrap:hover .img__description_layer {
+  visibility: visible;
+  opacity: 1;
+}
+.img__wrap:hover .img__description_layer .img__description {
+  transform: translateY(0);
+}
+
+.img__description {
+  transition: 1s;
+  transform: translateY(1rem);
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.carousel-item img {
+  height: 30rem;
 }/*# sourceMappingURL=main.css.map */
