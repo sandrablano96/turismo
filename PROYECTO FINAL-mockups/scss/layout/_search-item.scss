@@ -1,0 +1,16 @@
+@import "../base/base";
+@import "../layout/header";
+
+.element-container{
+    background-color: rgba($color: $primaryColor, $alpha: .15);
+    border-radius: 20px;
+    height: 20rem;
+    .element__img{
+        width: 100%;
+        border-bottom-left-radius: 20px;
+        border-top-left-radius: 20px;
+    }
+
+    clip-path: polygon(100% 0, 95% 100%, 0 100%, 0 0);
+}
+
