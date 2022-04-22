@@ -16,7 +16,7 @@
 
 <body>
   <div class="container-fluid m-0 p-0">
-    <header id="header">
+    <header id="header" class="sticky">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid w-100 m-2">
           <a class="navbar-brand" href="#">Turismo en Ciudad Real</a>
@@ -93,8 +93,10 @@
     <!-- modal login -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content border-0">
+          
           <div class="modal-header d-flex flex-column">
+            
             <button type="button" class="btn-close text-center" data-bs-dismiss="modal" aria-label="Close"></button>
             <h5 class="modal-title col-12 text-center text-uppercase fw-bold" id="loginModalLabel">Iniciar sesion</h5>
           </div>
@@ -104,14 +106,14 @@
                 <div class="login-wrap p-0">
                   <form action="#" class="signin-form">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Username" required>
+                      <input type="text" class="form-control" placeholder="Email" required>
                     </div>
                     <div class="form-group">
-                      <input id="password-field" type="password" class="form-control" placeholder="Password" required>
+                      <input id="password-field" type="password" class="form-control" placeholder="Contraseña" required>
                       <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     </div>
                     <div class="form-group">
-                      <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+                      <button type="submit" class="form-control btn btn-primary btn-login submit px-3">Sign In</button>
                     </div>
                     <div class="form-group d-md-flex justify-content-around">
                       <div class="w-50 text-start">
@@ -128,9 +130,10 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer d-flex align-content-center justify-content-center">
-            <button type="button" class="btn btn-secondary w-50 py-2" data-bs-dismiss="modal">Registrarme</button>
+          <div class="modal-footer d-flex align-content-center justify-content-center m-0">
+            <button type="button" class="form-control btn btn-primary btn-login w-50 py-2 btn-login m-0" data-bs-dismiss="modal">Registrarme</button>
           </div>
+          <img src="media/svg/wave(7).svg">
         </div>
       </div>
     </div>
@@ -166,7 +169,7 @@
     <main class="w-75 mx-auto mt-5 mb-5">
     
       <section id="visitingthecity" class="row menu-container">
-      <h3 class="mb-3">¿Por dónde empezamos?</h3>
+      <h3 class="mb-3  d-flex align-items-center"><span class="title-icon me-2 mb-3">»</span>¿Por dónde empezamos?</h3>
         <div class="col-4 menu-item img__wrap text-center">
           <img src="media/toledo-menu.jpg" class="img__img">
           <div class="img__description_layer">
@@ -231,11 +234,13 @@
             <i class="fa-brands fa-instagram" style="font-size: 1.4rem;"></i>
             <i class="fa-brands fa-facebook-f" style="font-size: 1.4rem;"></i>
           </p>
+          
         </div>
+        <a href="https://www.flaticon.es/iconos-gratis/estrella" title="estrella iconos" class="m-0 p-0 d-none">Estrella iconos creados por Freepik - Flaticon</a>
       </div>
     </footer>
   </div>
-  <a href="https://www.flaticon.es/iconos-gratis/estrella" title="estrella iconos">Estrella iconos creados por Freepik - Flaticon</a>
+  
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

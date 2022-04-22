@@ -39,7 +39,13 @@ p, h3, h4, h5, a {
 #header {
   background: #55aacc;
   height: 7rem;
-  border-bottom: 1px solid white;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 20;
 }
 
 /* NAVBAR */
@@ -93,7 +99,8 @@ p, h3, h4, h5, a {
 
 /* MODAL LOGIN */
 .modal-content {
-  background: linear-gradient(0deg, rgba(255, 172, 17, 0.9) 0%, rgba(250, 193, 71, 0.9) 36%);
+  background: white;
+  /*background: linear-gradient(145deg, rgba(25,35,64,0.9) 10%, rgba(255,255,255,0.9) 250%);*/
 }
 
 #loginModal .modal-body, .modal-header, .modal-footer {
@@ -102,15 +109,17 @@ p, h3, h4, h5, a {
 #loginModal .modal-body .modal-title, .modal-header .modal-title, .modal-footer .modal-title {
   font-size: 1.4rem;
   justify-self: center;
+  color: #000;
 }
 
 #loginModal .form-control {
+  color: white;
   margin-bottom: 2rem;
   background: transparent;
   border: none;
   height: 50px;
   border: 1px solid transparent;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.103);
   border-radius: 40px;
   padding-left: 20px;
   padding-right: 20px;
@@ -118,7 +127,7 @@ p, h3, h4, h5, a {
 }
 #loginModal .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: rgba(0, 0, 0, 0.8) !important;
+  color: rgba(5, 5, 5, 0.8) !important;
 }
 #loginModal .form-control::-moz-placeholder {
   /* Firefox 19+ */
@@ -136,10 +145,10 @@ p, h3, h4, h5, a {
   background: transparent;
   outline: none;
   box-shadow: none;
-  border-color: rgba(56, 56, 56, 0.4);
+  border-color: rgba(0, 0, 0, 0.651);
 }
 #loginModal .form-control:focus {
-  border-color: rgba(63, 63, 63, 0.4);
+  border-color: rgba(0, 0, 0, 0.678);
 }
 
 textarea.form-control {
@@ -160,6 +169,7 @@ textarea.form-control {
 }
 
 .checkbox-wrap {
+  color: #000;
   display: block;
   position: relative;
   padding-left: 30px;
@@ -171,6 +181,17 @@ textarea.form-control {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+#loginModal a {
+  font-size: 1.2rem;
+  transition: 0.3s all ease;
+  color: #000;
+}
+#loginModal a:hover, #loginModal a:focus {
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none;
 }
 
 .btn {
@@ -185,7 +206,7 @@ textarea.form-control {
   outline: none;
 }
 .btn.btn-primary {
-  background: white !important;
+  background-color: white !important;
   border: 1px solid white !important;
   color: black !important;
 }
@@ -194,6 +215,9 @@ textarea.form-control {
   background: transparent;
   color: white;
 }
+.btn.btn-primary.btn-login {
+  background-color: #6ad3fd !important;
+}
 .btn.btn-primary.btn-outline-primary {
   border: 1px solid white;
   background: transparent;
@@ -201,7 +225,7 @@ textarea.form-control {
 }
 .btn.btn-primary.btn-outline-primary:hover {
   border: 1px solid transparent;
-  background: white;
+  background-color: white;
   color: white;
 }
 .btn.btn-secondary {
@@ -225,16 +249,17 @@ textarea.form-control {
   background: white;
   color: white;
 }
-
-#loginModal a {
-  font-size: 1.2rem;
+.btn:hover {
   transition: 0.3s all ease;
-  color: white;
+  font-weight: bolder;
+  font-size: larger;
 }
-#loginModal a:hover, #loginModal a:focus {
-  text-decoration: none !important;
-  outline: none !important;
-  box-shadow: none;
+
+/*TITLE ICON*/
+.title-icon {
+  font-size: 5rem;
+  font-weight: 700;
+  color: #F2BA52;
 }
 
 * {
@@ -302,17 +327,23 @@ menu-container {
   bottom: 0;
   left: 0;
   right: 0;
-  background: #55aacc;
-  color: white;
+  /*background: $primaryColor;*/
+  color: #F2BA52;
   visibility: hidden;
   opacity: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-transform: uppercase;
+  font-weight: 700;
   /* transition effect. not necessary */
   transition: opacity 0.3s, visibility 0.3s;
 }
 
+.img__wrap:hover .img__img {
+  filter: blur(5px);
+  filter: brightness(40%);
+}
 .img__wrap:hover .img__description_layer {
   visibility: visible;
   opacity: 1;
@@ -368,7 +399,13 @@ p, h3, h4, h5, a {
 #header {
   background: #55aacc;
   height: 7rem;
-  border-bottom: 1px solid white;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 20;
 }
 
 /* NAVBAR */
@@ -422,7 +459,8 @@ p, h3, h4, h5, a {
 
 /* MODAL LOGIN */
 .modal-content {
-  background: linear-gradient(0deg, rgba(255, 172, 17, 0.9) 0%, rgba(250, 193, 71, 0.9) 36%);
+  background: white;
+  /*background: linear-gradient(145deg, rgba(25,35,64,0.9) 10%, rgba(255,255,255,0.9) 250%);*/
 }
 
 #loginModal .modal-body, .modal-header, .modal-footer {
@@ -431,15 +469,17 @@ p, h3, h4, h5, a {
 #loginModal .modal-body .modal-title, .modal-header .modal-title, .modal-footer .modal-title {
   font-size: 1.4rem;
   justify-self: center;
+  color: #000;
 }
 
 #loginModal .form-control {
+  color: white;
   margin-bottom: 2rem;
   background: transparent;
   border: none;
   height: 50px;
   border: 1px solid transparent;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.103);
   border-radius: 40px;
   padding-left: 20px;
   padding-right: 20px;
@@ -447,7 +487,7 @@ p, h3, h4, h5, a {
 }
 #loginModal .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: rgba(0, 0, 0, 0.8) !important;
+  color: rgba(5, 5, 5, 0.8) !important;
 }
 #loginModal .form-control::-moz-placeholder {
   /* Firefox 19+ */
@@ -465,10 +505,10 @@ p, h3, h4, h5, a {
   background: transparent;
   outline: none;
   box-shadow: none;
-  border-color: rgba(56, 56, 56, 0.4);
+  border-color: rgba(0, 0, 0, 0.651);
 }
 #loginModal .form-control:focus {
-  border-color: rgba(63, 63, 63, 0.4);
+  border-color: rgba(0, 0, 0, 0.678);
 }
 
 textarea.form-control {
@@ -489,6 +529,7 @@ textarea.form-control {
 }
 
 .checkbox-wrap {
+  color: #000;
   display: block;
   position: relative;
   padding-left: 30px;
@@ -500,6 +541,17 @@ textarea.form-control {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+#loginModal a {
+  font-size: 1.2rem;
+  transition: 0.3s all ease;
+  color: #000;
+}
+#loginModal a:hover, #loginModal a:focus {
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none;
 }
 
 .btn {
@@ -514,7 +566,7 @@ textarea.form-control {
   outline: none;
 }
 .btn.btn-primary {
-  background: white !important;
+  background-color: white !important;
   border: 1px solid white !important;
   color: black !important;
 }
@@ -523,6 +575,9 @@ textarea.form-control {
   background: transparent;
   color: white;
 }
+.btn.btn-primary.btn-login {
+  background-color: #6ad3fd !important;
+}
 .btn.btn-primary.btn-outline-primary {
   border: 1px solid white;
   background: transparent;
@@ -530,7 +585,7 @@ textarea.form-control {
 }
 .btn.btn-primary.btn-outline-primary:hover {
   border: 1px solid transparent;
-  background: white;
+  background-color: white;
   color: white;
 }
 .btn.btn-secondary {
@@ -554,27 +609,33 @@ textarea.form-control {
   background: white;
   color: white;
 }
-
-#loginModal a {
-  font-size: 1.2rem;
+.btn:hover {
   transition: 0.3s all ease;
-  color: white;
+  font-weight: bolder;
+  font-size: larger;
 }
-#loginModal a:hover, #loginModal a:focus {
-  text-decoration: none !important;
-  outline: none !important;
-  box-shadow: none;
+
+/*TITLE ICON*/
+.title-icon {
+  font-size: 5rem;
+  font-weight: 700;
+  color: #F2BA52;
 }
 
 .element-container {
   background-color: rgba(85, 170, 204, 0.15);
   border-radius: 20px;
-  height: 20rem;
+  height: 25rem;
   -webkit-clip-path: polygon(100% 0, 95% 100%, 0 100%, 0 0);
           clip-path: polygon(100% 0, 95% 100%, 0 100%, 0 0);
 }
 .element-container .element__img {
-  width: 100%;
+  max-width: 100%;
+  height: auto;
   border-bottom-left-radius: 20px;
   border-top-left-radius: 20px;
+}
+.element-container:hover {
+  transform: scale(1.1);
+  transition: 0.3s all ease;
 }/*# sourceMappingURL=main.css.map */

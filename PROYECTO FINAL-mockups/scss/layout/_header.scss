@@ -8,10 +8,14 @@
  #header{
 	background: $primaryColor;
 	height: 7rem;
-	border-bottom: 1px solid $white;
 	 
  }
-
+ .sticky {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 20;
+  }
 /* NAVBAR */
 
 .navbar-light .navbar-brand {
@@ -63,8 +67,8 @@
   }
  /* MODAL LOGIN */
 .modal-content {
-	
-	background: linear-gradient(0deg, rgba(255, 172, 17, 0.9) 0%, rgba(250, 193, 71, 0.9) 36%); 
+	background: $white;
+/*background: linear-gradient(145deg, rgba(25,35,64,0.9) 10%, rgba(255,255,255,0.9) 250%);*/
  }
 #loginModal .modal-body, .modal-header, .modal-footer{
 	
@@ -72,23 +76,25 @@
 	.modal-title{
 		font-size: 1.4rem;
 		justify-self: center;
+		color: $black;
 	}
 }
 
 //FORM CONTROL
 #loginModal .form-control{
+	color: $white;
 	margin-bottom: 2rem;
 	background: transparent;
 	border: none;
 	height: 50px;
 	border: 1px solid transparent;
-	background: rgba(255,255,255,.08);
+	background: rgba(0, 0, 0, 0.103);
 	border-radius: 40px;
 	padding-left: 20px;
 	padding-right: 20px;
 	transition: .3s all ease;
 	&::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-	  color: rgba(0, 0, 0, 0.8) !important;
+	  color: rgba(5, 5, 5, 0.8) !important;
 	}
 	&::-moz-placeholder { /* Firefox 19+ */
 	  color: rgba(0, 0, 0, 0.8) !important;
@@ -103,10 +109,10 @@
 		background: transparent;
 		outline: none;
 		box-shadow: none;
-		border-color: rgba(56, 56, 56, 0.4);
+		border-color: rgba(0, 0, 0, 0.651);
 	}
 	&:focus{
-		border-color: rgba(63, 63, 63, 0.4);
+		border-color: rgba(0, 0, 0, 0.678);
 	}
 }
 textarea.form-control {
@@ -125,12 +131,13 @@ textarea.form-control {
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
-	color: rgba(0, 0, 0, 1); 
+	color: rgb(0, 0, 0); 
 }
   
 
 //CHECKBOX STYLE
 .checkbox-wrap {
+	color: $black;
   display: block;
   position: relative;
   padding-left: 30px;
@@ -143,7 +150,16 @@ textarea.form-control {
   -ms-user-select: none;
   user-select: none;
 }
-
+#loginModal a {
+	font-size: 1.2rem;
+	transition: .3s all ease;
+	color: $black;
+	&:hover, &:focus {
+		text-decoration: none !important;
+		outline: none !important;
+		box-shadow: none;
+	}
+}
 //BUTTON
 .btn {
 	cursor: pointer;
@@ -156,57 +172,62 @@ textarea.form-control {
 		outline: none;
 	}
 	&.btn-primary {
-		background: white !important;
-		border: 1px solid white !important;
+		background-color:$white !important;
+		border: 1px solid $white !important;
 		color: black !important;
 		&:hover {
-			border: 1px solid white;
+			border: 1px solid $white;
 			background: transparent;
-			color: white; 
+			color: $white; 
         
 		}
+		&.btn-login {
+			background-color: $primaryColorLight !important;
+		}
 		&.btn-outline-primary {
-			border: 1px solid white;
+			border: 1px solid $white;
 			background: transparent;
-			color : white;
+			color : $white;
 			&:hover {
 				border: 1px solid transparent;
-				background: white;
-				color :white;
+				background-color: $white;
+				color :$white;
 			}
 		}
 	}
 	&.btn-secondary{
-		background: white !important;
-		border: 1px solid white !important;
+		background: $white !important;
+		border: 1px solid $white !important;
 		color: black !important;
 		height: 50px;
 		&:hover {
-			border: 1px solid white;
+			border: 1px solid $white;
 			background: transparent;
-			color: white; 
+			color: $white; 
         
 		}
 		&.btn-outline-primary {
-			border: 1px solid white;
+			border: 1px solid $white;
 			background: transparent;
-			color : white;
+			color : $white;
 			&:hover {
 				border: 1px solid transparent;
-				background: white;
-				color :white;
+				background: $white;
+				color :$white;
 			}
 		}
 	}
-}
-
-#loginModal a {
-	font-size: 1.2rem;
-	transition: .3s all ease;
-	color: white;
-	&:hover, &:focus {
-		text-decoration: none !important;
-		outline: none !important;
-		box-shadow: none;
+	
+	&:hover{
+		transition: .3s all ease;
+		font-weight: bolder;
+		font-size: larger;
 	}
+}
+/*TITLE ICON*/
+.title-icon{
+	font-size: 5rem;
+	font-weight: 700;
+	color: $secondaryColor;
+	
 }

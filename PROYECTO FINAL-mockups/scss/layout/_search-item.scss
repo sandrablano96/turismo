@@ -4,13 +4,20 @@
 .element-container{
     background-color: rgba($color: $primaryColor, $alpha: .15);
     border-radius: 20px;
-    height: 20rem;
+    height: 25rem;
+    clip-path: polygon(100% 0, 95% 100%, 0 100%, 0 0);
     .element__img{
-        width: 100%;
+        max-width: 100%;
+        height: auto;
         border-bottom-left-radius: 20px;
         border-top-left-radius: 20px;
     }
+    &:hover {
+        transform: scale(1.1);
+        transition: .3s all ease;
+    }
 
-    clip-path: polygon(100% 0, 95% 100%, 0 100%, 0 0);
+    
 }
+
 
