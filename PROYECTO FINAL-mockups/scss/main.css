@@ -3,6 +3,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;800&family=Montserrat:wght@300;400;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;800&family=Montserrat:wght@300;400;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;800&family=Montserrat:wght@300;400;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;800&family=Montserrat:wght@300;400;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;800&family=Montserrat:wght@300;400;700;800&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -39,13 +41,6 @@ p, h3, h4, h5, a {
 #header {
   background: #55aacc;
   height: 7rem;
-}
-
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 20;
 }
 
 /* NAVBAR */
@@ -87,7 +82,13 @@ p, h3, h4, h5, a {
   line-height: 0.3;
 }
 
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+  color: #F2BA52;
+  font-weight: bolder;
+}
+
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  font-size: large;
   color: white;
 }
 
@@ -99,8 +100,8 @@ p, h3, h4, h5, a {
 
 /* MODAL LOGIN */
 .modal-content {
-  background: white;
-  /*background: linear-gradient(145deg, rgba(25,35,64,0.9) 10%, rgba(255,255,255,0.9) 250%);*/
+  background: #192340;
+  background: linear-gradient(145deg, rgba(25, 35, 64, 0.9) 10%, rgba(85, 170, 204, 0.9) 200%);
 }
 
 #loginModal .modal-body, .modal-header, .modal-footer {
@@ -109,7 +110,7 @@ p, h3, h4, h5, a {
 #loginModal .modal-body .modal-title, .modal-header .modal-title, .modal-footer .modal-title {
   font-size: 1.4rem;
   justify-self: center;
-  color: #000;
+  color: white;
 }
 
 #loginModal .form-control {
@@ -119,7 +120,7 @@ p, h3, h4, h5, a {
   border: none;
   height: 50px;
   border: 1px solid transparent;
-  background: rgba(0, 0, 0, 0.103);
+  background: rgba(255, 255, 255, 0.103);
   border-radius: 40px;
   padding-left: 20px;
   padding-right: 20px;
@@ -127,28 +128,28 @@ p, h3, h4, h5, a {
 }
 #loginModal .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: rgba(5, 5, 5, 0.8) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 #loginModal .form-control::-moz-placeholder {
   /* Firefox 19+ */
-  color: rgba(0, 0, 0, 0.8) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 #loginModal .form-control:-ms-input-placeholder {
   /* IE 10+ */
-  color: rgba(0, 0, 0, 0.8) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 #loginModal .form-control:-moz-placeholder {
   /* Firefox 18- */
-  color: rgba(0, 0, 0, 0.8) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 #loginModal .form-control:hover, #loginModal .form-control:focus {
   background: transparent;
   outline: none;
   box-shadow: none;
-  border-color: rgba(0, 0, 0, 0.651);
+  border-color: rgba(255, 255, 255, 0.651);
 }
 #loginModal .form-control:focus {
-  border-color: rgba(0, 0, 0, 0.678);
+  border-color: rgba(255, 255, 255, 0.678);
 }
 
 textarea.form-control {
@@ -165,11 +166,11 @@ textarea.form-control {
   right: 15px;
   font-size: 1rem;
   transform: translateY(-50%);
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 .checkbox-wrap {
-  color: #000;
+  color: white;
   display: block;
   position: relative;
   padding-left: 30px;
@@ -186,7 +187,7 @@ textarea.form-control {
 #loginModal a {
   font-size: 1.2rem;
   transition: 0.3s all ease;
-  color: #000;
+  color: white;
 }
 #loginModal a:hover, #loginModal a:focus {
   text-decoration: none !important;
@@ -215,9 +216,6 @@ textarea.form-control {
   background: transparent;
   color: white;
 }
-.btn.btn-primary.btn-login {
-  background-color: #6ad3fd !important;
-}
 .btn.btn-primary.btn-outline-primary {
   border: 1px solid white;
   background: transparent;
@@ -229,24 +227,14 @@ textarea.form-control {
   color: white;
 }
 .btn.btn-secondary {
-  background: white !important;
-  border: 1px solid white !important;
+  background: #F2BA52 !important;
+  border: 1px solid #F2BA52 !important;
   color: black !important;
   height: 50px;
 }
 .btn.btn-secondary:hover {
-  border: 1px solid white;
+  border: 1px solid #F2BA52;
   background: transparent;
-  color: white;
-}
-.btn.btn-secondary.btn-outline-primary {
-  border: 1px solid white;
-  background: transparent;
-  color: white;
-}
-.btn.btn-secondary.btn-outline-primary:hover {
-  border: 1px solid transparent;
-  background: white;
   color: white;
 }
 .btn:hover {
@@ -401,11 +389,267 @@ p, h3, h4, h5, a {
   height: 7rem;
 }
 
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 20;
+/* NAVBAR */
+.navbar-light .navbar-brand {
+  color: white;
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+  color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-toggler {
+  background: white;
+}
+
+.navbar-nav {
+  text-align: center;
+}
+
+.nav-link {
+  padding: 0.2rem 1rem;
+}
+
+.nav-link.active, .nav-link:focus {
+  color: white;
+}
+
+.navbar-toggler {
+  padding: 1px 5px;
+  font-size: 18px;
+  line-height: 0.3;
+}
+
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+  color: #F2BA52;
+  font-weight: bolder;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  font-size: large;
+  color: white;
+}
+
+/* BUSCADOR */
+#search__form .form-control:focus {
+  border: none;
+  box-shadow: none;
+}
+
+/* MODAL LOGIN */
+.modal-content {
+  background: #192340;
+  background: linear-gradient(145deg, rgba(25, 35, 64, 0.9) 10%, rgba(85, 170, 204, 0.9) 200%);
+}
+
+#loginModal .modal-body, .modal-header, .modal-footer {
+  border: none;
+}
+#loginModal .modal-body .modal-title, .modal-header .modal-title, .modal-footer .modal-title {
+  font-size: 1.4rem;
+  justify-self: center;
+  color: white;
+}
+
+#loginModal .form-control {
+  color: white;
+  margin-bottom: 2rem;
+  background: transparent;
+  border: none;
+  height: 50px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.103);
+  border-radius: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  transition: 0.3s all ease;
+}
+#loginModal .form-control::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+#loginModal .form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+#loginModal .form-control:-ms-input-placeholder {
+  /* IE 10+ */
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+#loginModal .form-control:-moz-placeholder {
+  /* Firefox 18- */
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+#loginModal .form-control:hover, #loginModal .form-control:focus {
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.651);
+}
+#loginModal .form-control:focus {
+  border-color: rgba(255, 255, 255, 0.678);
+}
+
+textarea.form-control {
+  height: inherit !important;
+}
+
+.form-group {
+  position: relative;
+}
+
+.field-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  font-size: 1rem;
+  transform: translateY(-50%);
+  color: rgb(255, 255, 255);
+}
+
+.checkbox-wrap {
+  color: white;
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#loginModal a {
+  font-size: 1.2rem;
+  transition: 0.3s all ease;
+  color: white;
+}
+#loginModal a:hover, #loginModal a:focus {
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none;
+}
+
+.btn {
+  cursor: pointer;
+  border-radius: 40px;
+  box-shadow: none !important;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.btn:hover, .btn:active, .btn:focus {
+  outline: none;
+}
+.btn.btn-primary {
+  background-color: white !important;
+  border: 1px solid white !important;
+  color: black !important;
+}
+.btn.btn-primary:hover {
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+}
+.btn.btn-primary.btn-outline-primary {
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+}
+.btn.btn-primary.btn-outline-primary:hover {
+  border: 1px solid transparent;
+  background-color: white;
+  color: white;
+}
+.btn.btn-secondary {
+  background: #F2BA52 !important;
+  border: 1px solid #F2BA52 !important;
+  color: black !important;
+  height: 50px;
+}
+.btn.btn-secondary:hover {
+  border: 1px solid #F2BA52;
+  background: transparent;
+  color: white;
+}
+.btn:hover {
+  transition: 0.3s all ease;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+/*TITLE ICON*/
+.title-icon {
+  font-size: 5rem;
+  font-weight: 700;
+  color: #F2BA52;
+}
+
+.element-container {
+  background-color: rgba(85, 170, 204, 0.15);
+  border-radius: 20px;
+  height: 25rem;
+  -webkit-clip-path: polygon(100% 0, 95% 100%, 0 100%, 0 0);
+          clip-path: polygon(100% 0, 95% 100%, 0 100%, 0 0);
+}
+.element-container .element__img {
+  max-width: 100%;
+  height: auto;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.element-container:hover {
+  transform: scale(1.1);
+  transition: 0.3s all ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p, h3, h4, h5, a {
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar-brand, h2 {
+  font-family: "Lexend Deca", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p, h3, h4, h5, a {
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar-brand, h2 {
+  font-family: "Lexend Deca", sans-serif;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#header {
+  background: #55aacc;
+  height: 7rem;
 }
 
 /* NAVBAR */
@@ -447,7 +691,13 @@ p, h3, h4, h5, a {
   line-height: 0.3;
 }
 
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+  color: #F2BA52;
+  font-weight: bolder;
+}
+
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  font-size: large;
   color: white;
 }
 
@@ -459,8 +709,8 @@ p, h3, h4, h5, a {
 
 /* MODAL LOGIN */
 .modal-content {
-  background: white;
-  /*background: linear-gradient(145deg, rgba(25,35,64,0.9) 10%, rgba(255,255,255,0.9) 250%);*/
+  background: #192340;
+  background: linear-gradient(145deg, rgba(25, 35, 64, 0.9) 10%, rgba(85, 170, 204, 0.9) 200%);
 }
 
 #loginModal .modal-body, .modal-header, .modal-footer {
@@ -469,7 +719,7 @@ p, h3, h4, h5, a {
 #loginModal .modal-body .modal-title, .modal-header .modal-title, .modal-footer .modal-title {
   font-size: 1.4rem;
   justify-self: center;
-  color: #000;
+  color: white;
 }
 
 #loginModal .form-control {
@@ -479,7 +729,7 @@ p, h3, h4, h5, a {
   border: none;
   height: 50px;
   border: 1px solid transparent;
-  background: rgba(0, 0, 0, 0.103);
+  background: rgba(255, 255, 255, 0.103);
   border-radius: 40px;
   padding-left: 20px;
   padding-right: 20px;
@@ -487,28 +737,28 @@ p, h3, h4, h5, a {
 }
 #loginModal .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: rgba(5, 5, 5, 0.8) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 #loginModal .form-control::-moz-placeholder {
   /* Firefox 19+ */
-  color: rgba(0, 0, 0, 0.8) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 #loginModal .form-control:-ms-input-placeholder {
   /* IE 10+ */
-  color: rgba(0, 0, 0, 0.8) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 #loginModal .form-control:-moz-placeholder {
   /* Firefox 18- */
-  color: rgba(0, 0, 0, 0.8) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 #loginModal .form-control:hover, #loginModal .form-control:focus {
   background: transparent;
   outline: none;
   box-shadow: none;
-  border-color: rgba(0, 0, 0, 0.651);
+  border-color: rgba(255, 255, 255, 0.651);
 }
 #loginModal .form-control:focus {
-  border-color: rgba(0, 0, 0, 0.678);
+  border-color: rgba(255, 255, 255, 0.678);
 }
 
 textarea.form-control {
@@ -525,11 +775,11 @@ textarea.form-control {
   right: 15px;
   font-size: 1rem;
   transform: translateY(-50%);
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 .checkbox-wrap {
-  color: #000;
+  color: white;
   display: block;
   position: relative;
   padding-left: 30px;
@@ -546,7 +796,7 @@ textarea.form-control {
 #loginModal a {
   font-size: 1.2rem;
   transition: 0.3s all ease;
-  color: #000;
+  color: white;
 }
 #loginModal a:hover, #loginModal a:focus {
   text-decoration: none !important;
@@ -575,9 +825,6 @@ textarea.form-control {
   background: transparent;
   color: white;
 }
-.btn.btn-primary.btn-login {
-  background-color: #6ad3fd !important;
-}
 .btn.btn-primary.btn-outline-primary {
   border: 1px solid white;
   background: transparent;
@@ -589,24 +836,14 @@ textarea.form-control {
   color: white;
 }
 .btn.btn-secondary {
-  background: white !important;
-  border: 1px solid white !important;
+  background: #F2BA52 !important;
+  border: 1px solid #F2BA52 !important;
   color: black !important;
   height: 50px;
 }
 .btn.btn-secondary:hover {
-  border: 1px solid white;
+  border: 1px solid #F2BA52;
   background: transparent;
-  color: white;
-}
-.btn.btn-secondary.btn-outline-primary {
-  border: 1px solid white;
-  background: transparent;
-  color: white;
-}
-.btn.btn-secondary.btn-outline-primary:hover {
-  border: 1px solid transparent;
-  background: white;
   color: white;
 }
 .btn:hover {
@@ -622,20 +859,132 @@ textarea.form-control {
   color: #F2BA52;
 }
 
-.element-container {
-  background-color: rgba(85, 170, 204, 0.15);
-  border-radius: 20px;
-  height: 25rem;
-  -webkit-clip-path: polygon(100% 0, 95% 100%, 0 100%, 0 0);
-          clip-path: polygon(100% 0, 95% 100%, 0 100%, 0 0);
+h3 {
+  margin-bottom: 3rem;
 }
-.element-container .element__img {
-  max-width: 100%;
-  height: auto;
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
+
+.contact-info__image {
+  width: 5rem;
+  border-radius: 50%;
+  padding: 0.2rem;
+  box-shadow: 5px 5px 13px -8px #192340;
 }
-.element-container:hover {
-  transform: scale(1.1);
-  transition: 0.3s all ease;
+
+/*FORM CONTAINER*/
+#contact-form {
+  background-color: rgba(106, 211, 253, 0.1);
+  /*FORM*/
+}
+#contact-form button {
+  overflow: visible;
+}
+#contact-form input {
+  line-height: normal;
+}
+#contact-form textarea {
+  overflow: auto;
+}
+#contact-form form {
+  padding: 37.5px;
+  margin: 50px 0;
+}
+#contact-form .underline {
+  border-bottom: solid 2px #192340;
+  margin: -0.512em auto;
+  width: 80px;
+}
+#contact-form .icon_wrapper {
+  margin: 50px auto 0;
+  width: 100%;
+}
+#contact-form .icon {
+  display: block;
+  fill: #192340;
+  height: 50px;
+  margin: 0 auto;
+  width: 50px;
+}
+#contact-form .email {
+  float: right;
+  width: 45%;
+}
+#contact-form input[type=text], #contact-form [type=email], #contact-form select, #contact-form textarea {
+  background: none;
+  border: none;
+  border-bottom: solid 2px #192340;
+  color: #192340;
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: 0em 0 1.875em 0;
+  padding: 0 0 0.875em 0;
+  text-transform: uppercase;
+  width: 100%;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+#contact-form input[type=text]:focus, #contact-form [type=email]:focus, #contact-form textarea:focus {
+  outline: none;
+  padding: 0 0 0.875em 0;
+}
+#contact-form .message {
+  float: none;
+}
+#contact-form .name {
+  float: left;
+  width: 45%;
+}
+#contact-form .subject {
+  width: 100%;
+}
+#contact-form .telephone {
+  width: 100%;
+}
+#contact-form textarea {
+  line-height: 150%;
+  height: 150px;
+  resize: none;
+  width: 100%;
+}
+#contact-form ::-webkit-input-placeholder {
+  color: #474544;
+}
+#contact-form :-moz-placeholder {
+  color: #474544;
+  opacity: 1;
+}
+#contact-form ::-moz-placeholder {
+  color: #474544;
+  opacity: 1;
+}
+#contact-form :-ms-input-placeholder {
+  color: #474544;
+}
+@media screen and (max-width: 768px) {
+  #contact-form #contact-form {
+    margin: 20px auto;
+    width: 95%;
+  }
+}
+@media screen and (max-width: 480px) {
+  #contact-form .underline {
+    width: 68px;
+  }
+  #contact-form #form_button {
+    padding: 15px 25px;
+  }
+}
+@media screen and (max-width: 420px) {
+  #contact-form .icon {
+    height: 35px;
+    width: 35px;
+  }
+  #contact-form .underline {
+    width: 53px;
+  }
+  #contact-form input[type=text], #contact-form [type=email], #contact-form select, #contact-form textarea {
+    font-size: 0.875em;
+  }
 }/*# sourceMappingURL=main.css.map */
