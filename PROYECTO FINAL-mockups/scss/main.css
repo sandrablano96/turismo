@@ -864,7 +864,7 @@ h3 {
 }
 
 .contact-info__image {
-  width: 5rem;
+  width: 7rem;
   border-radius: 50%;
   padding: 0.2rem;
   box-shadow: 5px 5px 13px -8px #192340;
@@ -987,4 +987,21 @@ h3 {
   #contact-form input[type=text], #contact-form [type=email], #contact-form select, #contact-form textarea {
     font-size: 0.875em;
   }
+}
+
+#history {
+  background-color: rgba(106, 211, 253, 0.1);
+}
+#history img {
+  width: 100%;
+  vertical-align: middle;
+  transition: all 2s ease;
+}
+#history img:hover {
+  transform: scale(1.1);
+}
+#history .history__gallery {
+  align-items: center;
+  width: 35rem;
+  overflow: hidden;
 }/*# sourceMappingURL=main.css.map */
