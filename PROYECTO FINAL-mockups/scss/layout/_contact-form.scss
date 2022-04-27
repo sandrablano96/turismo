@@ -12,16 +12,27 @@ h3 {
 box-shadow: 5px 5px 13px -8px $primaryColorDark;
 }
 
-      /*FORM CONTAINER*/
+      /* FORM */
+      
+.form_header {
+  background-image: linear-gradient(360deg, rgba($black,0.5) 100%, rgb(255, 255, 255) 0%), url('./../media/fachada_VxhcWlj.webp');
+  height: 20rem;
+  background-size: cover;
+  background-blend-mode: multiply;
+  h3{
+    font-weight: 700;
+    color: $white;
+    padding-top: 5rem;
+  }
+}
+
 #contact-form{
     background-color: rgba($primaryColorLight,0.1);
 
 button {
     overflow: visible;
   }
-  
 
-  
   input {
     line-height: normal;
   }
@@ -31,7 +42,6 @@ button {
   }
   
   form {
-    padding: 37.5px;
     margin: 50px 0;
   }
 
@@ -163,3 +173,4 @@ button {
     }
   }
 }
+
