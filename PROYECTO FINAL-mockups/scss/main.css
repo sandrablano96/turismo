@@ -1003,16 +1003,42 @@ h3 {
 #history {
   background-color: rgba(106, 211, 253, 0.1);
 }
-#history img {
-  width: 100%;
-  vertical-align: middle;
-  transition: all 2s ease;
-}
-#history img:hover {
-  transform: scale(1.1);
-}
-#history .history__gallery {
-  align-items: center;
+
+.history__gallery {
+  height: auto;
   width: 35rem;
-  overflow: hidden;
+}
+.history__gallery .gallery_img {
+  top: 10rem;
+  position: -webkit-sticky;
+  position: sticky;
+  text-decoration: none;
+  width: 100%;
+  height: 21.5rem;
+  background-image: url("./../media/toledo-menu.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.history__gallery .gallery_img:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+}
+.history__gallery a:hover .cta {
+  font-size: xx-large;
+  text-transform: uppercase;
+  transition: 0.3s all ease;
+  font-weight: 900;
+  color: #F2BA52;
+}
+
+.cta {
+  color: white;
+  height: 21rem;
+  position: relative;
+  z-index: 10;
+  top: 10rem;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  font-weight: 700;
 }/*# sourceMappingURL=main.css.map */
