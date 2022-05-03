@@ -17,15 +17,16 @@
 <body>
   <div class="container-fluid m-0 p-0">
     <header id="header" class="sticky-top">
-      <nav class="navbar  navbar-expand-lg navbar-light">
-        <div class="container-fluid w-100 m-2">
-          <a class="navbar-brand" href="#">Turismo en Ciudad Real</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      <nav class="navbar navbar-expand-lg navbar-light navbar-collapse">
+        <div class="container-fluid w-100 m-md-2 d-sm-flex justify-content-sm-start gap-2">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon col-2 d-md-none text-start"></span>
           </button>
-
-          <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+          <a class="navbar-brand d-none d-md-inline col-md-3 order-md-0" href="#">Turismo en Ciudad Real</a>
+          <a class="navbar-brand d-md-none"><img src="">LOGO</a>
+          
+          <div class="collapse navbar-collapse justify-content-center order-sm-last order-md-1" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a class="nav-link active" href="#">Inicio</a>
@@ -75,9 +76,12 @@
 
             </ul>
           </div>
-
+          <div class="d-sm-flex align-items-center order-md-2">
           <form action="" id="search__form">
-            <div class="ps-4 bg-light rounded rounded-pill shadow-sm m-2">
+            <button id="search__form__sm-icon" class="btn btn-primary rounded-circle text-center d-inline d-lg-none">
+              <img src="media/icons/search.svg" class="pb-1">
+            </button>
+            <div class="ps-4 bg-light rounded rounded-pill shadow-sm m-2 d-none d-lg-block">
               <div class="input-group">
                 <input type="text" placeholder="Buscar..." aria-describedby="button-addon1"
                   class="form-control border-0">
@@ -88,8 +92,9 @@
               </div>
             </div>
           </form>
-          <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
+          <button type="button" class="btn btn-outline-primary btn-lg d-inline" data-bs-toggle="modal"
             data-bs-target="#loginModal"><i class="fa-regular fa-user"></i> LOGIN </button>
+          </div>
         </div>
       </nav>
     </header>
@@ -150,6 +155,11 @@
   </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
+          <!-- Para hacer el carrousel responsive usaremos tres tamaños de imagen
+          <img src="2.jpg" class=" w-100 d-none d-lg-block" alt="...">
+          <img src="2md.jpg" class="d-none d-sm-block d-lg-none w-100" alt="...">
+          <img src="2sm.jpg" class="d-block d-sm-none w-100" alt="...">
+          -->
           <img src="media/alarcos.webp" class="d-block w-100" alt="parque arqueológico de alarcos" />
         </div>
         <div class="carousel-item">
@@ -173,37 +183,37 @@
     
       <section id="visitingthecity" class="row menu-container">
       <h3 class="mb-3  d-flex align-items-center"><span class="title-icon me-2 mb-3">»</span>¿Por dónde empezamos?</h3>
-        <div class="col-4 menu-item img__wrap text-center">
+        <div class="col-12 col-md-4 menu-item img__wrap text-center">
           <img src="media/toledo-menu.jpg" class="img__img">
           <div class="img__description_layer">
           <p class="img__description">Historia</p>
           </div>
         </div>
-        <div class="col-4 menu-item img__wrap text-center">
+        <div class="col-12 col-md-4 menu-item img__wrap text-center">
           <img src="media/santiago.jpg" class="img__img">
           <div class="img__description_layer">
           <p class="img__description">Qué ver</p>
           </div>
         </div>
-        <div class="col-4 menu-item img__wrap text-center">
+        <div class="col-12 col-md-4 menu-item img__wrap text-center">
           <img src="media/gastronomia.jpg" class="img__img">
           <div class="img__description_layer">
           <p class="img__description">Gastronomía</p>
           </div>
         </div>
-        <div class="col-4 menu-item img__wrap text-center">
+        <div class="col-12 col-md-4 menu-item img__wrap text-center">
           <img src="media/ocio.jpg" class="img__img">
           <div class="img__description_layer">
           <p class="img__description">Ocio</p>
           </div>
         </div>
-        <div class="col-4 menu-item img__wrap text-center">
+        <div class="col-12 col-md-4 menu-item img__wrap text-center">
           <img src="media/llegar.png" class="img__img">
           <div class="img__description_layer">
           <p class="img__description">Cómo llegar</p>
           </div>
         </div>
-        <div class="col-4 menu-item img__wrap text-center">
+        <div class="col-12 col-md-4 menu-item img__wrap text-center">
           <img src="media/contacto.png" class="img__img">
           <div class="img__description_layer">
           <p class="img__description">Contacto</p>

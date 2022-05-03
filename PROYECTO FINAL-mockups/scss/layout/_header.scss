@@ -7,7 +7,7 @@
  
  #header{
 	background: $primaryColor;
-	height: 7rem;
+	
  }
 
 /* NAVBAR */
@@ -160,62 +160,16 @@ textarea.form-control {
 		box-shadow: none;
 	}
 }
-//BUTTON
-.btn {
-	cursor: pointer;
-	border-radius: 40px;
-	box-shadow: none!important;
-	font-size: 15px;
-	font-weight: 600;
-	text-transform: uppercase;
-	&:hover, &:active, &:focus {
-		outline: none;
-	}
-	&.btn-primary {
-		background-color:$white !important;
-		border: 1px solid $white !important;
-		color: black !important;
-		&:hover {
-			border: 1px solid $white;
-			background: transparent;
-			color: $white; 
-        
-		}
-		
-		&.btn-outline-primary {
-			border: 1px solid $white;
-			background: transparent;
-			color : $white;
-			&:hover {
-				border: 1px solid transparent;
-				background-color: $white;
-				color :$white;
-			}
-		}
-	}
-	&.btn-secondary{
-		background: $secondaryColor !important;
-		border: 1px solid $secondaryColor !important;
-		color: black !important;
-		height: 50px;
-		&:hover {
-			border: 1px solid $secondaryColor;
-			background: transparent;
-			color: $white; 
-        
-		}
-	}
-	
-	&:hover{
-		transition: .3s all ease;
-		font-weight: bolder;
-		font-size: larger;
-	}
-}
+
 /*TITLE ICON*/
 .title-icon{
 	font-size: 5rem;
 	font-weight: 700;
 	color: $secondaryColor;
 	
+}
+
+//responsive navbar
+#search__form__sm-icon{
+	justify-self: left;
 }
