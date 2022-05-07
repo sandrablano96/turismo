@@ -96,12 +96,25 @@ p, h3, h4, h5, a {
 /* NAVBAR */
 .navbar-light .navbar-brand {
   color: white;
-  font-size: 25px;
+  font-size: 1.5rem;
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 2px;
 }
 
+.nav-item .nav-link {
+  font-size: 1rem;
+}
+
+@media screen and (min-width: 1200px) {
+  .navbar-light .navbar-brand {
+    font-size: 2rem;
+  }
+
+  .nav-item .nav-link {
+    font-size: 1.2rem;
+  }
+}
 .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
   color: white;
 }
@@ -138,7 +151,7 @@ p, h3, h4, h5, a {
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-  font-size: large;
+  font-size: 1.3rem;
   color: white;
 }
 
@@ -397,12 +410,25 @@ p, h3, h4, h5, a {
 /* NAVBAR */
 .navbar-light .navbar-brand {
   color: white;
-  font-size: 25px;
+  font-size: 1.5rem;
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 2px;
 }
 
+.nav-item .nav-link {
+  font-size: 1rem;
+}
+
+@media screen and (min-width: 1200px) {
+  .navbar-light .navbar-brand {
+    font-size: 2rem;
+  }
+
+  .nav-item .nav-link {
+    font-size: 1.2rem;
+  }
+}
 .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
   color: white;
 }
@@ -439,7 +465,7 @@ p, h3, h4, h5, a {
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-  font-size: large;
+  font-size: 1.3rem;
   color: white;
 }
 
@@ -615,12 +641,25 @@ p, h3, h4, h5, a {
 /* NAVBAR */
 .navbar-light .navbar-brand {
   color: white;
-  font-size: 25px;
+  font-size: 1.5rem;
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 2px;
 }
 
+.nav-item .nav-link {
+  font-size: 1rem;
+}
+
+@media screen and (min-width: 1200px) {
+  .navbar-light .navbar-brand {
+    font-size: 2rem;
+  }
+
+  .nav-item .nav-link {
+    font-size: 1.2rem;
+  }
+}
 .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
   color: white;
 }
@@ -657,7 +696,7 @@ p, h3, h4, h5, a {
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-  font-size: large;
+  font-size: 1.3rem;
   color: white;
 }
 
