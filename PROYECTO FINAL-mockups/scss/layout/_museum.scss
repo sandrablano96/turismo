@@ -1,3 +1,4 @@
+@import "../base/base";
 #museum {
     background-color: rgba($primaryColorLight, 0.1);
     img {
@@ -8,5 +9,13 @@
             text-decoration: none;
             width: 100%;
             height: 21.5rem;
+    }
+}
+
+#info{
+    background-color: $secondaryColor;
+    font-size: 1.4rem;
+    span {
+        font-weight: 600;
     }
 }
