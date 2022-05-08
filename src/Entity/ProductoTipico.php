@@ -17,7 +17,7 @@ class ProductoTipico
     private $nombre;
 
     #[ORM\Column(type: 'text')]
-    private $elaboración;
+    private $descripcion;
 
     #[ORM\ManyToOne(targetEntity: gastronomia::class, inversedBy: 'productosTipicos')]
     #[ORM\JoinColumn(nullable: false)]
@@ -40,14 +40,14 @@ class ProductoTipico
         return $this;
     }
 
-    public function getElaboración(): ?string
+    public function getDescripcion(): ?string
     {
-        return $this->elaboración;
+        return $this->descripcion;
     }
 
-    public function setElaboración(string $elaboración): self
+    public function setDescripcion(string $descripcion): self
     {
-        $this->elaboración = $elaboración;
+        $this->descripcion = $descripcion;
 
         return $this;
     }

@@ -592,7 +592,7 @@ textarea.form-control {
 }
 .element-container .element__img {
   max-width: 100%;
-  height: auto;
+  height: 100%;
   border-bottom-left-radius: 20px;
   border-top-left-radius: 20px;
 }
@@ -1025,4 +1025,24 @@ h3 {
 }
 #how-to-get-here h4:hover {
   font-size: xx-large;
+}
+
+#monthly-product {
+  background-color: rgba(106, 211, 253, 0.1);
+}
+#monthly-product img {
+  width: 35rem;
+}
+
+#museum {
+  background-color: rgba(106, 211, 253, 0.1);
+}
+#museum img {
+  width: 35rem;
+  top: 10rem;
+  position: -webkit-sticky;
+  position: sticky;
+  text-decoration: none;
+  width: 100%;
+  height: 21.5rem;
 }/*# sourceMappingURL=main.css.map */

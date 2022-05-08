@@ -22,6 +22,12 @@ class Evento
     #[ORM\Column(type: 'string', length: 100)]
     private $fecha;
 
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    private $precio;
+
+    #[ORM\Column(type: 'string', length: 100)]
+    private $tipo_evento;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +65,30 @@ class Evento
     public function setFecha(string $fecha): self
     {
         $this->fecha = $fecha;
+
+        return $this;
+    }
+
+    public function getPrecio(): ?string
+    {
+        return $this->precio;
+    }
+
+    public function setPrecio(?string $precio): self
+    {
+        $this->precio = $precio;
+
+        return $this;
+    }
+
+    public function getTipoEvento(): ?string
+    {
+        return $this->tipo_evento;
+    }
+
+    public function setTipoEvento(string $tipo_evento): self
+    {
+        $this->tipo_evento = $tipo_evento;
 
         return $this;
     }

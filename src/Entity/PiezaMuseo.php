@@ -26,6 +26,9 @@ class PiezaMuseo
     #[ORM\JoinColumn(nullable: false)]
     private $museo;
 
+    #[ORM\Column(type: 'string', length: 100)]
+    private $epoca;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class PiezaMuseo
     public function setMuseo(?museo $museo): self
     {
         $this->museo = $museo;
+
+        return $this;
+    }
+
+    public function getEpoca(): ?string
+    {
+        return $this->epoca;
+    }
+
+    public function setEpoca(string $epoca): self
+    {
+        $this->epoca = $epoca;
 
         return $this;
     }
