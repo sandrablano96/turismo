@@ -78,6 +78,11 @@ p {
   font-weight: bolder;
   font-size: larger;
 }
+.btn.btn-secondary-dark {
+  background: #192340 !important;
+  border: 1px solid #192340 !important;
+  color: white !important;
+}
 
 * {
   margin: 0;
@@ -624,24 +629,92 @@ textarea.form-control {
   justify-self: left;
 }
 
+.btn {
+  cursor: pointer;
+  border-radius: 40px;
+  box-shadow: none !important;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  max-height: 3rem;
+}
+.btn:hover, .btn:active, .btn:focus {
+  outline: none;
+}
+.btn.btn-primary {
+  background-color: white !important;
+  border: 1px solid white !important;
+  color: black !important;
+}
+.btn.btn-primary:hover {
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+}
+.btn.btn-outline-primary {
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+}
+.btn.btn-outline-primary:hover {
+  border: 1px solid transparent;
+  background-color: #F2BA52;
+  color: #000;
+  transition: 0.3s all ease;
+  font-weight: bolder;
+  font-size: larger;
+}
+.btn.btn-secondary {
+  background: #F2BA52 !important;
+  border: 1px solid #F2BA52 !important;
+  color: black !important;
+  height: 50px;
+}
+.btn.btn-secondary:hover {
+  border: 1px solid #F2BA52;
+  background: transparent;
+  color: white;
+  transition: 0.3s all ease;
+  font-weight: bolder;
+  font-size: larger;
+}
+.btn.btn-secondary-dark {
+  background: #192340 !important;
+  border: 1px solid #192340 !important;
+  color: white !important;
+}
+
 .element-container {
   background-color: rgba(85, 170, 204, 0.15);
   border-radius: 20px;
-  height: 25rem;
-  -webkit-clip-path: polygon(100% 0, 95% 100%, 0 100%, 0 0);
-          clip-path: polygon(100% 0, 95% 100%, 0 100%, 0 0);
 }
 .element-container .element__img {
   max-width: 100%;
   height: 100%;
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
 }
 .element-container:hover {
   transform: scale(1.1);
   transition: 0.3s all ease;
 }
 
+#formFiltros {
+  background-color: rgba(25, 35, 64, 0.15);
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (min-width: 992px) {
+  .element-container {
+    -webkit-clip-path: polygon(100% 0, 95% 100%, 0 100%, 0 0);
+            clip-path: polygon(100% 0, 95% 100%, 0 100%, 0 0);
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+  }
+
+  #search-header h2 {
+    padding-left: 25%;
+  }
+}
 * {
   margin: 0;
   padding: 0;

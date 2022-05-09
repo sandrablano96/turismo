@@ -52,6 +52,12 @@
 		font-size: larger;
         
 		}
+		&-dark{
+			background: $primaryColorDark !important;
+			border: 1px solid $primaryColorDark !important;
+			color: $white !important;
+		}
 	}
+	
 	
 }
