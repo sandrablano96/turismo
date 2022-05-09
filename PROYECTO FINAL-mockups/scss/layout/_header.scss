@@ -75,15 +75,20 @@
   }
 
 /* BUSCADOR */
-#search__form .form-control:focus{
+#search__form {
+	.form-control:focus{
 	border: none;
 	box-shadow: none;
   }
+}
+
+
  /* MODAL LOGIN */
 .modal-content {
 	background: $primaryColorDark;
 background: linear-gradient(145deg, rgba($primaryColorDark,0.9) 10%, rgba($primaryColor, 0.9) 200%);
  }
+ 
 #loginModal .modal-body, .modal-header, .modal-footer{
 	
 	border:none;
