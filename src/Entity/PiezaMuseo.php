@@ -29,6 +29,9 @@ class PiezaMuseo
     #[ORM\Column(type: 'string', length: 100)]
     private $epoca;
 
+    #[ORM\Column(type: 'string', length: 20)]
+    private $uid;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class PiezaMuseo
     public function setEpoca(string $epoca): self
     {
         $this->epoca = $epoca;
+
+        return $this;
+    }
+
+    public function getUid(): ?string
+    {
+        return $this->uid;
+    }
+
+    public function setUid(string $uid): self
+    {
+        $this->uid = $uid;
 
         return $this;
     }

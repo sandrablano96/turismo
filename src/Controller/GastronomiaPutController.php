@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminController extends AbstractController
+class GastronomiaPutController extends AbstractController
 {
-    #[Route('/admin', name: 'app_admin')]
+    #[Route('/gastronomia/put', name: 'app_gastronomia_put')]
     public function index(): Response
     {
-        return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+        return $this->render('gastronomia_put/index.html.twig', [
+            'controller_name' => 'GastronomiaPutController',
         ]);
     }
 }

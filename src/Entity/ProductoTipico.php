@@ -23,6 +23,9 @@ class ProductoTipico
     #[ORM\JoinColumn(nullable: false)]
     private $gastronomia;
 
+    #[ORM\Column(type: 'string', length: 20)]
+    private $uid;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class ProductoTipico
     public function setGastronomia(?gastronomia $gastronomia): self
     {
         $this->gastronomia = $gastronomia;
+
+        return $this;
+    }
+
+    public function getUid(): ?string
+    {
+        return $this->uid;
+    }
+
+    public function setUid(string $uid): self
+    {
+        $this->uid = $uid;
 
         return $this;
     }

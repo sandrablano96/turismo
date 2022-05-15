@@ -33,6 +33,9 @@ class Museo
     #[ORM\OneToMany(mappedBy: 'museo', targetEntity: PiezaMuseo::class, orphanRemoval: true)]
     private $piezas;
 
+    #[ORM\Column(type: 'string', length: 20)]
+    private $uid;
+
     public function __construct()
     {
         $this->piezas = new ArrayCollection();
@@ -129,6 +132,18 @@ class Museo
                 $pieza->setMuseo(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUid(): ?string
+    {
+        return $this->uid;
+    }
+
+    public function setUid(string $uid): self
+    {
+        $this->uid = $uid;
 
         return $this;
     }

@@ -28,6 +28,9 @@ class Evento
     #[ORM\Column(type: 'string', length: 100)]
     private $tipo_evento;
 
+    #[ORM\Column(type: 'string', length: 20)]
+    private $uid;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class Evento
     public function setTipoEvento(string $tipo_evento): self
     {
         $this->tipo_evento = $tipo_evento;
+
+        return $this;
+    }
+
+    public function getUid(): ?string
+    {
+        return $this->uid;
+    }
+
+    public function setUid(string $uid): self
+    {
+        $this->uid = $uid;
 
         return $this;
     }

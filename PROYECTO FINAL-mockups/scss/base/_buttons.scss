@@ -58,6 +58,12 @@
 			color: $white !important;
 		}
 	}
+
+	&.btn-transparent{
+		background: transparent;
+		border:none;
+		box-shadow: none;
+	}
 	
 	
 }

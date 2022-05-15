@@ -21,6 +21,9 @@ class Gastronomia
     #[ORM\OneToMany(mappedBy: 'gastronomia', targetEntity: ProductoTipico::class, orphanRemoval: true)]
     private $productosTipicos;
 
+    #[ORM\Column(type: 'string', length: 20)]
+    private $uid;
+
     public function __construct()
     {
         $this->productosTipicos = new ArrayCollection();
@@ -69,6 +72,18 @@ class Gastronomia
                 $productosTipico->setGastronomia(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUid(): ?string
+    {
+        return $this->uid;
+    }
+
+    public function setUid(string $uid): self
+    {
+        $this->uid = $uid;
 
         return $this;
     }

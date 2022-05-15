@@ -31,6 +31,9 @@ class VisitaGuiada
     #[ORM\ManyToOne(targetEntity: guiaTurismo::class, inversedBy: 'visitasOrganizadas')]
     private $organizador2;
 
+    #[ORM\Column(type: 'string', length: 20)]
+    private $uid;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +107,18 @@ class VisitaGuiada
     public function setOrganizador2(?guiaTurismo $organizador2): self
     {
         $this->organizador2 = $organizador2;
+
+        return $this;
+    }
+
+    public function getUid(): ?string
+    {
+        return $this->uid;
+    }
+
+    public function setUid(string $uid): self
+    {
+        $this->uid = $uid;
 
         return $this;
     }

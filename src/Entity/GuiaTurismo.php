@@ -33,6 +33,9 @@ class GuiaTurismo
     #[ORM\OneToMany(mappedBy: 'organizador2', targetEntity: VisitaGuiada::class)]
     private $visitasOrganizadas;
 
+    #[ORM\Column(type: 'string', length: 20)]
+    private $uid;
+
     public function __construct()
     {
         $this->visitasOrganizadas = new ArrayCollection();
@@ -129,6 +132,18 @@ class GuiaTurismo
                 $visitasOrganizada->setOrganizador2(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUid(): ?string
+    {
+        return $this->uid;
+    }
+
+    public function setUid(string $uid): self
+    {
+        $this->uid = $uid;
 
         return $this;
     }
