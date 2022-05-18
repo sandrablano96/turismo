@@ -26,10 +26,10 @@ class VisitaGuiada
     private $precio;
 
     #[ORM\ManyToOne(targetEntity: oficinaTurismo::class, inversedBy: 'visitasOrganizadas')]
-    private $organizador1;
+    private $oficinaTurismo;
 
     #[ORM\ManyToOne(targetEntity: guiaTurismo::class, inversedBy: 'visitasOrganizadas')]
-    private $organizador2;
+    private $guiaTurismo;
 
     #[ORM\Column(type: 'string', length: 20)]
     private $uid;
@@ -87,26 +87,26 @@ class VisitaGuiada
         return $this;
     }
 
-    public function getOrganizador1(): ?oficinaTurismo
+    public function getOficinaTurismo(): ?oficinaTurismo
     {
-        return $this->organizador1;
+        return $this->oficinaTurismo;
     }
 
-    public function setOrganizador1(?oficinaTurismo $organizador1): self
+    public function setOficinaTurismo(?oficinaTurismo $oficinaTurismo): self
     {
-        $this->organizador1 = $organizador1;
+        $this->oficinaTurismo = $oficinaTurismo;
 
         return $this;
     }
 
-    public function getOrganizador2(): ?guiaTurismo
+    public function getGuiaTurismo(): ?guiaTurismo
     {
-        return $this->organizador2;
+        return $this->guiaTurismo;
     }
 
-    public function setOrganizador2(?guiaTurismo $organizador2): self
+    public function setGuiaTurismo(?guiaTurismo $GuiaTurismo): self
     {
-        $this->organizador2 = $organizador2;
+        $this->guiaTurismo = $GuiaTurismo;
 
         return $this;
     }

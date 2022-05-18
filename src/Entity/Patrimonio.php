@@ -38,6 +38,12 @@ class Patrimonio
     #[ORM\JoinColumn(nullable: false)]
     private $tipo;
 
+    #[ORM\Column(type: 'string', length: 200, nullable: true)]
+    private $web;
+
+    #[ORM\Column(type: 'text')]
+    private $descripcion;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -135,6 +141,30 @@ class Patrimonio
     public function setTipo(?tipoPatrimonio $tipo): self
     {
         $this->tipo = $tipo;
+
+        return $this;
+    }
+
+    public function getWeb(): ?string
+    {
+        return $this->web;
+    }
+
+    public function setWeb(?string $web): self
+    {
+        $this->web = $web;
+
+        return $this;
+    }
+
+    public function getDescripcion(): ?string
+    {
+        return $this->descripcion;
+    }
+
+    public function setDescripcion(string $descripcion): self
+    {
+        $this->descripcion = $descripcion;
 
         return $this;
     }

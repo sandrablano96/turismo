@@ -45,22 +45,22 @@ class MuseoRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Museos[] Returns an array of Museos objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Museos[] Returns an array of Museos objects
+     */
+    
+    public function findByNameMuseum($name)
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
+            ->andWhere('m.nombre LIKE :name')
+            ->setParameter('name', '&'.$name.'&')
+            ->orderBy('m.name', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Museos

@@ -2,17 +2,32 @@
 
 namespace App\Controller;
 
+use App\Entity\GuiaTurismo;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class GuiaGetController extends AbstractController
 {
-    #[Route('/guia/get', name: 'app_guia_get')]
-    public function index(): Response
+    #[Route("/guias", name: 'app_guias_get')]
+    public function getAllGuides(ManagerRegistry $doctrine): Response
     {
+        $guias = $doctrine->getRepository(GuiaTurismo::class)->findAll();
+        
         return $this->render('guia_get/index.html.twig', [
-            'controller_name' => 'GuiaGetController',
+            'guias' => $guias
+        ]);
+    }
+
+   /**
+     * @Route("/guide/{uid<\d+>}", name="app_guia_get")
+     * @return Response
+     */
+    public function getGuide(GuiaTurismo $guide, ManagerRegistry $doctrine): Response
+    {
+        return $this->render('guia_get/guia.html.twig', [
+            'guia' => $guide
         ]);
     }
 }

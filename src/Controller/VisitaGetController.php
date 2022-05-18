@@ -2,17 +2,34 @@
 
 namespace App\Controller;
 
+use App\Entity\VisitaGuiada;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class VisitaGetController extends AbstractController
 {
-    #[Route('/visita/get', name: 'app_visita_get')]
-    public function index(): Response
+    #[Route('/visitas', name: 'app_visitas_get')]
+    public function getAllVisits(ManagerRegistry $doctrine)
     {
+        $arrayVisitas = $doctrine->getRepository(VisitaGuiada::class)->findAll();
         return $this->render('visita_get/index.html.twig', [
-            'controller_name' => 'VisitaGetController',
+            'visitas' => $arrayVisitas
+        ]);
+    }
+
+    /**
+     * @Route("/visitas", name="app_museo_get", methods={"POST"})
+     * @return Response
+     */
+    public function getAllVisitsOrdered(ManagerRegistry $doctrine, Request $request): Response
+    {
+        $order = $request->request->get('order');
+        $visits = $doctrine->getRepository(VisitaGuiada::class)->findBy(array(), array('fecha' => $order));
+        return $this->render('museo_get/museo.html.twig', [
+            'visitas' => $visits
         ]);
     }
 }

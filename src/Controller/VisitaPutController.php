@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class VisitaPutController extends AbstractController
 {
-    #[Route('/visita/put', name: 'app_visita_put')]
+    #[Route('/visita/put/{uid<\d+>}', name: 'app_visita_put')]
     public function index(): Response
     {
         return $this->render('visita_put/index.html.twig', [

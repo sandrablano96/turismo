@@ -30,7 +30,7 @@ class GuiaTurismo
     #[ORM\Column(type: 'string', length: 20)]
     private $tipo;
 
-    #[ORM\OneToMany(mappedBy: 'organizador2', targetEntity: VisitaGuiada::class)]
+    #[ORM\OneToMany(mappedBy: 'guiaTurismo', targetEntity: VisitaGuiada::class)]
     private $visitasOrganizadas;
 
     #[ORM\Column(type: 'string', length: 20)]
@@ -118,7 +118,7 @@ class GuiaTurismo
     {
         if (!$this->visitasOrganizadas->contains($visitasOrganizada)) {
             $this->visitasOrganizadas[] = $visitasOrganizada;
-            $visitasOrganizada->setOrganizador2($this);
+            $visitasOrganizada->setGuiaTurismo($this);
         }
 
         return $this;
@@ -128,8 +128,8 @@ class GuiaTurismo
     {
         if ($this->visitasOrganizadas->removeElement($visitasOrganizada)) {
             // set the owning side to null (unless already changed)
-            if ($visitasOrganizada->getOrganizador2() === $this) {
-                $visitasOrganizada->setOrganizador2(null);
+            if ($visitasOrganizada->getGuiaTurismo() === $this) {
+                $visitasOrganizada->setGuiaTurismo(null);
             }
         }
 

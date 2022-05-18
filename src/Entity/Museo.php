@@ -21,9 +21,6 @@ class Museo
     #[ORM\Column(type: 'string', length: 100)]
     private $direccion;
 
-    #[ORM\Column(type: 'string', length: 200)]
-    private $contacto;
-
     #[ORM\Column(type: 'string', length: 20)]
     private $telefono;
 
@@ -35,6 +32,12 @@ class Museo
 
     #[ORM\Column(type: 'string', length: 20)]
     private $uid;
+
+    #[ORM\Column(type: 'string', length: 200, nullable: true)]
+    private $web;
+
+    #[ORM\Column(type: 'string', length: 200, nullable: true)]
+    private $email;
 
     public function __construct()
     {
@@ -66,18 +69,6 @@ class Museo
     public function setDireccion(string $direccion): self
     {
         $this->direccion = $direccion;
-
-        return $this;
-    }
-
-    public function getContacto(): ?string
-    {
-        return $this->contacto;
-    }
-
-    public function setContacto(string $contacto): self
-    {
-        $this->contacto = $contacto;
 
         return $this;
     }
@@ -144,6 +135,30 @@ class Museo
     public function setUid(string $uid): self
     {
         $this->uid = $uid;
+
+        return $this;
+    }
+
+    public function getWeb(): ?string
+    {
+        return $this->web;
+    }
+
+    public function setWeb(?string $web): self
+    {
+        $this->web = $web;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
