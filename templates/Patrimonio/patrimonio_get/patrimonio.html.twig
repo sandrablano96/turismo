@@ -1,0 +1,38 @@
+{# empty Twig template #}
+{# empty Twig template #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Museos {{ tipo }}
+{% endblock %}
+
+{% block main %}
+    <main class="mt-5 mb-5">
+            <h2 class="text-center m-5">Patrimonio de Ciudad Real</h2>
+            <section id="museum" class="row w-100 p-5 m-0 d-flex justify-content-md-center">
+                <div class="col-12 col-lg-4 p-4">
+                    <img src="{{ asset('/public/media/'+ {{patrimonio.imagen}}) }}" alt="{{ patrimonio.nombre }}">
+                </div>
+                <div class="col-12 col-lg-8 ps-3 d-flex align-content-center flex-column">
+                    <h3>{{ patrimonio.nombre }}</h3>
+                    {{ patrimonio.descripcion }}
+
+                </div>
+            </section>
+            
+            <section id="info" class="w-50 mx-auto mt-5 mb-5 p-5">
+                <h3>Información de interés</h3>
+                <p><span>Direccion: </span> {{ patrimonio.direccion }}</p>
+                <p><span>Email de contacto: </span>{{ patrimonio.email }}</p>
+                <p><span>Web: </span>{{ patrimonio.web }}</p>
+                <p><span>Teléfono: </span>{{ patrimonio.telefono }}</p>
+                <p><span>Horario de visita: </span>{{ patrimonio.horario }}</p>
+                <p><span>Precio: </span>
+                {% if patrimonio.precio is not null || patrimonio.precio != '' %}
+                    {{ patrimonio.precio }}
+                {% else %}
+                    Gratuito
+                {% endif %}
+                </p>
+            </section>
+        </main>
+{% endblock %}

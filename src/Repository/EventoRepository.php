@@ -50,11 +50,11 @@ class EventoRepository extends ServiceEntityRepository
      * @return Evento[] Returns an array of Evento objects
      */
     
-    public function findByTypeEvents($type)
+    public function findByTypeEvents($types) : array
     {
         return $this->createQueryBuilder('e')
-            ->andWhere('e.tipo_evento = :type')
-            ->setParameter('type', $type)
+            ->andWhere('e.tipo_evento IN (:types)')
+            ->setParameter('types', $types)
             ->orderBy('e.fecha', 'ASC')
             ->getQuery()
             ->getResult()
@@ -64,7 +64,7 @@ class EventoRepository extends ServiceEntityRepository
      * @return Evento[] Returns an array of Evento objects
      */
     
-    public function findByNameEvents($title)
+    public function findByNameEvents($title) : array
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.titulo LIKE :title')
@@ -79,7 +79,7 @@ class EventoRepository extends ServiceEntityRepository
      * @return Evento[] Returns an array of Evento objects
      */
     
-    public function findByMonthEvents($month)
+    public function findByMonthEvents($month) : array
     {
         $actual_year = (new DateTime)->format("Y");
         return $this->createQueryBuilder('e')

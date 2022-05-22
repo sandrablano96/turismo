@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inicio{% endblock %}
+
+{%block carousel %}
+    <!-- carousel -->
+    <div id="carouselIndexCrossfade" class="carousel slide carousel-fade" data-mdb-slide="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselIndexCrossfade" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselIndexCrossfade" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselIndexCrossfade" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <!-- Para hacer el carrousel responsive usaremos tres tamaños de imagen
+          <img src="2.jpg" class=" w-100 d-none d-lg-block" alt="...">
+          <img src="2md.jpg" class="d-none d-sm-block d-lg-none w-100" alt="...">
+          <img src="2sm.jpg" class="d-block d-sm-none w-100" alt="...">
+          -->
+          <img src="media/alarcos.webp" class="d-block w-100" alt="parque arqueológico de alarcos" />
+        </div>
+        <div class="carousel-item">
+          <img src="media/atalaya.webp" class="d-block w-100" alt="parque forestal de la atalaya" />
+        </div>
+        <div class="carousel-item">
+          <img src="media/museo provincial.webp" class="d-block w-100" alt="museo provincial de ciudad real" />
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndexCrossfade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselIndexCrossfade" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <!-- fin carousel -->
+{% endblock %}
+    
+{% block main %}
+<main class="w-75 mx-auto mt-5 mb-5">
+
+      <section id="visitingthecity" class="row menu-container">
+        <h3 class="mb-3  d-flex align-items-center"><span class="title-icon me-2 mb-3">»</span>¿Por dónde empezamos?
+        </h3>
+        <div class="col-12 col-md-4 menu-item img__wrap text-center">
+          <img src="{{ asset('/media/atalaya.jpg') }}" class="img__img">
+          <div class="img__description_layer">
+            <a href="{{ path("app_patrimonio_tipo_get", {type: 'natural'}) }}"><p class="img__description">Patrimonio natural</p></a>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 menu-item img__wrap text-center">
+          <img src="{{ asset('/media/atalaya.jpg') }}" class="img__img">
+          <div class="img__description_layer">
+            <a href="{{ path("app_patrimonio_tipo_get", {type: 'cultural'}) }}"><p class="img__description">Patrimonio cultural</p></a>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 menu-item img__wrap text-center">
+          <img src="{{ asset('/media/atalaya.jpg') }}" class="img__img">
+          <div class="img__description_layer">
+            <a href="{{ path("app_museos_get") }}"><p class="img__description">Museos</p></a>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 menu-item img__wrap text-center">
+          <img src="{{ asset('/media/atalaya.jpg') }}" class="img__img">
+          <div class="img__description_layer">
+            <a href="{{ path("app_visitas_get") }}"><p class="img__description">Visitas guiadas</p></a>
+          </div>
+        </div>
+  </div>
+  </section>
+  </main>
+{% endblock %}

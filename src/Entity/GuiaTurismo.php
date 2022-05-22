@@ -147,4 +147,5 @@ class GuiaTurismo
 
         return $this;
     }
+
 }

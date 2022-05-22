@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ocio{% endblock %}
+
+{% block main %}
+ <main class="w-75 mx-auto mt-5 mb-5">
+      <h2 class="text-center m-5">Ocio</h2>
+      <section class="row" id="events">
+        <div class="col-12 col-md-3 order-1 d-inline-flex justify-content-end h-50 mb-3">
+          {{ form(formMeses, {'attr': {'class': 'w-50 m-auto'}} ) }}
+        </div>
+        <h3 class="month-chosen col-12 col-md-9 order-0">
+            {% if mesEscogido is not null %} 
+                {{ mesEscogido }} 
+            {% else %} 
+                {{ mesActual }} 
+            {% endif %}
+        </h3>
+        <div class="col-12 mb-3 order-2 w-50 m-auto">
+            {{  form_start(formTipos) }}
+            {% for choices in formTipos.choices %}
+          <div class="form-check form-check-inline">
+              {{ form_row(formTipos.deportivo, {'attr':{'class': 'form-check-input'}}) }} 
+          </div>
+            {% endfor %}
+        </div>
+
+        <div class="row order-last m-auto w-100">
+          <div class="col-12 col-md-6 col-lg-4 event d-flex align-content-stretch mb-2 list">
+              {% for item in eventos %}
+            <div class="card" style="width: 20rem;">
+              <img src="{{asset('/public/media/'. {{item.imagen}})}}" class="card-img-bottom" alt="cartel o tipo de evento">
+              <div class="card-body">
+                <h5 class="card-title">{{ item.titulo }}</h5>
+                <p>{{ item.descripcion }}</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ item.fecha | date("Y-m-d")  }}</li>
+                <li class="list-group-item">Gratuita: 
+                {% if item.precio is not null || item.precio != '' %}
+                    Si
+                {% else %}
+                    {{ item.precio }}
+                {% endif %}
+                </li>
+                <li class="list-group-item"><span class="badge bg-primary text-capitalize">{{ evento.tipo_evento }}</span></li>
+              </ul>
+            </div>
+              {% endfor %}
+          </div>
+        </div>
+      </section>
+    </main>
+{% endblock %}

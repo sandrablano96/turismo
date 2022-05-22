@@ -24,6 +24,11 @@ class Gastronomia
     #[ORM\Column(type: 'string', length: 20)]
     private $uid;
 
+    #[ORM\OneToOne(targetEntity: ProductoTipico::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: true)]
+    private $productoMes;
+
+
     public function __construct()
     {
         $this->productosTipicos = new ArrayCollection();
@@ -84,6 +89,18 @@ class Gastronomia
     public function setUid(string $uid): self
     {
         $this->uid = $uid;
+
+        return $this;
+    }
+
+    public function getProductoMes(): ?ProductoTipico
+    {
+        return $this->productoMes;
+    }
+
+    public function setProductoMes(ProductoTipico $productoMes): self
+    {
+        $this->productoMes = $productoMes;
 
         return $this;
     }

@@ -39,6 +39,12 @@ class Museo
     #[ORM\Column(type: 'string', length: 200, nullable: true)]
     private $email;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $precio;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $imagen;
+
     public function __construct()
     {
         $this->piezas = new ArrayCollection();
@@ -159,6 +165,30 @@ class Museo
     public function setEmail(?string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPrecio(): ?string
+    {
+        return $this->precio;
+    }
+
+    public function setPrecio(?string $precio): self
+    {
+        $this->precio = $precio;
+
+        return $this;
+    }
+
+    public function getImagen(): ?string
+    {
+        return $this->imagen;
+    }
+
+    public function setImagen(string $imagen): self
+    {
+        $this->imagen = $imagen;
 
         return $this;
     }

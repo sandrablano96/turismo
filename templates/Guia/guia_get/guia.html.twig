@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Guias{% endblock %}
+
+{% block main %}
+<main class="w-75 mx-auto mt-5 mb-5">
+
+        <h2 class="text-center col-12 col-md-9 order-0 m-auto mb-3">Visitas de {{ guia.nombre}}</h2>
+        <h3> {{ guia.paginaWeb }} </h3>
+        <section id="search-results">
+            <div class="col-12 mb-3 order-2 list">
+                {% for item in guia.visitasOrganizadas %}
+                    <div class="element-container row m-5 d-flex">
+                        <div class="element-container__img col-12 col-lg-4 p-0">
+                            <img src="{{ asset('/media/icons/visita.webp')}}" class="element__img" alt="icono visita">
+                        </div>
+                        <div class="element-container__text col-12 col-lg-7 ps-4 py-3">
+                            <h3>{{ item.titulo }}</h3>
+                            <p>{{ item.descripcion }}
+                            <p> {{ item.fecha |  date("Y-m-d")  }}
+                            
+                            <p> 
+                            {% if item.precio is not null %} 
+                                {{ item.precio  }}
+                            {% else %} 
+                                Gratuita
+                            {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </section>
+
+
+        </main>
+{% endblock %}{# empty Twig template #}

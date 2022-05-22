@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 //Solo se puede usar en las actualizaciones:
 //So far, this works great, but only to edit existing tags. It doesn't allow us yet to add new tags or delete existing ones.
-class PiezaType extends AbstractType
+class PiezaMuseoFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

@@ -1,0 +1,68 @@
+<?php
+
+namespace App\Controller\Patrimonio;
+use App\Entity\Patrimonio;
+use App\Entity\typePatrimonio;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class PatrimonioGetController extends AbstractController
+{
+    /*
+    #[Route('/patrimonio', name: 'app_patrimonio_all_get')]
+    
+    public function getAllHeritage(ManagerRegistry $doctrine): Response
+    {
+        $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findAll();
+
+        return $this->render('patrimonio/index.html.twig', [
+            'arrayPatrimonio' => $arrayPatrimonio
+        ]);
+    }
+    */
+    
+    /**
+     * @Route("/patrimonio/{type}", name="app_patrimonio_tipo_get")
+     * @return Response
+     * 
+     */
+    public function getAllByType(ManagerRegistry $doctrine, Request $request, $type): Response
+    {
+        //$type = $request->request->get('type');
+        $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findByTypeHeritage($type);
+
+        return $this->render('Patrimonio/patrimonio_get/index.html.twig', [
+            'arrayPatrimonio' => $arrayPatrimonio, 'tipo' => $type
+        ]);
+    }
+
+    /**
+     * @Route("/patrimonio", name="app_patrimonio_all_get",methods={"POST"})
+     * @return Response
+     * 
+     */
+    public function getAllHeritageOrdered(ManagerRegistry $doctrine, Request $request): Response
+    {
+        $order = $request->request->get('order');
+        $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findBy(array(), array('nombre' => $order));
+
+        return $this->render('Patrimonio/patrimonio_get/index.html.twig', [
+            'arrayPatrimonio' => $arrayPatrimonio
+        ]);
+    }
+
+    /**
+     * @Route("/patrimonio/{uid}", name="app_patrimonio_get")
+     * @return Response
+     * 
+     */
+    public function getPatrimonio(Patrimonio $patrimonio): Response
+    {
+        return $this->render('Patrimonio/patrimonio_get/patrimonio.html.twig', [
+            'patrimonio' => $patrimonio
+        ]);
+    }
+}

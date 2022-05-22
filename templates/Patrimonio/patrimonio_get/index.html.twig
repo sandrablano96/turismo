@@ -1,20 +1,75 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PatrimonioGetController!{% endblock %}
-
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/turismo_ciudadreal/src/Controller/PatrimonioGetController.php'|file_link(0) }}">src/Controller/PatrimonioGetController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/turismo_ciudadreal/templates/patrimonio_get/index.html.twig'|file_link(0) }}">templates/patrimonio_get/index.html.twig</a></code></li>
-    </ul>
-</div>
+{% block title %}Patrimonio {{ tipo }}
 {% endblock %}
+
+{% block main %}
+    <main class="w-75 mx-auto mt-5 mb-5">
+        <section id="search-header" class="row mb-3">
+            <div class="col-12 col-md-3 order-1 d-inline-flex justify-content-end h-50">
+                <select class="form-select">
+                    <option selected value="desc">Descendente</option>
+                    <option value="asc">Ascendente</option>
+                </select>
+            </div>
+            <h2 class="text-center col-12 col-md-9 order-0 m-auto mb-3">Listado de búsqueda</h2>
+        </section>
+        <section class="row d-flex">
+            <button class="col-12 col-lg-3 mx-auto btn btn-sm btn-secondary-dark mb-3 align-self-center" id="advancedButton">Búsqueda avanzada</button>
+            <div class="col-12 col-lg-5 m-auto d-none">
+                <form action="" id="formFiltros" method="post">
+                    <label for="tipo" class="form-label text-center mb-2">Filtrar por:</label>
+                    <select id="tipo" name="tipo" class="form-select mb-2">
+                        <option selected value="">Busqueda por tipo</option>
+                        <option value="monumento">Monumentos</option>
+                        <option value="espacio_natural">Espacios naturales</option>
+                        <option value="museo">Museos</option>
+                        <option value="visita">Visita</option>
+                    </select>
+                    <label for="nombre" class="form-label">Nombre:
+                    </label>
+                    <input type="text" name="nombre" id="nombre" class="form-control">
+                    <div class="text-center mt-3">
+                        <button type="submit" id="buscar" class="btn btn-sm btn-secondary col-4">Buscar</button>
+                        <button type="reset" class="btn btn-sm btn-secondary col-4">Borrar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="search-results">
+            <div class="col-12 mb-3 order-2 list">
+                {% for item in arrayPatrimonio %}
+                    <div class="element-container row m-5 d-flex">
+                        <div class="element-container__img col-12 col-lg-4 p-0">
+                            <img src="{{ asset('/public/media/'.{{item.imagen}}) }}" class="element__img">
+                        </div>
+                        <div class="element-container__text col-12 col-lg-7 ps-4 py-3">
+                            <div class="element-container__fav col-12 d-flex justify-content-end">
+                                <img src="{{ asset('/public/media/icons/estrella(1).png') }}" width="35px" class="justify-content-end">
+                            </div>
+                            <h3>{{ item.nombre }}
+                                <img src="{{ asset('/public/media/icons/monumento_R1T_icon.ico.png') }} width="30px"></h3>
+                            <p>{{ item.descripcion }}
+                            </p>
+                            <div class="see-more d-flex justify-content-center align-content-end mt-5">
+                                <a href="{{ path('app_patrimonio_get'), {uid : item.uid} }}" class="col-12 col-lg-4 btn btn-secondary">Ver más</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </section>
+
+
+        </main>
+        {% endblock %}
+
+            {% block  page_javascripts %}
+                <script>
+                    $("#advancedButton").on("click", function () {
+                        console.log("click");
+                        $("#formFiltros").parent().toggleClass("d-none");
+                    });
+                </script>
+            {% endblock %}

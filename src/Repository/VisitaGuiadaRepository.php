@@ -48,7 +48,7 @@ class VisitaGuiadaRepository extends ServiceEntityRepository
     /**
      * @return VisitasGuiadas[] Returns an array of VisitasGuiadas objects
      */
-    public function findByNameVisits($name)
+    public function findByNameVisits($name) : array
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.titulo LIKE :name')

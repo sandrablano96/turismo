@@ -49,7 +49,7 @@ class PatrimonioRepository extends ServiceEntityRepository
      * @return Patrimonio[] Returns an array of Patrimonio objects
      */
     
-    public function findByTypeHeritage($type)
+    public function findByTypeHeritage($type) : array
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.tipo = :type')
@@ -63,7 +63,7 @@ class PatrimonioRepository extends ServiceEntityRepository
      * @return Patrimonio[] Returns an array of Patrimonio objects
      */
    
-    public function findAdvancedHeritage($name, $type)
+    public function findAdvancedHeritage($name, $type) : array
     {
         $this->createQueryBuilder('p');
         if(!$type->is_null() && !$name->is_null()){
@@ -81,9 +81,8 @@ class PatrimonioRepository extends ServiceEntityRepository
             ->orderBy('p.tipo', 'ASC');
         }
     
-            $this->getQuery()
-            ->getResult();
-            return $this;
+            return $this->getQuery()->getResult();
+            
     }    
     
     

@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method PiezasMuseo[]    findAll()
  * @method PiezasMuseo[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PiezaMuseoRepository extends ServiceEntityRepository
+class PiezasMuseoRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

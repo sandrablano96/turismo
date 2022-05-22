@@ -49,7 +49,7 @@ class MuseoRepository extends ServiceEntityRepository
      * @return Museos[] Returns an array of Museos objects
      */
     
-    public function findByNameMuseum($name)
+    public function findByNameMuseum($name) : array
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.nombre LIKE :name')

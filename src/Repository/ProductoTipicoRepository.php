@@ -45,6 +45,20 @@ class ProductoTipicoRepository extends ServiceEntityRepository
         }
     }
 
+    // /**
+    //  * @return ProductoTipico[] Returns an array of ProductoTipico objects
+    //  */
+    
+    // public function findByGastronomy($gastronomyId)
+    // {
+    //     return $this->createQueryBuilder('p')
+    //         ->andWhere('p.gastronomia = :val')
+    //         ->setParameter('val', $gastronomyId)
+    //         ->orderBy('p.nombre', 'ASC')
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    //}
     
     
 

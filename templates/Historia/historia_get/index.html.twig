@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historia{% endblock %}
+
+{% block main %}
+<main class="mt-5 mb-5">
+        <h2 class="text-center m-5">Historia de Ciudad Real</h2>
+        <section class="row w-100 p-5 m-0 d-flex justify-content-md-center" id="history">
+            <div class="col-12 col-lg-4 history__gallery p-4">
+                <a href="{{ asset('media/' ~ historia.imagen) }}" data-toggle="lightbox" data-gallery="hidden-images"
+                    data-title="{{historia.imagen}}" data-caption="{{historia.imagen}}" class="gallery_img d-block" style="background-image: url('{{asset("media/" ~ historia.imagen)}}')">
+                    <div class="cta text-center">
+                        <span>Ver galeria</span>
+                    </div>
+                </a>
+                {% if  historia.galeriaImagenes is not empty%}
+                <!-- elements not showing -->
+                <div data-toggle="lightbox" data-gallery="hidden-images" data-src="{{ asset('media/' ~ historia.imagen) }}" data-title="{{ historia.imagen }}" data-caption="{{historia.imagen}}"></div>
+                {% for item in historia.galeriaImagenes %}
+                <div data-toggle="lightbox" data-gallery="hidden-images" data-src="{{ asset('media/' ~ item.archivo) }}" data-title="{{ item.alt }}" data-caption="{{item.alt}}"></div>
+                
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="col-12 col-lg-8 ps-3 d-flex align-content-center flex-column">
+                
+                <p>{{ historia.historia }}<p>
+            </div>
+        </section>
+        
+        <section id="how-to-get-here" class="row w-75 p-5 m-auto" style="background-image: url('{{asset('/media/15735135-representación-esquemática-de-don-quijote-y-su-escudero.webp')}}')">
+            <h3 text-center m-5 col-12>Como llegar</h3>
+            <div class="how-to__car row d-flex pb-5 justify-content-center m-auto col-12">
+                <div class="text-center pb-2 col-12">
+                    <h4 class="hover-underline-animation">En coche</h4>
+                </div>
+                <img src="{{ asset('media/pexels-leah-kelley-3935702.jpg') }}" class="col-12 col-lg-5">
+                <div class="col-12 col-lg-4 how-to__text"><p>Nuestra ciudad se encuentra muy bien comunicada a través de carreteras </p>
+                <a href="https://goo.gl/maps/iX3P96doNt7GFNDy9">Ver en Google Maps</a>
+                </div>
+                
+            </div>
+            <div class="how-to__train row d-flex pb-5 justify-content-center m-auto col-12">
+                <div class="text-center pb-2 col-12">
+                    <h4 class="hover-underline-animation">En tren</h4>
+                </div>
+                <div class="col-12 col-lg-4 how-to__text order-sm-1 order-md-0"><p>Pero, si lo prefieres, también puedes venir en tren</p>
+                    <a href="https://www.renfe.com/es/es">Ir a la página de Renfe</a>
+            </div>
+                <img src="{{ asset('media/pexels-daniel-frese-543223.jpg') }}"  class="col-12 col-lg-5 order-sm-0 order-md-1">
+                
+            </div>
+            <div class="how-to__bus row d-flex pb-5 justify-content-center m-auto col-12">
+                <div class="text-center pb-2 col-12">
+                    <h4 class="hover-underline-animation">En autobús</h4>
+                </div>
+                <img src="{{ asset('media/pexels-jonathan-borba-2942172.jpg') }}" class="col-12 col-lg-5">
+                <div class="col-12 col-lg-4 how-to__text"><p>E incluso en autobús, ¡despreocúpate del coche! </p>
+                <a href="https://goo.gl/maps/iX3P96doNt7GFNDy9">Ver en Google Maps</a>
+                </div>
+                
+            </div>
+        </section>
+        -->
+    </main>
+{% endblock %}
+
+    

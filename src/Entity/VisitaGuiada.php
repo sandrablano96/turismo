@@ -25,10 +25,10 @@ class VisitaGuiada
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $precio;
 
-    #[ORM\ManyToOne(targetEntity: oficinaTurismo::class, inversedBy: 'visitasOrganizadas')]
+    #[ORM\ManyToOne(targetEntity: OficinaTurismo::class, inversedBy: 'visitasOrganizadas')]
     private $oficinaTurismo;
 
-    #[ORM\ManyToOne(targetEntity: guiaTurismo::class, inversedBy: 'visitasOrganizadas')]
+    #[ORM\ManyToOne(targetEntity: GuiaTurismo::class, inversedBy: 'visitasOrganizadas')]
     private $guiaTurismo;
 
     #[ORM\Column(type: 'string', length: 20)]
@@ -87,24 +87,24 @@ class VisitaGuiada
         return $this;
     }
 
-    public function getOficinaTurismo(): ?oficinaTurismo
+    public function getOficinaTurismo(): ?OficinaTurismo
     {
         return $this->oficinaTurismo;
     }
 
-    public function setOficinaTurismo(?oficinaTurismo $oficinaTurismo): self
+    public function setOficinaTurismo(?OficinaTurismo $oficinaTurismo): self
     {
         $this->oficinaTurismo = $oficinaTurismo;
 
         return $this;
     }
 
-    public function getGuiaTurismo(): ?guiaTurismo
+    public function getGuiaTurismo(): ?GuiaTurismo
     {
         return $this->guiaTurismo;
     }
 
-    public function setGuiaTurismo(?guiaTurismo $GuiaTurismo): self
+    public function setGuiaTurismo(?GuiaTurismo $GuiaTurismo): self
     {
         $this->guiaTurismo = $GuiaTurismo;
 
