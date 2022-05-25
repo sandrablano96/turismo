@@ -22,7 +22,7 @@ class VisitaGetController extends AbstractController
     }
 
     /**
-     * @Route("/visitas", name="app_museo_get", methods={"POST"})
+     * @Route("/visitas", name="app_visitasOrdered_get", methods={"POST"})
      * @return Response
      */
     public function getAllVisitsOrdered(ManagerRegistry $doctrine, Request $request): Response

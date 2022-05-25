@@ -7,7 +7,7 @@
             <h2 class="text-center m-5">Gastronomia</h2>
             <section id="monthly-product" class="row w-100 p-5 m-0 d-flex justify-content-md-center">
                 <div class="col-12 col-lg-4 p-4">
-                    <img src="{{ asset('/public/media/') }}">
+                    <img src="{{asset('/media/') ~ gastronomia.productoMes.imagen}}">
                 </div>
                 <div class="col-12 col-lg-8 ps-3 d-flex align-content-center flex-column">
                     <h3>{{ gastronomia.productoMes.nombre }}</h3>
@@ -18,14 +18,15 @@
                 </div>
             </section>
             <section id="typical_products"class="w-75 mx-auto mt-5 mb-5">
-                <div class="row order-last m-auto w-75 list">
+            <h3 class="mb-3">Productos típicos de la zona</h3>
+                <div class="row order-last m-auto w-75 list d-flex justify-content-center">
                     {% for item in gastronomia.productosTipicos %}
-                    <div class="col-12 col-md-6 col-lg-4 event d-flex align-content-stretch mb-2">
+                    <div class="col-12 col-md-6 col-lg-4 event d-flex align-content-stretch  mb-2">
                       <div class="card" style="width: 20rem;">
-                        <img src="{{ asset('/public/media/'. {{gastronomia.productosTipicos.imagen}}) }}" class="card-img-bottom" alt="{{gastronomia.productosTipicos.nombre}}">
+                        <img src="{{asset('/media/') ~ item.imagen}}" class="card-img-bottom" alt="{{item.nombre}}">
                         <div class="card-body">
-                          <h5 class="card-title">{{gastronomia.productosTipicos.nombre}}</h5>
-                          <p>{{gastronomia.productosTipicos.descripcion}}</p>
+                          <h5 class="card-title">{{item.nombre}}</h5>
+                          <p>{{item.descripcion}}</p>
                         </div>
                       </div>
                     </div>

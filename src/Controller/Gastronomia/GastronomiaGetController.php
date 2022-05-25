@@ -14,7 +14,7 @@ class GastronomiaGetController extends AbstractController
     public function get(Gastronomia $gastronomy): Response
     {
         return $this->render('Gastronomia/gastronomia_get/index.html.twig', [
-            'productos' => $gastronomy->getProductosTipicos(), 'gastronomia' => $gastronomy->getDescripcion()
+            'gastronomia' => $gastronomy,
         ]);
     }
 }

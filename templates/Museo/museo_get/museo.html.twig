@@ -9,7 +9,7 @@
             <h2 class="text-center m-5">Museos de Ciudad Real</h2>
             <section id="museum" class="row w-100 p-5 m-0 d-flex justify-content-md-center">
                 <div class="col-12 col-lg-4 p-4">
-                    <img src="{{ asset('/public/media/'+ {{museo.imagen}}) }}" alt="{{ museo.nombre }}">
+                    <img src="{{ asset('/media/') ~ museo.imagen }}" alt="{{ museo.nombre }}">
                 </div>
                 <div class="col-12 col-lg-8 ps-3 d-flex align-content-center flex-column">
                     <h3>{{ museo.nombre }}</h3>
@@ -22,7 +22,7 @@
                     {% for pieza in museo.piezas %}
                     <div class="col-12 col-md-6 col-lg-4 event d-flex align-content-stretch mb-2">
                         <div class="card" style="width: 20rem;">
-                            <img src="{{ asset('/public/media/'+ {{pieza.imagen}}) }}" class="card-img-bottom" alt="{{ pieza.titulo }}">
+                            <img src="{{ asset('/media/') ~ pieza.imagen }}" class="card-img-bottom" alt="{{ pieza.titulo }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ pieza.titulo }}</h5>
                                 <p>{{ pieza.descripcion }}</p>
@@ -38,12 +38,12 @@
             <section id="info" class="w-50 mx-auto mt-5 mb-5 p-5">
                 <h3>Información de interés</h3>
                 <p><span>Direccion: </span> {{ museo.direccion }}</p>
-                <p><span>Email de contacto: </span>{{ museo.eail }}</p>
+                <p><span>Email de contacto: </span>{{ museo.email }}</p>
                 <p><span>Web: </span>{{ museo.web }}</p>
                 <p><span>Teléfono: </span>{{ museo.telefono }}</p>
                 <p><span>Horario de visita: </span>{{ museo.horario }}</p>
                 <p><span>Precio: </span>
-                {% if museo.precio is not null || museo.precio != '' %}
+                {% if museo.precio is not null and museo.precio is not empty %}
                     {{ museo.precio }}
                 {% else %}
                     Gratuito

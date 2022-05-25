@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EventoRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EventoRepository::class)]
@@ -19,7 +20,7 @@ class Evento
     #[ORM\Column(type: 'text')]
     private $descripcion;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\Column(type: 'date')]
     private $fecha;
 
     #[ORM\Column(type: 'string', length: 100, nullable: true)]
@@ -63,12 +64,12 @@ class Evento
         return $this;
     }
 
-    public function getFecha(): ?string
+    public function getFecha(): ?DateTime
     {
         return $this->fecha;
     }
 
-    public function setFecha(string $fecha): self
+    public function setFecha(DateTime $fecha): self
     {
         $this->fecha = $fecha;
 

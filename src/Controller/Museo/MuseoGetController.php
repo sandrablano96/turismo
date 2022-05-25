@@ -19,7 +19,7 @@ class MuseoGetController extends AbstractController
     }
 
     /**
-     * @Route("/museos", name="app_museos_get", methods={"POST"})
+     * @Route("/museos", name="app_museosOrdered_get_", methods={"POST"})
      * @return Response
      */
     public function getAllMuseosOrdered(ManagerRegistry $doctrine, Request $request): Response

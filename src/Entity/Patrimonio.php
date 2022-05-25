@@ -34,7 +34,7 @@ class Patrimonio
     #[ORM\Column(type: 'string', length: 20)]
     private $uid;
 
-    #[ORM\ManyToOne(targetEntity: tipoPatrimonio::class, inversedBy: 'listado_patrimonio')]
+    #[ORM\ManyToOne(targetEntity: TipoPatrimonio::class, inversedBy: 'listado_patrimonio')]
     #[ORM\JoinColumn(nullable: false)]
     private $tipo;
 
@@ -136,12 +136,12 @@ class Patrimonio
         return $this;
     }
 
-    public function getTipo(): ?tipoPatrimonio
+    public function getTipo(): ?TipoPatrimonio
     {
         return $this->tipo;
     }
 
-    public function setTipo(?tipoPatrimonio $tipo): self
+    public function setTipo(?TipoPatrimonio $tipo): self
     {
         $this->tipo = $tipo;
 

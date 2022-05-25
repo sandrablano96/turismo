@@ -2,7 +2,6 @@
 
 namespace App\Controller\Patrimonio;
 use App\Entity\Patrimonio;
-use App\Entity\typePatrimonio;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,16 +22,16 @@ class PatrimonioGetController extends AbstractController
         ]);
     }
     */
-    
+
     /**
-     * @Route("/patrimonio/{type}", name="app_patrimonio_tipo_get")
+     * @Route("/listado_patrimonio/{type}", name="app_patrimonio_tipo_get")
      * @return Response
      * 
      */
     public function getAllByType(ManagerRegistry $doctrine, Request $request, $type): Response
     {
-        //$type = $request->request->get('type');
-        $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findByTypeHeritage($type);
+        $typeId = $type === 'cultural' ? 2 : 1;
+        $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findByTypeHeritage($typeId);
 
         return $this->render('Patrimonio/patrimonio_get/index.html.twig', [
             'arrayPatrimonio' => $arrayPatrimonio, 'tipo' => $type
@@ -40,7 +39,7 @@ class PatrimonioGetController extends AbstractController
     }
 
     /**
-     * @Route("/patrimonio", name="app_patrimonio_all_get",methods={"POST"})
+     * @Route("/patrimonio", name="app_patrimonioOrdered_get",methods={"POST"})
      * @return Response
      * 
      */
@@ -65,4 +64,6 @@ class PatrimonioGetController extends AbstractController
             'patrimonio' => $patrimonio
         ]);
     }
+
+    
 }

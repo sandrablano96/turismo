@@ -4,6 +4,7 @@ namespace App\Controller\Eventos;
 
 use App\Entity\Evento;
 use DateTime;
+use Doctrine\Common\Collections\Expr\Value;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,14 +14,17 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class EventoGetController extends AbstractController {
 
-    #[Route('/eventos', name: 'app_evento_get')]
+    #[Route('/eventos', name: 'app_eventos_get')]
     public function get(ManagerRegistry $doctrine, Request $request): Response {
-        $actual_month = (new DateTime())->format("F");
+
+        
+        $actual_month = date('m');
         $arrayEventos = $doctrine->getRepository(Evento::class)->findByMonthEvents($actual_month);
         
         //checkboxes de tipos
         $typesForm = $this->createFormBuilder()
                 ->add('tipo', ChoiceType::class, [
+                    'label' => false,
                     'choices' => [
                         'Evento deportivo' => 'deportivo', 
                         'Evento cultural' => 'cultural', 
@@ -39,16 +43,12 @@ class EventoGetController extends AbstractController {
         }
         
         //select de meses
-        $nextMonths = array();
-        $actual_month = (new DateTime())->format("F");
-        for ($i = $actual_month; $i <= 12; $i++) {
-            $dateObj = DateTime::createFromFormat('!m', $i);
-            array_push($nextMonths, $dateObj);
-        }
+        $months = array('Enero' => 1, 'Febrero' => 2, 'Marzo' => 3, 'Abril' => 4, 'Mayo' => 5, 'Junio' => 6, 'Julio' => 7, 'Agosto' => 8, 'Septiembre' => 9, 'Octubre' => 10, 'Noviembre' => 11, 'Diciembre' => 12);
 
         $monthForm = $this->createFormBuilder()
                 ->add('mes', ChoiceType::class, [
-                    'choices' => $nextMonths,
+                    'choices' => $months,
+                    'label' => false
                 ])
                 ->getForm();
 
@@ -56,11 +56,14 @@ class EventoGetController extends AbstractController {
 
         if ($monthForm->isSubmitted() && $monthForm->isValid()) {
             $month = $monthForm->getData();
-            return $this->redirectToRoute("app_eventos_type_get", ['month' => $month]);
+            return $this->redirectToRoute("app_eventos_month_get", ['month' => $month]);
         }
-        
-        return $this->render('Eventos/eventos_get/index.html.twig', [
-                    'eventos' => $arrayEventos, 'mesActual' => $actual_month, 'formTipos' =>$typesForm, 'formMeses' => $monthForm
+        setlocale(LC_ALL, 'es_ES', 'Spanish');
+        $dateObj   = DateTime::createFromFormat('!m', $actual_month);
+        $monthName = strftime('%B', $dateObj->getTimestamp());
+
+        return $this->renderForm('Eventos/evento_get/index.html.twig', [
+                    'eventos' => $arrayEventos, 'mesActual' => $monthName, 'formTipos' =>$typesForm, 'formMeses' => $monthForm
         ]);
     }
 
@@ -82,9 +85,12 @@ class EventoGetController extends AbstractController {
      */
     public function getAllEventsByMonth(ManagerRegistry $doctrine, $month): Response {
         
+        $month= DateTime::createFromFormat('m', $month);
+        var_dump($month);
+        die();
         $eventos = $doctrine->getRepository(Evento::class)->findByMonthEvents($month);
         return $this->redirectToRoute('app_eventos_get', [
-                    'eventos' => $eventos, 'mesEscogido' => $month
+                    'eventos' => $eventos, 'mesEscogido' => $monthName
         ]);
     }
 

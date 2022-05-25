@@ -22,10 +22,10 @@ class GuiaGetController extends AbstractController
     }
 
    /**
-     * @Route("/guide/{uid}", name="app_guia_get")
+     * @Route("/guia/{uid}", name="app_guia_get")
      * @return Response
      */
-    public function getGuide(GuiaTurismo $guide, ManagerRegistry $doctrine): Response
+    public function getGuide(GuiaTurismo $guide): Response
     {
         return $this->render('Guia/guia_get/guia.html.twig', [
             'guia' => $guide

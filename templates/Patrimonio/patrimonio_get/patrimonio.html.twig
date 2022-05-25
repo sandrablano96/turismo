@@ -2,7 +2,7 @@
 {# empty Twig template #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Museos {{ tipo }}
+{% block title %} {{ patrimonio.nombre }}
 {% endblock %}
 
 {% block main %}
@@ -10,7 +10,7 @@
             <h2 class="text-center m-5">Patrimonio de Ciudad Real</h2>
             <section id="museum" class="row w-100 p-5 m-0 d-flex justify-content-md-center">
                 <div class="col-12 col-lg-4 p-4">
-                    <img src="{{ asset('/public/media/'+ {{patrimonio.imagen}}) }}" alt="{{ patrimonio.nombre }}">
+                    <img src="{{ asset('/media/') ~ patrimonio.imagen}}) }}" alt="{{ patrimonio.nombre }}">
                 </div>
                 <div class="col-12 col-lg-8 ps-3 d-flex align-content-center flex-column">
                     <h3>{{ patrimonio.nombre }}</h3>
@@ -27,7 +27,7 @@
                 <p><span>Teléfono: </span>{{ patrimonio.telefono }}</p>
                 <p><span>Horario de visita: </span>{{ patrimonio.horario }}</p>
                 <p><span>Precio: </span>
-                {% if patrimonio.precio is not null || patrimonio.precio != '' %}
+                {% if patrimonio.precio is not null and patrimonio.precio is not empty %}
                     {{ patrimonio.precio }}
                 {% else %}
                     Gratuito

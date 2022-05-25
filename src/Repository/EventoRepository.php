@@ -83,7 +83,7 @@ class EventoRepository extends ServiceEntityRepository
     {
         $actual_year = (new DateTime)->format("Y");
         return $this->createQueryBuilder('e')
-            ->andWhere('MONTH(fecha) = :month and YEAR(fecha) = :actual_year')
+            ->andWhere('MONTH(e.fecha) = :month and YEAR(e.fecha) = :actual_year')
             ->setParameter('month', $month)
             ->setParameter('actual_year', $actual_year)
             ->orderBy('e.fecha', 'ASC')
