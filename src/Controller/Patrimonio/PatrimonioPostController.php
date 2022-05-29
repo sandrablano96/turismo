@@ -12,9 +12,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use ramsey\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class PatrimonioPostController extends AbstractController
 {
@@ -23,7 +26,7 @@ class PatrimonioPostController extends AbstractController
     {
         $tipos = $doctrine->getRepository(TipoPatrimonio::class)->findAll();
         $patrimonio = new Patrimonio();
-        $form = $this->createFormBuilder($patrimonio)
+         $form = $this->createFormBuilder($patrimonio)
                 ->add("nombre", TextType:: class, [
                     'required' => true,
                     'constraints' => [
@@ -66,15 +69,16 @@ class PatrimonioPostController extends AbstractController
                     ])
                     ]
                 ])
-                ->add("imagen", FileType:: class, [
-                    'required' => true,
-                    'constraints' => [
-                    new NotBlank([
-                        'message' => 'Introduzca una imagen',
-                    ])
-                    ]
-                ])
-                ->add("precio", TextareaTypeType:: class)
+//                ->add("imagen", FileType:: class, [
+//                    'required' => true,
+//                    'constraints' => [
+//                    new NotBlank([
+//                        'message' => 'Introduzca una imagen',
+//                    ])
+//                    ]
+//                ])
+                ->add("precio", TextareaType:: class)
+                ->add('enviar', SubmitType::class)
                 ->add('tipo', EntityType::class, [
                     'required' => true,
                     'class' => TipoPatrimonio::class,
@@ -87,11 +91,11 @@ class PatrimonioPostController extends AbstractController
                     ])
             ]
                 ])
-                ->add('enviar', SubmitType::class)
                 ->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $patrimonio = $form->getData();
+            $patrimonio->setImagen('alaaaa');
             $uuid = Uuid::uuid4();
             $patrimonio->setUid($uuid->toString());
             $entityManager = $doctrine->getManager();
@@ -99,9 +103,9 @@ class PatrimonioPostController extends AbstractController
                 $entityManager->flush();
                 $this->addFlash("aviso","Registro guardado con éxito");
 
-            return $this->redirectToRoute("");
+            return $this->redirectToRoute("admin_patrimonio_get");
         } else{
-            return $this->renderForm("patrimonio_post/index.html.twig", ['formulario' => $form]);
+            return $this->renderForm("Patrimonio/patrimonio_post/index.html.twig", ['formulario' => $form]);
         }
     
     }

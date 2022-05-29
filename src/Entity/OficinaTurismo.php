@@ -33,6 +33,9 @@ class OficinaTurismo
     #[ORM\Column(type: 'string', length: 20)]
     private $uid;
 
+    #[ORM\Column(type: 'string', length: 100)]
+    private $localidad;
+
     public function __construct()
     {
         $this->visitasOrganizadas = new ArrayCollection();
@@ -129,6 +132,18 @@ class OficinaTurismo
     public function setUid(string $uid): self
     {
         $this->uid = $uid;
+
+        return $this;
+    }
+
+    public function getLocalidad(): ?string
+    {
+        return $this->localidad;
+    }
+
+    public function setLocalidad(string $localidad): self
+    {
+        $this->localidad = $localidad;
 
         return $this;
     }

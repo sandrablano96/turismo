@@ -12,8 +12,10 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class VisitaPutController extends AbstractController
 {
@@ -21,6 +23,7 @@ class VisitaPutController extends AbstractController
     public function put(Request $request, ManagerRegistry $doctrine, VisitaGuiada $visita): Response
     {
         $guias = $doctrine->getRepository(GuiaTurismo::class)->findAll();
+        $oficinas = $doctrine->getRepository(OficinaTurismo::class)-> findAll();
         $form = $this->createFormBuilder($visita)
                 ->add("titulo", TextType:: class, [
                     'required' => true,
@@ -30,7 +33,7 @@ class VisitaPutController extends AbstractController
                     ])
                     ]
                 ])
-                ->add("fecha", DateTime:: class, [
+                ->add("fecha", DateType:: class, [
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -38,7 +41,7 @@ class VisitaPutController extends AbstractController
                     ])
                     ]
                 ])
-                ->add("descripción", TextType:: class, [
+                ->add("descripcion", TextType:: class, [
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -46,22 +49,24 @@ class VisitaPutController extends AbstractController
                     ])
                     ]
                 ])
-                ->add("precio", TextType:: class)
-                ->add("oficina_turismo_id", EntityType::class, [
-                        'class' => OficinaTurismo::class,
-                        'expanded' => true,
-                        'multiple' => true,
+                ->add("precio", TextType:: class, [
+                    "required" => false
                 ])
-                ->add('guia_turismo_id', EntityType::class, [
+                ->add('oficinaTurismo', EntityType::class, [
                     'class' => OficinaTurismo::class,
+                    'label' => 'Oficina de Turismo',
+                    'choice_label' => 'localidad', 
+                    'choice_value' => 'uid', 
+                    'required' => false, 
+                    'placeholder' => 'Oficinas disponibles'
+                ])
+                ->add('guiaTurismo', EntityType::class, [
+                    'class' => GuiaTurismo::class,
                     'choices' => $guias, 
                     'choice_label' => 'nombre', 
-                    'choice_value' => 'id', 
-                    'constraints' => [
-                    new NotBlank([
-                        'message' => 'Seleccione un tipo',
-                    ])
-            ]
+                    'choice_value' => 'uid', 
+                    'required' => false, 
+                    'placeholder' => 'Guias disponibles'
                 ])
                 ->add('enviar', SubmitType::class)
                 ->getForm();
@@ -73,9 +78,9 @@ class VisitaPutController extends AbstractController
             $entityManager->flush();
             $this->addFlash("aviso","Visita guiada actualizada con éxito");
 
-            return $this->redirectToRoute("");
+            return $this->redirectToRoute("admin_visitas_get");
         } else{
-            return $this->renderForm("visita_put/index.html.twig", ['formulario' => $form]);
+            return $this->renderForm("Visita/visita_put/index.html.twig", ['formulario' => $form]);
         }
     }
 }

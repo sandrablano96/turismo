@@ -33,4 +33,16 @@ class VisitaGetController extends AbstractController
             'visitas' => $visits
         ]);
     }
+    
+    /**
+     * @Route("/admin/visitas", name="admin_visitas_get")
+     * @return Response
+     */
+    public function getAll(ManagerRegistry $doctrine)
+    {
+        $arrayVisitas = $doctrine->getRepository(VisitaGuiada::class)->findAll();
+        return $this->render('admin/admin_visitas.html.twig', [
+            'visitas' => $arrayVisitas
+        ]);
+    }
 }

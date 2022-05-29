@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %} Gestión de recursos patrimoniales {% endblock %}
+{% block main %}
+    
+    <main class="w-75 mx-auto mt-5 mb-5">
+        
+        <h2>Gestión de recursos patrimoniales</h2>
+        <a href="{{ path('app_patrimonio_post') }}">Alta</a>
+        <table class="table">
+            <th>Título del evento</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+            <th>Precio</th>
+            <th>Organizador</th>
+            {% for item in patrimonio %}
+                <tr>
+                    <td>{{ item.nombre }}</td>
+                    <td>{{ item.descripcion }}</td>
+                    <td>{{ item.direccion }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.telefono }}</td>
+                    <td>{{ item.web }}</td>
+                    <td>{{ item.precio }}</td>
+                    <td>{{ item.horario }}</td>
+                    <td><img src="{{ asset('media/') ~ item.imagen }}" alt="{{ item.nombre }}"></td>
+                    <td><a href="{{ path('app_patrimonio_put', {uid: item.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
+                    <td><a href="{{ path('app_patrimonio_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>
+                <tr>
+            {% endfor %}
+            
+        </table>
+    </main>
+{% endblock %}

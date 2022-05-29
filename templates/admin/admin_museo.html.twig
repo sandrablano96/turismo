@@ -1,0 +1,51 @@
+
+{% extends 'base.html.twig' %}
+{% block title %} Actualizar museo {% endblock %}
+{% block main %}
+    
+    <main class="w-75 mx-auto mt-5 mb-5">
+        
+        <h2>Actualiazar museo</h2>
+        <table class="table">
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Web</th>
+            <th>Horario</th>
+            <th>Precio</th>
+            <th>Imagen</th>
+                <tr>
+                    <td>{{ museo.nombre }}</td>
+                    <td>{{ museo.descripcion }}</td>
+                    <td>{{ museo.direccion }}</td>
+                    <td>{{ museo.telefono }}</td>
+                    <td>{{ museo.email }}</td>
+                    <td>{{ museo.web }}</td>
+                    <td>{{ museo.horario }}</td>
+                    <td>{{ museo.Precio }}</td>
+                    <td><img src='{{ asset('media/museos/') ~ museo.imagen }}' alt="{{ museo.nombre }}"style='width:50px'></td>
+                    <td><a href="{{ path('app_museo_put', {uid: museo.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
+                <tr>
+        </table>
+        <h3>Piezas relevantes</h3>
+        <a href="{{ path('app_pieza_museo_post', {uid: museo.uid}) }}">Alta</a>
+        <table class="table">
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Época</th>
+            <th>Imagen</th>
+            {% for item in museo.piezas %}
+                <tr>
+                <td>{{ item.titulo }}</td>
+                <td>{{ item.descripcion }}</td>
+                <td>{{ item.epoca }}</td>
+                <td><img src="{{ asset('media/museos/') ~ item.imagen }}" alt="{{ item.titulo }}" style="width:50px"></td>
+                <td><a href="{{ path('app_pieza_museo_put', {uid: item.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
+                <td><a href="{{ path('app_pieza_museo_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
+{% endblock %}

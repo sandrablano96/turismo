@@ -95,4 +95,12 @@ class OficinaGetController extends AbstractController {
         
     }
 
+    /**
+     * @Route("/admin/oficina/{uid}", name="admin_oficina_get")
+     */
+    public function getOffice(OficinaTurismo $oficina):Response{
+        return $this->render('admin/admin_oficina.html.twig', [
+            'oficina' => $oficina
+        ]);
+    }
 }

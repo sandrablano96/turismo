@@ -11,9 +11,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class GastronomiaGetController extends AbstractController
 {
     #[Route('/gastronomia/{uid}', name: 'app_gastronomia_get')]
-    public function get(Gastronomia $gastronomy): Response
+    public function getGastronomy(Gastronomia $gastronomy): Response
     {
         return $this->render('Gastronomia/gastronomia_get/index.html.twig', [
+            'gastronomia' => $gastronomy,
+        ]);
+    }
+    
+    /**
+     * @Route("/admin/gastronomía/{uid}", name="admin_gastronomia_get")
+     */
+    public function get(Gastronomia $gastronomy): Response
+    {
+        return $this->render('admin/admin_gastronomia.html.twig', [
             'gastronomia' => $gastronomy,
         ]);
     }

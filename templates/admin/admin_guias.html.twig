@@ -1,0 +1,31 @@
+
+{% extends 'base.html.twig' %}
+{% block title %} Gestión de guías turísticas {% endblock %}
+{% block main %}
+    
+    <main class="w-75 mx-auto mt-5 mb-5">
+        
+        <h2>Gestión de guías turísticas</h2>
+        <a href="{{ path('app_guia_post') }}">Alta</a>
+        <table class="table">
+            <th>Nombre</th>
+            <th>Teléfono de contacto</th>
+            <th>E-mail</th>
+            <th>Página web</th>
+            <th>Empresa/Particular</th>
+            {% for item in guias %}
+                <tr>
+                    <td>{{ item.nombre }}</td>
+                    <td>{{ item.telefono }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.paginaWeb }}</td>
+                    <td>{{ item.tipo }}</td>
+                    <td><a href="{{ path('app_guia_get', {uid: item.uid}) }}">Gestionar sus visitas</a></td>
+                    <td><a href="{{ path('app_guia_put', {uid: item.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
+                    <td><a href="{{ path('app_guia_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>
+                <tr>
+            {% endfor %}
+            
+        </table>
+    </main>
+{% endblock %}

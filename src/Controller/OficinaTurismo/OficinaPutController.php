@@ -7,7 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bridge\Doctrine\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -21,28 +23,34 @@ class OficinaPutController extends AbstractController
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
-                        'message' => 'Introduzca la dirección',
+                        'message' => 'Introduzca la direccion',
                     ])
                     ]
                 ])
-                ->add("telefono", TelType:: class, [
+                ->add("telefono", TextType:: class, [
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
-                        'message' => 'Introduzca el telefono',
+                        'message' => 'Introduzca el télefono de contacto',
                     ])
                     ]
                 ])
-                ->add("email", EmailType:: class, [
+                ->add("horario", TextareaType:: class, [
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
-                        'message' => 'Introduzca el email',
+                        'message' => 'Introduzca el horario de la oficina',
                     ])
                     ]
                 ])
-                ->add("horario", TextType:: class)
-                ->add("imagen", FileType:: class)
+                ->add("localidad", TextareaType:: class, [
+                    'required' => true,
+                    'constraints' => [
+                    new NotBlank([
+                        'message' => 'Introduzca la localidad de la oficina',
+                    ])
+                    ]
+                ])
                 ->add('enviar', SubmitType::class)
                 ->getForm();
         $form->handleRequest($request);
@@ -54,7 +62,7 @@ class OficinaPutController extends AbstractController
             $entityManager->flush();
             $this->addFlash("aviso","Datos de la oficina actualizados con éxito");
 
-            return $this->redirectToRoute("");
+            return $this->redirectToRoute("admin_oficina_get");
         } else{
             return $this->renderForm("Oficina/oficina_put/index.html.twig", ['formulario' => $form]);
         }

@@ -34,6 +34,7 @@ class HistoriaPostController extends AbstractController
                     ])
                     ]
                 ])
+                ->add('enviar', SubmitType::class)
                 ->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

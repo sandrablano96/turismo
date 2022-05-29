@@ -1,0 +1,32 @@
+
+{% extends 'base.html.twig' %}
+{% block title %} Gestión de eventos {% endblock %}
+{% block main %}
+    
+    <main class="w-75 mx-auto mt-5 mb-5">
+        
+        <h2>Gestión de eventos</h2>
+        <a href="{{ path('app_evento_post') }}">Alta</a>
+        <table class="table">
+            <th>Título del evento</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+            <th>Precio</th>
+            <th>Tipo de evento</th>
+            <th>Cartel o imagen promocional del evento</th>
+            {% for item in eventos %}
+                <tr>
+                    <td>{{ item.titulo }}</td>
+                    <td>{{ item.descripcion }}</td>
+                    <td>{{ item.fecha | date("d-m-Y") }}</td>
+                    <td>{{ item.precio }}</td>
+                    <td>{{ item.tipoEvento }}</td>
+                    <td><img src="{{ asset('media/') ~ item.imagen }}" alt="{{ item.titulo }}"></td>
+                    <td><a href="{{ path('app_evento_put', {uid: item.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
+                    <td><a href="{{ path('app_evento_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>
+                <tr>
+            {% endfor %}
+            
+        </table>
+    </main>
+{% endblock %}

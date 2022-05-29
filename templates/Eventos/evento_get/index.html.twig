@@ -6,36 +6,37 @@
 {% block main %}
 	<main class="w-75 mx-auto mt-5 mb-5">
 		<h2 class="text-center m-5">Ocio</h2>
-	<section class="row d-flex" id="events">
-        <div class="col-12 col-md-5 order-1 d-inline-flex justify-content-end h-50 mb-3">
-        {{form_start(formMeses)}}
-        {{form_widget(formMeses.mes, { 'attr' : { 'class' : 'form-select' } })  }}
-        {{form_end(formMeses)}}
-        </div>
-				<h3 class="month-chosen col-12 col-md-7 order-0">
-					{% if mesEscogido is defined %}
-						{{ mesEscogido |capitalize}}
-					{% else %}
-						{{ mesActual |capitalize }}
-					{% endif %}
-				</h3>
-				<div class="col-12 mb-3 order-2 w-50 m-auto d-flex justify-content-center">
-					{{form_start(formTipos)}}
-					<div class="form-check form-check-inline">
-						{{form_row(formTipos.tipo[0], {'attr': {'class': 'form-check-input'}})}}
-					</div>
-					<div class="form-check form-check-inline">
-						{{form_row(formTipos.tipo[1], {'attr': {'class': 'form-check-input'}})}}
-					</div>
-					<div class="form-check form-check-inline">
-						{{form_row(formTipos.tipo[2], {'attr': {'class': 'form-check-input'}})}}
-					</div>
-					{{form_end(formTipos)}}
+		<section class="row d-flex" id="events">
+			<div class="col-12 col-md-5 order-1 d-inline-flex justify-content-end h-50 mb-3">
+				{{form_start(formMeses)}}
+				{{form_widget(formMeses.mes, { 'attr' : { 'class' : 'form-select' } })  }}
+				{{form_end(formMeses)}}
+			</div>
+			<h3 class="month-chosen col-12 col-md-7 order-0">
+				{% if mesEscogido is defined %}
+					{{ mesEscogido |capitalize}}
+				{% else %}
+					{{ mesActual |capitalize }}
+				{% endif %}
+			</h3>
+			<div class="col-12 mb-3 order-2 w-50 m-auto d-flex justify-content-center">
+				{{form_start(formTipos)}}
+				<div class="form-check form-check-inline">
+					{{form_row(formTipos.tipo[0], {'attr': {'class': 'form-check-input'}})}}
 				</div>
+				<div class="form-check form-check-inline">
+					{{form_row(formTipos.tipo[1], {'attr': {'class': 'form-check-input'}})}}
+				</div>
+				<div class="form-check form-check-inline">
+					{{form_row(formTipos.tipo[2], {'attr': {'class': 'form-check-input'}})}}
+				</div>
+				{{form_end(formTipos)}}
+			</div>
 
-				<div class="row order-last m-auto w-100 d-flex justify-content-center">
-        {% for item in eventos %}
-					<div class="col-12 col-md-6 col-lg-4 event d-flex align-content-stretch mb-2 list">
+			<div class="row order-last m-auto w-100">
+				<div id="all-events" class="col-12 d-flex justify-content-center">
+					{% for item in eventos %}
+						<div class="col-12 col-md-6 col-lg-4 event d-flex align-content-stretch mb-2 justify-content-center">
 							<div class="card" style="width: 20rem;">
 								<img src="{{asset('/public/media/') ~ item.imagen}}" class="card-img-bottom" alt="cartel del evento">
 								<div class="card-body">
@@ -52,25 +53,26 @@
 										{% endif %}
 									</li>
 									<li class="list-group-item">
-										<span class="badge 
-										{% if item.tipoEvento == 'deportivo' %}
-										badge-sucess
-
-										{% elseif item.tipoEvento == 'cultural' %}
-										badge-danger
-										{% else %}
-										badge-alert
-										{% endif %}
-										
-										text-capitalize">{{ item.tipoEvento }}</span>
+										<span class="badge
+											{% if item.tipoEvento == 'deportivo' %}
+												badge-sucess
+											
+											{% elseif item.tipoEvento == 'cultural' %}
+												badge-danger
+											{% else %}
+												badge-alert
+											{% endif %}
+												text-capitalize">{{ item.tipoEvento }}
+										</span>
 									</li>
 								</ul>
 							</div>
 						</div>
 					{% endfor %}
-				</div>
-			</section>
-		</main>
-	{% endblock %}
-  {% block page_javascripts %}
-  {% endblock %}
+					<div>
+						<div id="search-results"></div>
+					</div>
+				</section>
+			</main>
+		{% endblock %}
+		{% block page_javascripts %}{% endblock %}

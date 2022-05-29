@@ -54,7 +54,7 @@ class PatrimonioGetController extends AbstractController
     }
 
     /**
-     * @Route("/patrimonio/{uid}", name="app_patrimonio_get")
+     * @Route("/patrimonio/ficha/{uid}", name="app_patrimonio_get")
      * @return Response
      * 
      */
@@ -62,6 +62,21 @@ class PatrimonioGetController extends AbstractController
     {
         return $this->render('Patrimonio/patrimonio_get/patrimonio.html.twig', [
             'patrimonio' => $patrimonio
+        ]);
+    }
+    
+    /**
+     * @Route("/admin/patrimonio/{type}", name="admin_patrimonio_tipo_get")
+     * @return Response
+     * 
+     */
+    public function getAll(ManagerRegistry $doctrine, Request $request, $type): Response
+    {
+        $typeId = $type === 'cultural' ? 2 : 1;
+        $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findByTypeHeritage($typeId);
+
+        return $this->render('admin/admin_patrimonio.html.twig', [
+            'patrimonio' => $arrayPatrimonio, 'tipo' => $type
         ]);
     }
 

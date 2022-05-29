@@ -11,9 +11,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use ramsey\Uuid\Uuid;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use \Symfony\Component\Form\Extension\Core\Type\FileType;
+use Ramsey\Uuid\Uuid;
 
 class EventoPostController extends AbstractController
 {
@@ -38,7 +40,7 @@ class EventoPostController extends AbstractController
                     ])
                     ]
                 ])
-                ->add("fecha", DateTime:: class, [
+                ->add("fecha", DateType:: class, [
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -49,26 +51,30 @@ class EventoPostController extends AbstractController
                 ->add("precio", TextType:: class)
                 ->add("tipo_evento", ChoiceType:: class, [
                         'choices' => [
-                            'deportivo' => 'deportivo',
-                            'cultural' => 'cultural', 
-                            'tradiciones' => 'tradiciones'
+                            'Evento deportivo' => 'deportivo',
+                            'Evento cultural' => 'cultural', 
+                            'Tradiciones y fiestas' => 'tradiciones'
                         ]
 
                 ])
+                //-add("imagen", FileType::class)
                 ->add('enviar', SubmitType::class)
                 ->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $evento = $form->getData();
             $uuid = Uuid::uuid4();
-            $evento->setUuid($uuid->toString());
+            $evento->setUid($uuid->toString());
+            /****************************************/
+            $evento->setImagen('ALAAAA');
+            /****************************************/
 
             $entityManager = $doctrine->getManager();
             $entityManager->persist($evento);
             $entityManager->flush();
             $this->addFlash("aviso","Evento guardado con éxito");
 
-            return $this->redirectToRoute("");
+            return $this->redirectToRoute("admin_eventos_get");
         } else{
             return $this->renderForm("Eventos/evento_post/index.html.twig", ['formulario' => $form]);
         }

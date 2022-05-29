@@ -1,0 +1,33 @@
+{% for item in eventos %}
+	<div class="col-12 col-md-6 col-lg-4 event d-flex align-content-stretch mb-2 ">
+		<div class="card" style="width: 20rem;">
+			<img src="{{asset('/public/media/') ~ item.imagen}}" class="card-img-bottom" alt="cartel del evento">
+			<div class="card-body">
+				<h5 class="card-title">{{ item.titulo }}</h5>
+				<p>{{ item.descripcion }}</p>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">{{ item.fecha | date("Y-m-d")  }}</li>
+				<li class="list-group-item">
+					{% if item.precio is null and item.precio is empty %}
+						Gratuita
+					{% else %}
+						{{ item.precio }}
+					{% endif %}
+				</li>
+				<li class="list-group-item">
+					<span class="badge
+						{% if item.tipoEvento == 'deportivo' %}
+							badge-sucess
+						
+						{% elseif item.tipoEvento == 'cultural' %}
+							badge-danger
+						{% else %}
+							badge-alert
+						{% endif %}
+						    text-capitalize">{{ item.tipoEvento }}</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+{% endfor %}

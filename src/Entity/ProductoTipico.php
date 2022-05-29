@@ -19,7 +19,7 @@ class ProductoTipico
     #[ORM\Column(type: 'text')]
     private $descripcion;
 
-    #[ORM\ManyToOne(targetEntity: gastronomia::class, inversedBy: 'productosTipicos')]
+    #[ORM\ManyToOne(targetEntity: Gastronomia::class, inversedBy: 'productosTipicos')]
     #[ORM\JoinColumn(nullable: false)]
     private $gastronomia;
 
@@ -58,12 +58,12 @@ class ProductoTipico
         return $this;
     }
 
-    public function getGastronomia(): ?gastronomia
+    public function getGastronomia(): ?Gastronomia
     {
         return $this->gastronomia;
     }
 
-    public function setGastronomia(?gastronomia $gastronomia): self
+    public function setGastronomia(?Gastronomia $gastronomia): self
     {
         $this->gastronomia = $gastronomia;
 

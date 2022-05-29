@@ -13,11 +13,11 @@ class EventoDeleteController extends AbstractController
     #[Route('/evento/delete/{uid}', name: 'app_evento_delete')]
     public function delete(ManagerRegistry $doctrine, Evento $evento): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        //$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $entityManager = $doctrine->getManager();
         $entityManager->remove($evento);
         $entityManager->flush();
         $this->addFlash("aviso", "Evento borrado correctamente");
-        return $this->redirectToRoute("");
+        return $this->redirectToRoute("admin_eventos_get");
     }
 }

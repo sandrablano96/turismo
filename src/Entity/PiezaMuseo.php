@@ -2,10 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\PiezaMuseoRepository;
+use App\Repository\PiezasMuseoRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PiezaMuseoRepository::class)]
+#[ORM\Entity(repositoryClass: PiezasMuseoRepository::class)]
 class PiezaMuseo
 {
     #[ORM\Id]
@@ -22,7 +22,7 @@ class PiezaMuseo
     #[ORM\Column(type: 'string', length: 255)]
     private $imagen;
 
-    #[ORM\ManyToOne(targetEntity: museo::class, inversedBy: 'piezas')]
+    #[ORM\ManyToOne(targetEntity: Museo::class, inversedBy: 'piezas')]
     #[ORM\JoinColumn(nullable: false)]
     private $museo;
 
@@ -73,12 +73,12 @@ class PiezaMuseo
         return $this;
     }
 
-    public function getMuseo(): ?museo
+    public function getMuseo(): ?Museo
     {
         return $this->museo;
     }
 
-    public function setMuseo(?museo $museo): self
+    public function setMuseo(?Museo $museo): self
     {
         $this->museo = $museo;
 

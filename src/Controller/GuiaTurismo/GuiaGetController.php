@@ -31,4 +31,18 @@ class GuiaGetController extends AbstractController
             'guia' => $guide
         ]);
     }
+    
+    /**
+     * @Route("/admin/guias", name="admin_guias_get")
+     * @return Response
+     */
+    
+    public function getAll(ManagerRegistry $doctrine): Response
+    {
+        $guias = $doctrine->getRepository(GuiaTurismo::class)->findAll();
+        
+        return $this->render('admin/admin_guias.html.twig', [
+            'guias' => $guias
+        ]);
+    }
 }

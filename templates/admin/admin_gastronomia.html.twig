@@ -1,0 +1,35 @@
+
+{% extends 'base.html.twig' %}
+{% block title %} Gastronomía de la localidad {% endblock %}
+{% block main %}
+    
+    <main class="w-75 mx-auto mt-5 mb-5">
+        
+        <h2>Gastronomía</h2>
+        <table class="table">
+            <th>Descripción</th>
+            <th>Producto del mes</th>
+                <tr>
+                    <td>{{ gastronomia.descripcion }}</td>
+                    <td>{{ gastronomia.productoMes.nombre }}</td>
+                    <td><a href="{{ path('app_gastronomia_put', {uid: gastronomia.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
+                <tr>
+        </table>
+        <h3>Productos tipicos</h3>
+        <a href="{{ path('app_producto_tipico_post', {uid: gastronomia.uid}) }}">Alta</a>
+        <table class="table">
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Imagen</th>
+            {% for item in gastronomia.productosTipicos %}
+                <tr>
+                <td>{{ item.nombre }}</td>
+                <td>{{ item.descripcion }}</td>
+                <td><img src="{{ asset('media/gastronomia') ~ item.imagen }}" alt="{{ item.nombre }}" style="width:50px"></td>
+                <td><a href="{{ path('app_producto_tipico_put', {uid: item.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
+                <td><a href="{{ path('app_producto_tipico_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
+{% endblock %}

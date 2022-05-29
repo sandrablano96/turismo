@@ -12,13 +12,13 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use ramsey\Uuid\Uuid;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Ramsey\Uuid\Uuid;
 
 class GuiaPostController extends AbstractController
 {
 
-    #[Route('/guia/post', name: 'app_guia_post')]
+    #[Route('/guias/post', name: 'app_guia_post')]
     public function post(Request $request, ManagerRegistry $doctrine): Response
     {
         $guia = new GuiaTurismo();
@@ -40,9 +40,8 @@ class GuiaPostController extends AbstractController
                     ]
                 ])
                 ->add("email", EmailType:: class)
-                ->add("web", TextType:: class)
+                ->add("paginaWeb", TextType:: class)
                 ->add("tipo", TextType:: class)
-                ->add("imagen", FileType:: class)
                 ->add('enviar', SubmitType::class)
                 ->getForm();
         $form->handleRequest($request);
@@ -55,7 +54,7 @@ class GuiaPostController extends AbstractController
                 $entityManager->flush();
                 $this->addFlash("aviso","Guia guardado con éxito");
 
-            return $this->redirectToRoute("");
+            return $this->redirectToRoute("app_visita_post");
         } else{
             return $this->renderForm("Guia/guia_post/index.html.twig", ['formulario' => $form]);
         }

@@ -22,16 +22,15 @@ class EventoGetController extends AbstractController {
         $arrayEventos = $doctrine->getRepository(Evento::class)->findByMonthEvents($actual_month);
         
         //checkboxes de tipos
+        $choices = ['Evento deportivo' => 'deportivo', 'Evento cultural' => 'cultural', 'Tradiciones y fiestas locales' => 'tradicion'];
         $typesForm = $this->createFormBuilder()
                 ->add('tipo', ChoiceType::class, [
                     'label' => false,
-                    'choices' => [
-                        'Evento deportivo' => 'deportivo', 
-                        'Evento cultural' => 'cultural', 
-                        'Tradiciones y fiestas locales' => 'tradicion'],
-                    'multiple' => false,
+                    'choices' => $choices,
+                    'multiple' => true,
                     'expanded' => true,
-                ])
+                    'data' => array_keys()
+                 ])
                 ->getForm();
 
         $typesForm->handleRequest($request);
@@ -78,6 +77,17 @@ class EventoGetController extends AbstractController {
                     'eventos' => $eventos, 'tipos' => $types
         ]);
     }
+    
+    /**
+     * @Route("/admin/eventos", name="admin_eventos_get")
+     * @return Response
+     */
+    public function getAllEvents(ManagerRegistry $doctrine, Request $request): Response {
+        $eventos = $doctrine->getRepository(Evento::class)->findAll();
+        return $this->render('admin/admin_eventos.html.twig', [
+                    'eventos' => $eventos
+        ]);
+    }
 
     /**
      * @Route("/eventos/{month}", name="app_eventos_month_get")
@@ -86,8 +96,6 @@ class EventoGetController extends AbstractController {
     public function getAllEventsByMonth(ManagerRegistry $doctrine, $month): Response {
         
         $month= DateTime::createFromFormat('m', $month);
-        var_dump($month);
-        die();
         $eventos = $doctrine->getRepository(Evento::class)->findByMonthEvents($month);
         return $this->redirectToRoute('app_eventos_get', [
                     'eventos' => $eventos, 'mesEscogido' => $monthName

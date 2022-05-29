@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %} Gestión de recursos patrimoniales {% endblock %}
+{% block main %}
+    
+    <main class="w-75 mx-auto mt-5 mb-5">
+        
+        <h2>Gestión de recursos patrimoniales</h2>
+        <a href="{{ path('app_museo_post') }}">Alta</a>
+        <table class="table w-25 m-auto">
+            <th>Museo</th>
+            {% for item in museos %}
+                <tr>
+                    <td>{{ item.nombre }}</td>
+                    <td><a href="{{ path('admin_museo_get', {uid: item.uid}) }}">Gestionar museo</td>
+                    <td><a href="{{ path('app_museo_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></td>
+                <tr>
+            {% endfor %}
+            
+        </table>
+    </main>
+{% endblock %}

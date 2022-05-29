@@ -18,4 +18,14 @@ class HistoriaGetController extends AbstractController
             'historia' => $historia
         ]);
     }
+    
+    /**
+     * @Route("/admin/historia/{uid}", name="admin_historia_get")
+     */
+    public function getHistoryData(Historia $historia): Response
+    {
+        return $this->render('admin/admin_historia.html.twig', [
+            'historia' => $historia
+        ]);
+    }
 }

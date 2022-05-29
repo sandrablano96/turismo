@@ -9,15 +9,37 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use \Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class GastronomiaPutController extends AbstractController
 {
     #[Route('/gastronomia/put/{uid}', name: 'app_gastronomia_put')]
     public function put(Gastronomia $gastronomia, Request $request, ManagerRegistry $doctrine): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        return $this->render('Gastronomia/gastronomia_put/index.html.twig', [
-            'controller_name' => 'GastronomiaPutController',
-        ]);
+        $form = $this->createFormBuilder($gastronomia)
+                ->add('descripcion', TextareaType::class, [
+                    'required' => true,
+                    'constraints' => [
+                    new NotBlank([
+                        'message' => 'La descripción no puede quedar vacía',
+                    ])
+                    ]
+                ])
+                ->add('enviar', SubmitType::class)
+                ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $gastronomia = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($gastronomia);
+            $entityManager->flush();
+            $this->addFlash("aviso","Gastronomia actualizada correctamente");
+            return $this->redirectToRoute('admin_gastronomia_get', [
+                'uid' => $gastronomia->getUid()
+            ]);
+        }else{
+            return $this->renderForm("Gastronomia/gastronomia_put/index.html.twig", ['formulario' => $form]);
+        }
     }
 }

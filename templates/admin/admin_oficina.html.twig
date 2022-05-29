@@ -1,0 +1,23 @@
+
+{% extends 'base.html.twig' %}
+{% block title %} Datos de la Oficina de Turismo {% endblock %}
+{% block main %}
+    
+    <main class="w-75 mx-auto mt-5 mb-5">
+        
+        <h2>Oficina de Turismo</h2>
+        <table class="table">
+            <th>Dirección</th>
+            <th>Télefono de contacto</th>
+            <th>E-mail</th>
+            <th>Horario de atención al público</th>
+                <tr>
+                    <td>{{ oficina.direccion }}</td>
+                    <td>{{ oficina.telefono }}</td>
+                    <td>{{ oficina.email }}</td>
+                    <td>{{ oficina.horario }}</td>
+                    <td><a href="{{ path('app_oficina_put', {uid: oficina.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
+                <tr>
+        </table>
+    </main>
+{% endblock %}{# empty Twig template #}

@@ -19,7 +19,7 @@ class MuseoGetController extends AbstractController
     }
 
     /**
-     * @Route("/museos", name="app_museosOrdered_get_", methods={"POST"})
+     * @Route("/museos", name="app_museosOrdered_get", methods={"POST"})
      * @return Response
      */
     public function getAllMuseosOrdered(ManagerRegistry $doctrine, Request $request): Response
@@ -41,4 +41,26 @@ class MuseoGetController extends AbstractController
             'museo' => $museo
         ]);
     }
+    /**
+     * @Route("admin/museo/{uid}", name="admin_museo_get")
+     * @return Response
+     */
+    public function getMuseoData(Museo $museo): Response
+    {
+        return $this->render('admin/admin_museo.html.twig', [
+            'museo' => $museo
+        ]);
+    }
+    
+    /**
+     * @Route("admin/museos", name="admin_museos_get")
+     */
+    public function getAll(ManagerRegistry $doctrine): Response
+    {
+        $arrayMuseos = $doctrine->getRepository(Museo::class)->findAll();
+        return $this->render('admin/admin_museos.html.twig', [
+            'museos' => $arrayMuseos
+        ]);
+    }
+
 }

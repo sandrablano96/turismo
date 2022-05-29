@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administrador{% endblock %}{# empty Twig template #}
+
+{% block main %}
+    <main class="mt-5 mb-5">
+        <section class="w-75 mx-auto mb-5">
+            <h2 class="text-center m-5">Bienvenido</h2>
+            <a href="{{ path('admin_historia_get', {uid: 'asd5s'}) }}">Historia</a>
+            <a href="{{ path('admin_patrimonio_tipo_get', {type: 'natural'}) }}">Patrimonio natural</a>
+            <a href="{{ path('admin_patrimonio_tipo_get', {type: 'cultural'}) }}">Patrimonio cultural</a>
+            <a href="{{ path('admin_gastronomia_get', {uid: 'asd34'}) }}">Gastronomía y productos tipicos</a>
+            <a href="{{ path('admin_museos_get') }}">Museos y piezas destacadas</a>
+            <a href="{{ path('admin_eventos_get') }}">Eventos de ocio</a>
+            <a href="{{ path('admin_guias_get') }}">Guías turísticas</a>
+            <a href="{{ path('admin_visitas_get') }}">Visitas guiadas</a>
+            <a href="{{ path('admin_oficina_get', {uid: 'asda656'}) }}">Página de contacto</a>
+        </section>
+    </main>
+{% endblock %}

@@ -1,20 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HistoriaPutController!{% endblock %}
+{% block title %}Actualizar historia{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/turismo_ciudadreal/src/Controller/HistoriaPutController.php'|file_link(0) }}">src/Controller/HistoriaPutController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/turismo_ciudadreal/templates/historia_put/index.html.twig'|file_link(0) }}">templates/historia_put/index.html.twig</a></code></li>
-    </ul>
-</div>
+{% block main %}
+    
+    <main class="w-75 mx-auto mt-5 mb-5">
+        <h2>Actualización de los datos de historia </h2>
+        <p>Separe con '//' los distintos párrafos del texto</p>
+            {{ form(formulario) }}
+    </main>
 {% endblock %}
+
