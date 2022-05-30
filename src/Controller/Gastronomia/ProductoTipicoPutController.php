@@ -21,6 +21,7 @@ class ProductoTipicoPutController extends AbstractController
     #[Route('/gastronomia/producto/put/{uid}', name: 'app_producto_tipico_put')]
     public function put(ProductoTipico $producto, Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
     {
+        $imagen = $producto->getImagen();
         $producto->setImagen(
             new File($this->getParameter('gastronomy_directory').'/'.$producto->getImagen())
         );
@@ -42,13 +43,9 @@ class ProductoTipicoPutController extends AbstractController
                     ]
                 ])
                 ->add("imagen", FileType:: class, [
-                    'required' => true,
+                    'mapped' => false,
+                    'required' => false,
                     'data_class' => null,
-                    'constraints' => [
-                    new NotBlank([
-                        'message' => 'Introduzca una imagen',
-                    ])
-                    ]
                 ])
                 
                 ->add('enviar', SubmitType::class)
@@ -56,6 +53,7 @@ class ProductoTipicoPutController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $producto = $form->getData();
+            
             $foto = $form->get('imagen')->getData();
             //subimos la imagen
             if ($foto) {
@@ -69,14 +67,18 @@ class ProductoTipicoPutController extends AbstractController
                     $foto->move($this->getParameter('gastronomy_directory'),
                         $newFilename
                     );
+                     $producto->setImagen($newFilename);
                 } catch (FileException $e) {
                     console.log($e);
                 }
-            }    
-            $producto->setImagen($newFilename);
+            } else{
+                $producto->setImagen($imagen);
+            }   
+          
             $entityManager = $doctrine->getManager();
             $entityManager->persist($producto);
             $entityManager->flush();
+            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Producto actualizado con éxito");
             
             $gastronomiaUid = $producto->getGastronomia()->getUid();
@@ -85,7 +87,7 @@ class ProductoTipicoPutController extends AbstractController
             ]);
         }else{
             return $this->renderForm('Gastronomia/producto_tipico_put/index.html.twig', [
-            'formulario' => $form,
+            'formulario' => $form,'imagen' => $imagen, 'alt' => $producto->getNombre()
         ]);
         }
     }

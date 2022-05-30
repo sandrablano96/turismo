@@ -15,12 +15,13 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use \Symfony\Component\Form\Extension\Core\Type\FileType;
+use \Symfony\Component\String\Slugger\SluggerInterface;
 use Ramsey\Uuid\Uuid;
 
 class EventoPostController extends AbstractController
 {
     #[Route('/evento/post', name: 'app_evento_post')]
-    public function post(ManagerRegistry $doctrine, Request $request): Response
+    public function post(ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger): Response
     {
         $evento = new Evento();
         $form = $this->createFormBuilder($evento)
@@ -48,7 +49,9 @@ class EventoPostController extends AbstractController
                     ])
                     ]
                 ])
-                ->add("precio", TextType:: class)
+                ->add("precio", TextType:: class, [
+                    'required' => false
+                ])
                 ->add("tipo_evento", ChoiceType:: class, [
                         'choices' => [
                             'Evento deportivo' => 'deportivo',
@@ -57,7 +60,14 @@ class EventoPostController extends AbstractController
                         ]
 
                 ])
-                //-add("imagen", FileType::class)
+                ->add("imagen", FileType:: class, [
+                    'required' => true,
+                    'constraints' => [
+                    new NotBlank([
+                        'message' => 'Introduzca una imagen',
+                    ])
+                    ]
+                ])
                 ->add('enviar', SubmitType::class)
                 ->getForm();
         $form->handleRequest($request);
@@ -65,13 +75,31 @@ class EventoPostController extends AbstractController
             $evento = $form->getData();
             $uuid = Uuid::uuid4();
             $evento->setUid($uuid->toString());
-            /****************************************/
-            $evento->setImagen('ALAAAA');
-            /****************************************/
+            $foto = $form->get('imagen')->getData();
+            //subimos la imagen
+            if ($foto) {
+                $originalFilename = pathinfo($foto->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$foto->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $foto->move($this->getParameter('events_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    console.log($e);
+                }
+                
+            }    
+            $evento->setImagen($newFilename);
+            
 
             $entityManager = $doctrine->getManager();
             $entityManager->persist($evento);
             $entityManager->flush();
+            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Evento guardado con éxito");
 
             return $this->redirectToRoute("admin_eventos_get");

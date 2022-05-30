@@ -77,6 +77,7 @@ class ProductoTipicoPostController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($producto);
             $entityManager->flush();
+            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Producto añadido con éxito");
             
             return $this->redirectToRoute('admin_gastronomia_get', [

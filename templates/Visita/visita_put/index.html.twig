@@ -1,10 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Actualizar datos de la oficina de Turismo{% endblock %}
+{% block title %}Actualizar visita guiada{% endblock %}
 
 {% block main %}
     
     <main class="w-75 mx-auto mt-5 mb-5">
-            {{ form(formulario) }}
+            <h2>Actualizar visita guiada </h2>
+        {{ form_start(formulario, {'attr': {'class': 'w-50 m-auto'}} ) }}
+        
+         <div class="form_error">
+                 {{ form_errors(formulario) }}
+            </div>
+             <div class="form-group">
+                {{ form_row(formulario.titulo, {'attr': {'class': 'form-control mb-2'}} ) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(formulario.descripcion, {'attr': {'class': 'form-control mb-2'}} ) }}
+            </div>
+            <div>
+                {{ form_row(formulario.fecha) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(formulario.precio, {'attr': {'class': 'form-control mb-2'}} ) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(formulario.oficinaTurismo, {'attr': {'class': 'form-select mb-2'}} ) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(formulario.guiaTurismo, {'attr': {'class': 'form-select mb-2'}} ) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(formulario.enviar, {'attr': {'class': 'form-control mb-2'}} ) }}
+            </div>
+            {{ form_end(formulario) }}
     </main>
 {% endblock %}

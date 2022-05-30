@@ -6,6 +6,13 @@
     <main class="w-75 mx-auto mt-5 mb-5">
         
         <h2>Gastronomía</h2>
+        <div class="messages">
+            {% for message in app.flashes('aviso') %}
+                 <div class="flash-notice">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
         <table class="table">
             <th>Descripción</th>
             <th>Producto del mes</th>
@@ -25,7 +32,7 @@
                 <tr>
                 <td>{{ item.nombre }}</td>
                 <td>{{ item.descripcion }}</td>
-                <td><img src="{{ asset('media/gastronomia') ~ item.imagen }}" alt="{{ item.nombre }}" style="width:50px"></td>
+                <td><img src="{{ asset('media/gastronomia/') ~ item.imagen }}" alt="{{ item.nombre }}" style="width:50px"></td>
                 <td><a href="{{ path('app_producto_tipico_put', {uid: item.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
                 <td><a href="{{ path('app_producto_tipico_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>
                 </tr>

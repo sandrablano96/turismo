@@ -6,21 +6,30 @@
     <main class="w-75 mx-auto mt-5 mb-5">
         
         <h2>Historia</h2>
+        <div class="messages">
+            {% for message in app.flashes('aviso') %}
+                 <div class="flash-notice">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
         <table class="table">
             <th>Historia</th>
             <th>Imagen principal</th>
                 <tr>
                     <td>{{ historia.historia }}</td>
-                    <td><img src="{{ asset('media/') ~ historia.imagen }}" style="width:50px"></td>
+                    <td><img src="{{ asset('media/historia/') ~ historia.imagen }}" style="width:50px"></td>
                     <td><a href="{{ path('app_historia_put', {uid: historia.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
                 <tr>
         </table>
         <h3>Galería de imágenes</h3>
         <a href="{{ path('app_h_galeria_post', {uid: historia.uid}) }}">Alta</a>
         <table class="table">
+            <th>Archivo</th>
+            <th>Alt</th>
             {% for item in historia.galeriaImagenes %}
                 <tr>
-                <td><img src="{{ asset('media/historia') ~ item.archivo }}" alt="{{ item.archivo }}" style="width:50px"></td>
+                <td><img src="{{ asset('media/historia/') ~ item.archivo }}" alt="{{ item.archivo }}" style="width:50px"></td>
                 <td>{{ item.alt }}</td>
                 <td><a href="{{ path('app_h_galeria_put', {uid: item.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
                 <td><a href="{{ path('app_h_galeria_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>

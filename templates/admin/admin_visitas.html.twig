@@ -5,6 +5,13 @@
     <main class="w-75 mx-auto mt-5 mb-5">
         
         <h2>Gestión de visitas guiadas</h2>
+        <div class="messages">
+            {% for message in app.flashes('aviso') %}
+                 <div class="flash-notice">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
         <a href="{{ path('app_visita_post') }}">Alta</a>
         <table class="table">
             <th>Título del evento</th>

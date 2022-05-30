@@ -10,15 +10,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use ramsey\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class HistoriaPostController extends AbstractController
 {
     #[Route('/historia/post', name: 'app_historia_post')]
-    public function post(ManagerRegistry $doctrine, Request $request): Response
+    public function post(ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger): Response
     {
         $historia = new Historia();
         $form = $this->createFormBuilder($historia)
-                ->add("historia", TextType:: class, [
+                ->add("historia", TextareaType:: class, [
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -45,6 +47,7 @@ class HistoriaPostController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($historia);
             $entityManager->flush();
+            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Historia de la localidad guardada con éxito");
 
             return $this->redirectToRoute("");

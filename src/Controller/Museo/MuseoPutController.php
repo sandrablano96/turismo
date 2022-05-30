@@ -23,6 +23,7 @@ class MuseoPutController extends AbstractController
     #[Route('/museo/put/{uid}', name: 'app_museo_put')]
     public function put(Museo $museo, Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
     {
+        $imagen = $museo->getImagen();
         $museo->setImagen(
             new File($this->getParameter('museum_directory').'/'.$museo->getImagen())
         );
@@ -71,12 +72,8 @@ class MuseoPutController extends AbstractController
                 ])
                 ->add("imagen", FileType::class, [
                     'data_class' => null,
-                    'required' => true,
-                    'constraints' => [
-                    new NotBlank([
-                        'message' => 'Introduzca la imagen',
-                    ])
-                    ]
+                    'required' => false,
+                    'mapped' => false
                 ])
                 ->add('enviar', SubmitType::class)
                 ->getForm();
@@ -97,22 +94,26 @@ class MuseoPutController extends AbstractController
                     $foto->move($this->getParameter('museum_directory'),
                         $newFilename
                     );
+                    $museo->setImagen($newFilename);
                 } catch (FileException $e) {
                     console.log($e);
                 }
+            } else{
+                $museo->setImagen($imagen);
             }    
-            $museo->setImagen($newFilename);
+            
             
             $entityManager = $doctrine->getManager();
             $entityManager->persist($museo);
             $entityManager->flush();
+            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Museo actualizado con éxito");
             
             return $this->redirectToRoute('admin_museo_get', [
                 'uid' => $museo->getUid()
             ]);
         } else{
-            return $this->renderForm("Museo/museo_put/index.html.twig", ['formulario' => $form]);
+            return $this->renderForm("Museo/museo_put/index.html.twig", ['formulario' => $form, 'imagen' => $imagen, 'alt' => $museo->getNombre()]);
         }
     }
 }

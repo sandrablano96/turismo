@@ -83,6 +83,7 @@ class VisitaPostController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($visita);
             $entityManager->flush();
+            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Visita guiada guardada con éxito");
 
             return $this->redirectToRoute("admin_visitas_get");

@@ -15,15 +15,25 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use \Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\HttpFoundation\File\File;
+use \Symfony\Component\String\Slugger\SluggerInterface;
 
 
 class EventoPutController extends AbstractController
 {
     #[Route('/evento/put/{uid}', name: 'app_evento_put')]
-    public function put(ManagerRegistry $doctrine, Evento $evento, Request $request): Response
+    public function put(ManagerRegistry $doctrine, Evento $evento, Request $request,  SluggerInterface $slugger): Response
     {
+        $imagen = $evento->getImagen();
+        if($evento->getImagen() != null){
+            $evento->setImagen(
+            new File($this->getParameter('events_directory').'/'.$evento->getImagen())
+                    
+        );
+        }
+        
         $form = $this->createFormBuilder($evento)
-                ->add("titulo", TextType:: class, [
+                ->add("titulo", TextType::class, [
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -31,7 +41,7 @@ class EventoPutController extends AbstractController
                     ])
                     ]
                 ])
-                ->add("descripcion", TextareaType:: class, [
+                ->add("descripcion", TextareaType::class, [
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -39,7 +49,7 @@ class EventoPutController extends AbstractController
                     ])
                     ]
                 ])
-                ->add("fecha", DateType:: class, [
+                ->add("fecha", DateType::class, [
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -47,8 +57,10 @@ class EventoPutController extends AbstractController
                     ])
                     ]
                 ])
-                ->add("precio", TextType:: class)
-                ->add("tipo_evento", ChoiceType:: class, [
+                ->add("precio", TextType::class, [
+                    'required' => false
+                ])
+                ->add("tipo_evento", ChoiceType::class, [
                         'choices' => [
                             'Evento deportivo' => 'deportivo',
                             'Evento cultural' => 'cultural', 
@@ -56,23 +68,48 @@ class EventoPutController extends AbstractController
                         ]
 
                 ])
-                //-add("imagen", FileType::class)
+                ->add("imagen", FileType::class, [
+                    'required' => false,
+                    'data_class' => null,
+                    'mapped' => false
+                ])
                 ->add('enviar', SubmitType::class)
                 ->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $evento = $form->getData();
-            /****************************************/
-            $evento->setImagen('ALAAAA');
-            /****************************************/
+            
+                $foto = $form->get('imagen')->getData();
+            //subimos la imagen
+            if ($foto) {
+                $originalFilename = pathinfo($foto->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$foto->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $foto->move($this->getParameter('events_directory'),
+                        $newFilename
+                    );
+                    
+                } catch (FileException $e) {
+                    console.log($e);
+                }
+                $evento->setImagen($newFilename);
+            }else{
+                $evento->setImagen($imagen);
+            }    
+            
             $entityManager = $doctrine->getManager();
             $entityManager->persist($evento);
             $entityManager->flush();
+            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Evento actualizzado con éxito");
 
             return $this->redirectToRoute("admin_eventos_get");
         } else{
-            return $this->renderForm("Eventos/evento_put/index.html.twig", ['formulario' => $form]);
+            return $this->renderForm("Eventos/evento_put/index.html.twig", ['formulario' => $form, 'imagen' => $imagen, 'alt' => $evento->getTitulo()]);
         }
     }
 }

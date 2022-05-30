@@ -5,15 +5,27 @@
     <main class="w-75 mx-auto mt-5 mb-5">
         
         <h2>Gestión de recursos patrimoniales</h2>
-        <a href="{{ path('app_patrimonio_post') }}">Alta</a>
+        <div class="messages">
+            {% for message in app.flashes('aviso') %}
+                 <div class="flash-notice">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        <a href="{{ path('app_patrimonio_post', {type: tipo }) }}" class="btn btn-primary">Alta</a>
         <table class="table">
-            <th>Título del evento</th>
+            <th>Tipo</th>
+            <th>Nombre</th>
             <th>Descripción</th>
-            <th>Fecha</th>
+            <th>Dirección</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Web</th>
             <th>Precio</th>
-            <th>Organizador</th>
+            <th>Horario</th>
             {% for item in patrimonio %}
                 <tr>
+                    <td>{{ tipo }}</td>
                     <td>{{ item.nombre }}</td>
                     <td>{{ item.descripcion }}</td>
                     <td>{{ item.direccion }}</td>
@@ -22,8 +34,8 @@
                     <td>{{ item.web }}</td>
                     <td>{{ item.precio }}</td>
                     <td>{{ item.horario }}</td>
-                    <td><img src="{{ asset('media/') ~ item.imagen }}" alt="{{ item.nombre }}"></td>
-                    <td><a href="{{ path('app_patrimonio_put', {uid: item.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
+                    <td><img src="{{ asset('media/patrimonio/') ~ item.imagen }}" alt="{{ item.nombre }}" style="width: 50px"</td>
+                    <td><a href="{{ path('app_patrimonio_put', {type: tipo, uid: item.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
                     <td><a href="{{ path('app_patrimonio_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>
                 <tr>
             {% endfor %}

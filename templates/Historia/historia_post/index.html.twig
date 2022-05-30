@@ -5,7 +5,19 @@
 {% block main %}
     
     <main class="w-75 mx-auto mt-5 mb-5">
-            {{ form(formulario) }}
+        <h2>Actualizar historia de la localidad</h2>
+            {{ form_start(formulario, {'attr': {'class': 'w-50 m-auto'}} ) }}
+            <p>Separe los diferentes párrafos con '//'</p>
+            <div class="form-group">
+                {{ form_row(formulario.historia, {'attr': {'class': 'form-control mb-2'}} ) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(formulario.imagen, {'attr': {'class': 'form-control mb-2'}} ) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(formulario.enviar, {'attr': {'class': 'form-control mb-2'}} ) }}
+            </div>
+            {{ form_end(formulario) }}
     </main>
 {% endblock %}
 

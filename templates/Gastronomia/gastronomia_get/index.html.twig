@@ -23,7 +23,7 @@
                     {% for item in gastronomia.productosTipicos %}
                     <div class="col-12 col-md-6 col-lg-4 event d-flex align-content-stretch  mb-2">
                       <div class="card" style="width: 20rem;">
-                        <img src="{{asset('/media/') ~ item.imagen}}" class="card-img-bottom" alt="{{item.nombre}}">
+                        <img src="{{asset('/media/gastronomia/') ~ item.imagen}}" class="card-img-bottom" alt="{{item.nombre}}">
                         <div class="card-body">
                           <h5 class="card-title">{{item.nombre}}</h5>
                           <p>{{item.descripcion}}</p>

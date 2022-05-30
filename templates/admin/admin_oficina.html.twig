@@ -6,6 +6,13 @@
     <main class="w-75 mx-auto mt-5 mb-5">
         
         <h2>Oficina de Turismo</h2>
+        <div class="messages">
+            {% for message in app.flashes('aviso') %}
+                 <div class="flash-notice">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
         <table class="table">
             <th>Dirección</th>
             <th>Télefono de contacto</th>

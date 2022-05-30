@@ -7,6 +7,8 @@ parameters:
     history_directory: '%kernel.project_dir%/public/media/historia'
     gastronomy_directory: '%kernel.project_dir%/public/media/gastronomia'
     museum_directory: '%kernel.project_dir%/public/media/museos'
+    events_directory: '%kernel.project_dir%/public/media/eventos'
+    heritage_directory: '%kernel.project_dir%/public/media/patrimonio'
 services:
     # default configuration for services in *this* file
     _defaults:

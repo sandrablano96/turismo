@@ -35,6 +35,14 @@ class OficinaPutController extends AbstractController
                     ])
                     ]
                 ])
+                ->add("email", TextType:: class, [
+                    'required' => true,
+                    'constraints' => [
+                    new NotBlank([
+                        'message' => 'Introduzca el email',
+                    ])
+                    ]
+                ])
                 ->add("horario", TextareaType:: class, [
                     'required' => true,
                     'constraints' => [
@@ -43,7 +51,7 @@ class OficinaPutController extends AbstractController
                     ])
                     ]
                 ])
-                ->add("localidad", TextareaType:: class, [
+                ->add("localidad", TextType:: class, [
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -60,6 +68,7 @@ class OficinaPutController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($oficina);
             $entityManager->flush();
+            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Datos de la oficina actualizados con éxito");
 
             return $this->redirectToRoute("admin_oficina_get");

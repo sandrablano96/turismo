@@ -52,6 +52,7 @@ class GuiaPostController extends AbstractController
             $entityManager = $doctrine->getManager();
                 $entityManager->persist($guia);
                 $entityManager->flush();
+                $this->get('session')->getFlashBag()->clear();
                 $this->addFlash("aviso","Guia guardado con éxito");
 
             return $this->redirectToRoute("app_visita_post");

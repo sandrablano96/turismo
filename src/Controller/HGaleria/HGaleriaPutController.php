@@ -20,26 +20,19 @@ class HGaleriaPutController extends AbstractController
     #[Route('/historia/galeria/put/{uid}', name: 'app_h_galeria_put')]
     public function index(SluggerInterface $slugger, Request $request, ManagerRegistry $doctrine, HistoriaImagenes $galeria): Response
     {
+        $imagen = $galeria->getArchivo();
         $galeria->setArchivo(
             new File($this->getParameter('history_directory').'/'.$galeria->getArchivo())
         );
         $form = $this->createFormBuilder($galeria)
                 ->add("archivo", FileType:: class, [
                     'data_class' => null,
-                    'required' => true,
-                    'constraints' => [
-                    new NotBlank([
-                        'message' => 'Introduzca una imagen',
-                    ])
-                    ]
+                    'required' => false,
+                    'mapped' => false
                 ])
                 ->add("alt", TextType:: class, [
-                    'required' => true,
-                    'constraints' => [
-                    new NotBlank([
-                        'message' => 'Introduzca una breve descripción de la imagen',
-                    ])
-                    ]
+                    'required' => false,
+                    
                 ])
                 ->add('enviar', SubmitType::class)
                 ->getForm();
@@ -59,15 +52,19 @@ class HGaleriaPutController extends AbstractController
                     $foto->move($this->getParameter('history_directory'),
                         $newFilename
                     );
+                    $galeria->setArchivo($newFilename);
                 } catch (FileException $e) {
                     console.log($e);
                 }
+            }else{
+                $galeria->setArchivo($imagen);
             }    
-            $galeria->setArchivo($newFilename);
+            
 
             $entityManager = $doctrine->getManager();
             $entityManager->persist($galeria);
             $entityManager->flush();
+            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Imagen actualizada con éxito");
             
             $historiaUid = $galeria->getHistoria()->getUid();
@@ -76,7 +73,7 @@ class HGaleriaPutController extends AbstractController
             ]);
         }else{
             return $this->renderForm('HGaleria/h_galeria_put/index.html.twig', [
-            'formulario' => $form,
+            'formulario' => $form, 'imagen' => $imagen, 'alt' => $galeria->getAlt()
         ]);
         }
     }

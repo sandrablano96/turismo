@@ -21,6 +21,7 @@ class PiezaMuseoPutController extends AbstractController
     #[Route('/museo/piezas/put/{uid}', name: 'app_pieza_museo_put')]
     public function index(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger, PiezaMuseo $pieza): Response
     {
+        $imagen = $pieza->getImagen();
         $pieza->setImagen(
             new File($this->getParameter('museum_directory').'/'.$pieza->getImagen())
         );
@@ -51,12 +52,8 @@ class PiezaMuseoPutController extends AbstractController
                 ])
                 ->add("imagen", FileType::class, [
                     'data_class' => null,
-                    'required' => true,
-                    'constraints' => [
-                    new NotBlank([
-                        'message' => 'Introduzca la imagen',
-                    ])
-                    ]
+                    'required' => false,
+                    'mapped' => false
                 ])
                 ->add('enviar', SubmitType::class)
                 ->getForm();
@@ -77,22 +74,26 @@ class PiezaMuseoPutController extends AbstractController
                     $foto->move($this->getParameter('museum_directory'),
                         $newFilename
                     );
+                    $pieza->setImagen($newFilename);
                 } catch (FileException $e) {
                     console.log($e);
                 }
-            }    
-            $pieza->setImagen($newFilename);
+            }else{
+                $pieza->setImagen($imagen);
+            }  
             
             $entityManager = $doctrine->getManager();
             $entityManager->persist($pieza);
             $entityManager->flush();
+            $this->get('session')->getFlashBag()->clear();
+            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Pieza añadida con éxito");
 
             return $this->redirectToRoute('admin_museo_get', [
                 'uid' => $pieza->getMuseo()->getUid()
             ]);
         } else{
-            return $this->renderForm("Museo/pieza_museo_post/index.html.twig", ['formulario' => $form]);
+            return $this->renderForm("Museo/pieza_museo_put/index.html.twig", ['formulario' => $form, 'imagen' => $imagen, 'alt' => $pieza->getTitulo()]);
         }
     }
 }

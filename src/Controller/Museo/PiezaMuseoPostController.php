@@ -87,6 +87,7 @@ class PiezaMuseoPostController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($pieza);
             $entityManager->flush();
+            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Pieza añadida con éxito");
 
             return $this->redirectToRoute('admin_museo_get', [

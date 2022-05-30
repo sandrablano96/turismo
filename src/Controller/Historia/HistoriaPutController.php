@@ -13,15 +13,17 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 
 class HistoriaPutController extends AbstractController
 {
     #[Route('/historia/put/{uid}', name: 'app_historia_put')]
-    public function put(ManagerRegistry $doctrine, Historia $historia, Request $request): Response
+    public function put(ManagerRegistry $doctrine, Historia $historia, Request $request,SluggerInterface $slugger): Response
     {
+        $imagen = $historia->getImagen();
         $historia->setImagen(
-            new File($this->getParameter('history_directory').'/'.$galeria->getImagen())
+            new File($this->getParameter('history_directory').'/'.$historia->getImagen())
         );
         $form = $this->createFormBuilder($historia)
                 ->add("historia", TextareaType:: class, [
@@ -33,13 +35,10 @@ class HistoriaPutController extends AbstractController
                     ]
                 ])
                 ->add('imagen', FileType:: class, [
-                    'required' => true,
+                    'required' => false,
                     'data_class' => null,
-                    'constraints' => [
-                    new NotBlank([
-                        'message' => 'Introduzca el texto que desea mostrar en la página de historia',
-                    ])
-                    ]
+                    'mapped' => false
+                    
                 ])
                 ->add('enviar', SubmitType::class)
                 ->getForm();
@@ -59,20 +58,25 @@ class HistoriaPutController extends AbstractController
                     $foto->move($this->getParameter('history_directory'),
                         $newFilename
                     );
+                    $historia->setImagen($newFilename);
                 } catch (FileException $e) {
                     console.log($e);
                 }
+            } else{
+                $historia->setImagen($imagen);
             }    
-            $historia->setImagen($newFilename);
+            
 
             $entityManager = $doctrine->getManager();
             $entityManager->persist($historia);
             $entityManager->flush();
+            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Historia de la localidad actualizada con éxito");
 
-            return $this->redirectToRoute("admin_historia_get");
+            return $this->redirectToRoute("admin_historia_get", [
+                'uid' => $historia->getUid()]);
         } else{
-            return $this->renderForm("Historia/historia_put/index.html.twig", ['formulario' => $form]);
+            return $this->renderForm("Historia/historia_put/index.html.twig", ['formulario' => $form, "imagen" => $imagen, 'alt'=>$imagen]);
         }
     
     }

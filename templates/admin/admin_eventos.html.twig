@@ -4,8 +4,14 @@
 {% block main %}
     
     <main class="w-75 mx-auto mt-5 mb-5">
-        
         <h2>Gestión de eventos</h2>
+        <div class="messages">
+            {% for message in app.flashes('aviso') %}
+                 <div class="flash-notice">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
         <a href="{{ path('app_evento_post') }}">Alta</a>
         <table class="table">
             <th>Título del evento</th>
@@ -20,8 +26,8 @@
                     <td>{{ item.descripcion }}</td>
                     <td>{{ item.fecha | date("d-m-Y") }}</td>
                     <td>{{ item.precio }}</td>
-                    <td>{{ item.tipoEvento }}</td>
-                    <td><img src="{{ asset('media/') ~ item.imagen }}" alt="{{ item.titulo }}"></td>
+                    <td>{{ item.tipoEvento | capitalize }}</td>
+                    <td><img src="{{ asset('media/eventos/') ~ item.imagen }}" alt="{{ item.titulo }}" style="width: 50px"></td>
                     <td><a href="{{ path('app_evento_put', {uid: item.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
                     <td><a href="{{ path('app_evento_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>
                 <tr>

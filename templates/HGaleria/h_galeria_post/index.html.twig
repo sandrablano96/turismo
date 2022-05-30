@@ -3,9 +3,24 @@
 {% block title %}Añadir imagen{% endblock %}
 
 {% block main %}
-    
+
     <main class="w-75 mx-auto mt-5 mb-5">
         <h2>Añadir imagen a la galeria</h2>
-            {{ form(formulario) }}
+        {{ form_start(formulario, {'attr': {'class': 'w-50 m-auto'}} ) }}
+         <div class="form_error">
+                 {{ form_errors(formulario) }}
+            </div>
+
+        <div class="form-group">
+            {{ form_row(formulario.archivo, {'attr': {'class': 'form-control mb-2'}} ) }}
+
+        </div>
+        <div class="form-group">
+            {{ form_row(formulario.alt, {'attr': {'class': 'form-control mb-2'}} ) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(formulario.enviar, {'attr': {'class': 'form-control mb-2'}} ) }}
+        </div>
+        {{ form_end(formulario) }}
     </main>
 {% endblock %}
