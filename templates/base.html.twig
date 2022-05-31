@@ -1,224 +1,174 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>
-			{% block title %}Welcome!
-			{% endblock %}
-		</title>
-		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-		{% block stylesheets %}
-			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-			<link rel="stylesheet" href="{{asset('styles/scss/main.css')}}">
-			<link rel="stylesheet" href="{{asset('styles/css/normalize.css')}}">
-		{% endblock %}
-
-		{% block global_javascripts %}
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-		<script src=" {{ asset("js/login-modal.js") }}"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.0/dist/index.bundle.min.js"></script>
-                <script>
-			$("#search__form__sm-icon").on("click", function(){
-			      $("#search__form__sm-icon").toggleClass("d-none");
-			      $("#search__form__close-icon").toggleClass("d-none");
-			        $("#search__form").toggleClass("d-none");
-			    });
-			
-			    $("#search__form__close-icon").on("click", function(e){
-			      const submitBtn = $("#button-addon1");
-			      if(!submitBtn.is(e.target) && submitBtn.has(e.target).length === 0){
-			          $("#search__form").toggleClass("d-none");
-			          $("#search__form__sm-icon").toggleClass("d-none");
-			          $("#search__form__close-icon").toggleClass("d-none");
-			        }
-			      }
-			    );
-		</script>
-                
-			      
-					{% endblock %}
-				</head>
-				<body>
-				<header id="header" class="sticky-top">
-			      <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between align-items-center">
-			        <div class="container-fluid w-100">
-			          <div class="d-flex col-1 justify-content-lg-between gap-2 align-items-center">
-			            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-			              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-			              aria-label="Toggle navigation">
-			              <span class="navbar-toggler-icon"></span>
-			            </button>
-			            <a class="navbar-brand"><img src="">LOGO</a>
-			          </div>
-			
-			          <div class="collapse navbar-collapse order-sm-last order-lg-1 align-items-center col-6"
-			            id="navbarSupportedContent">
-			            <ul class="navbar-nav ml-auto">
-			              <li class="nav-item">
-			                <a class="nav-link active" href="{{ path('app_main_menu') }}">Inicio</a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="{{path('app_historia_get', {uid: 'asd5s'})}}">Historia</a>
-			              </li>
-			              <li class="nav-item dropdown">
-			                <a class="nav-link dropdown-toggle" href="{{ path("app_see_menu") }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-			                  aria-expanded="false">
-			                  Qué visitar
-			                </a>
-			                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-			                  <li><a class="dropdown-item" href="{{ path('app_patrimonio_tipo_get', {type : 'cultural'}) }}">Patrimonio cultural</a></li>
-			                  <li><a class="dropdown-item" href="{{ path('app_patrimonio_tipo_get', {type : 'natural'}) }}">Espacios naturales y arqueológicos</a></li>
-			                  <li><a class="dropdown-item" href="{{path('app_museos_get')}}">Museos</a></li>
-			                  <li><a class="dropdown-item" href="{{path('app_visitas_get')}}">Visitas guiadas</a></li>
-			                </ul>
-			              </li>
-			              <li class="nav-item dropdown">
-			                <a class="nav-link dropdown-toggle" href="{{ path("app_gastronomia_get", {uid: 'asd34'}) }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-			                  aria-expanded="false">
-			                  Gastronomía
-			                </a>
-			                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-			                  <li><a class="dropdown-item" href="{{ path("app_gastronomia_get", {uid: 'asd34'}) }}#typical_products">Productos típicos</a></li>
-			                </ul>
-			              </li>
-			               <li class="nav-item">
-			                <a class="nav-link" href="{{path ("app_eventos_get")}}">Ocio</a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="{{ path("app_oficina_get", {uid: 'asda656'}) }}">Contacto</a>
-			              </li>
-			
-			            </ul>
-			          </div>
-			          <div class="d-flex order-md-2 col-lg-3 col-7 justify-content-end gap-2 align-self-start align-items-center order-lg-2 order-1 pt-1">
-			            <div class="d-flex align-items-center">
-			              <button id="search__form__sm-icon" class="btn btn-primary btn-sm rounded-circle text-center d-xl-none">
-			                <img src="{{ asset("media/icons/search.svg") }}" class="pb-1">
-			              </button>
-			              <form action="" id="search__form" class="d-none d-xl-block">
-			                <div class="px-3 bg-light rounded rounded-pill shadow-sm m-2 d-xl-flex">
-			                  <div class="input-group ">
-			                    <input type="text" placeholder="Buscar..." aria-describedby="button-addon1"
-			                      class="form-control border-0">
-			                    <div class="input-group-append">
-			                      <button id="button-addon1" type="submit" class="btn btn-link"><img
-			                          src="{{ asset("media/icons/3844432-magnifier-search-zoom_110300.ico") }}" width="25px"></button>
-			                    </div>
-			                  </div>
-			                </div>
-			              </form>
-			              <button id="search__form__close-icon" class="btn btn-sm rounded-circle text-center d-none d-inline text-white ms-0 me-2">
-			                <i class="fa-solid fa-xmark" class="pb-1" style="font-size: 1.2rem;"> </i>
-			              </button>
-			            </div>
-			            <!-- fin modal-->
-			            <button type="button" class="btn btn-outline-primary d-flex flex-row gap-2 align-items-center"
-			              data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fa-regular fa-user"></i><span
-			                class="d-none d-lg-inline"> LOGIN </span></button>
-			          </div>
-			        </div>
-			      </nav>
-          
-			    </header>
-                            {% block carousel %}{% endblock %}
-			    <!-- modal login -->
-			    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-			      <div class="modal-dialog">
-			        <div class="modal-content border-0">
-			
-			          <div class="modal-header d-flex flex-column">
-			
-			            <button type="button" class="btn-close text-center" data-bs-dismiss="modal" aria-label="Close"></button>
-			            <h5 class="modal-title col-12 text-center text-uppercase fw-bold" id="loginModalLabel">Iniciar sesion</h5>
-			          </div>
-			          <div class="modal-body py-3">
-			            <div class="row justify-content-center">
-			              <div class="col-md-6 col-lg-8">
-			                <div class="login-wrap p-0">
-			                  <form action="#" class="signin-form">
-			                    <div class="form-group">
-			                      <input type="text" class="form-control" placeholder="Email" required>
-			                    </div>
-			                    <div class="form-group">
-			                      <input id="password-field" type="password" class="form-control" placeholder="Contraseña" required>
-			                      <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-			                    </div>
-			                    <div class="form-group">
-			                      <button type="submit" class="form-control btn btn-primary btn-login submit px-3">Sign In</button>
-			                    </div>
-			                    <div class="form-group d-md-flex justify-content-around">
-			                      <div class="w-50 text-start">
-			                        <label class="checkbox-wrap ps-0">Recordarme
-			                          <input type="checkbox" checked>
-			                        </label>
-			                      </div>
-			                      <div class="w-50 text-end">
-			                        <a href="#" style="color: #fff;font-size: 0.8rem;">He olvidado la contraseña</a>
-			                      </div>
-			                    </div>
-			                  </form>
-			                </div>
-			              </div>
-			            </div>
-			          </div>
-			          <div class="modal-footer d-flex align-content-center justify-content-center m-0">
-			            <button type="button" class="form-control btn btn-secondary btn-login w-50 py-2 m-0"
-			              data-bs-dismiss="modal">Registrarme</button>
-			          </div>
-			          <img src="{{ asset("media/svg/wave(7).svg") }}">
-			        </div>
-			      </div>
-			    </div>
-			    <!--fin modal login-->
-				{% block main %}
-			  {% endblock %}
-			
-				<footer id="footer" class="pt-3 m-0">
-			    <div class="row w-100 d-flex text-center">
-			      <div class="col-12 col-md-4 p-0 m-0">
-			        <h4>Navegar</h4>
-			        <ul class="list-unstyled">
-			          <li><a href="">Historia</a></li>
-			          <li><a href="">Qué visitar</a></li>
-			          <li><a href="">Gastronomía</a></li>
-			          <li><a href="">Ocio</a></li>
-			          <li><a href="">Cómo llegar</a></li>
-			          <li><a href="">Contacto</a></li>
-			        </ul>
-			      </div>
-			      <div class="col-12 col-md-4 p-0 m-0">
-			        <h4>Contacto</h4>
-			        <p><i class="fa-solid fa-phone"></i> 111-111-111</p>
-			        <p> <i class="fa-solid fa-at"></i> turismoenciudadreal@gmail.com</p>
-			        <p> <i class="fa-solid fa-map-location"></i> Plaza Mayor, 1</p>
-			      </div>
-			      <div class="col-12 col-md-4 p-0 m-0">
-			        <h4>Síguenos</h4>
-			        <p>
-			          <i class="fa-brands fa-instagram" style="font-size: 1.4rem;"></i>
-			          <i class="fa-brands fa-facebook-f" style="font-size: 1.4rem;"></i>
-			        </p>
-			      </div>
-            {% block credits %}
-			      <a href="https://www.flaticon.es/iconos-gratis/estrella" title="estrella iconos" class="m-0 p-0 d-none">Estrella
-			        iconos creados por Freepik - Flaticon</a>
-			      <a href="https://www.flaticon.com/free-icons/phone" title="phone icons" class="m-0 p-0 d-none">Phone icons created
-			        by Freepik - Flaticon</a>
-			      <a href="https://www.flaticon.com/free-icons/home-office" title="home office icons" class="m-0 p-0 d-none">Home
-			        office icons created by Freepik - Flaticon</a>
-			      <a href="https://www.flaticon.com/free-icons/email" title="email icons" class="m-0 p-0 d-none">Email icons created
-			        by justicon - Flaticon</a>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}Welcome!
             {% endblock %}
-			    </div>
-			  </footer>
-			  </div>
-			{% block  page_javascripts %}{% endblock %}
-				</body>
-			</html>
+        </title>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+                  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+            <link rel="stylesheet" href="{{asset('styles/scss/main.css')}}">
+            <link rel="stylesheet" href="{{asset('styles/css/normalize.css')}}">
+        {% endblock %}
+
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+            <script src=" {{ asset("js/login-modal.js") }}"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.0/dist/index.bundle.min.js"></script>
+            <script>
+                $("#search__form__sm-icon").on("click", function () {
+                    $("#search__form__sm-icon").toggleClass("d-none");
+                    $("#search__form__close-icon").toggleClass("d-none");
+                    $("#search__form").toggleClass("d-none");
+                });
+
+                $("#search__form__close-icon").on("click", function (e) {
+                    const submitBtn = $("#button-addon1");
+                    if (!submitBtn.is(e.target) && submitBtn.has(e.target).length === 0) {
+                        $("#search__form").toggleClass("d-none");
+                        $("#search__form__sm-icon").toggleClass("d-none");
+                        $("#search__form__close-icon").toggleClass("d-none");
+                    }
+                }
+                );
+            </script>
+
+
+        {% endblock %}
+    </head>
+    <body>
+        <header id="header" class="sticky-top">
+            <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between align-items-center">
+                <div class="container-fluid w-100">
+                    <div class="d-flex col-1 justify-content-lg-between gap-2 align-items-center">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <a class="navbar-brand"><img src="">LOGO</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse order-sm-last order-lg-1 align-items-center col-6"
+                         id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{ path('app_main_menu') }}">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{path('app_historia_get', {uid: 'asd5s'})}}">Historia</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{{ path("app_see_menu") }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    Qué visitar
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{ path('app_patrimonio_tipo_get', {type : 'cultural'}) }}">Patrimonio cultural</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('app_patrimonio_tipo_get', {type : 'natural'}) }}">Espacios naturales y arqueológicos</a></li>
+                                    <li><a class="dropdown-item" href="{{path('app_museos_get')}}">Museos</a></li>
+                                    <li><a class="dropdown-item" href="{{path('app_visitas_get')}}">Visitas guiadas</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{{ path("app_gastronomia_get", {uid: 'asd34'}) }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    Gastronomía
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{ path("app_gastronomia_get", {uid: 'asd34'}) }}#typical_products">Productos típicos</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{path ("app_eventos_get")}}">Ocio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path("app_oficina_get", {uid: 'asda656'}) }}">Contacto</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="d-flex order-md-2 col-lg-3 col-7 justify-content-end gap-2 align-self-start align-items-center order-lg-2 order-1 pt-1">
+                        <div class="d-flex align-items-center">
+                            <button id="search__form__sm-icon" class="btn btn-primary btn-sm rounded-circle text-center d-xl-none">
+                                <img src="{{ asset("media/icons/search.svg") }}" class="pb-1">
+                            </button>
+                            <form action="" id="search__form" class="d-none d-xl-block">
+                                <div class="px-3 bg-light rounded rounded-pill shadow-sm m-2 d-xl-flex">
+                                    <div class="input-group ">
+                                        <input type="text" placeholder="Buscar..." aria-describedby="button-addon1"
+                                               class="form-control border-0">
+                                        <div class="input-group-append">
+                                            <button id="button-addon1" type="submit" class="btn btn-link"><img
+                                                    src="{{ asset("media/icons/3844432-magnifier-search-zoom_110300.ico") }}" width="25px"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <button id="search__form__close-icon" class="btn btn-sm rounded-circle text-center d-none d-inline text-white ms-0 me-2">
+                                <i class="fa-solid fa-xmark" class="pb-1" style="font-size: 1.2rem;"> </i>
+                            </button>
+                        </div>
+                        <!-- fin modal-->
+                        <button type="button" class="btn btn-outline-primary d-flex flex-row gap-2 align-items-center"
+                                data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fa-regular fa-user"></i><span
+                                class="d-none d-lg-inline"> LOGIN </span></button>
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+        {% block carousel %}{% endblock %}
+
+        {% block main %}
+        {% endblock %}
+
+        <footer id="footer" class="pt-3 m-0">
+            <div class="row w-100 d-flex text-center">
+                <div class="col-12 col-md-4 p-0 m-0">
+                    <h4>Navegar</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Historia</a></li>
+                        <li><a href="">Qué visitar</a></li>
+                        <li><a href="">Gastronomía</a></li>
+                        <li><a href="">Ocio</a></li>
+                        <li><a href="">Cómo llegar</a></li>
+                        <li><a href="">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4 p-0 m-0">
+                    <h4>Contacto</h4>
+                    <p><i class="fa-solid fa-phone"></i> 111-111-111</p>
+                    <p> <i class="fa-solid fa-at"></i> turismoenciudadreal@gmail.com</p>
+                    <p> <i class="fa-solid fa-map-location"></i> Plaza Mayor, 1</p>
+                </div>
+                <div class="col-12 col-md-4 p-0 m-0">
+                    <h4>Síguenos</h4>
+                    <p>
+                        <i class="fa-brands fa-instagram" style="font-size: 1.4rem;"></i>
+                        <i class="fa-brands fa-facebook-f" style="font-size: 1.4rem;"></i>
+                    </p>
+                </div>
+                {% block credits %}
+                    <a href="https://www.flaticon.es/iconos-gratis/estrella" title="estrella iconos" class="m-0 p-0 d-none">Estrella
+                        iconos creados por Freepik - Flaticon</a>
+                    <a href="https://www.flaticon.com/free-icons/phone" title="phone icons" class="m-0 p-0 d-none">Phone icons created
+                        by Freepik - Flaticon</a>
+                    <a href="https://www.flaticon.com/free-icons/home-office" title="home office icons" class="m-0 p-0 d-none">Home
+                        office icons created by Freepik - Flaticon</a>
+                    <a href="https://www.flaticon.com/free-icons/email" title="email icons" class="m-0 p-0 d-none">Email icons created
+                        by justicon - Flaticon</a>
+                    {% endblock %}
+            </div>
+        </footer>
+</body>
+</html>

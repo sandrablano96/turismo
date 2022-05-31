@@ -3,11 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Usuario;
-use Doctrine\DBAL\Types\StringType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -23,28 +23,37 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Debes introducir un email',
+                        'message' => 'Introduzca el email',
                     ])
-                ]
+            ],
             ])
-            ->add('nombre', StringType::class, [
+            ->add('nombre', TextType::class,  [
                 'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Debes introducir tu nombre',
+                        'message' => 'Introduzca su nombre',
                     ])
-                ]
+            ],
             ])
-            ->add('apellidos', StringType::class, [
+            ->add('apellidos', TextType::class,  [
                 'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Debes introducir tus apellidos',
+                        'message' => 'Introduzca sus apellidos',
                     ])
-                ]
+            ],
             ])
-            ->add('localidad', StringType::class)
+            ->add('localidad', TextType::class,  [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Introduzca su localidad de origen',
+                    ])
+            ],
+            ])
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'Acepto los términos  ', 
+                'attr' => ['class' => 'm-2'],
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
@@ -56,14 +65,16 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
+                'label' => 'Contraseña',
                 'attr' => ['autocomplete' => 'new-password'],
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Debes introducir una contraseña',
+                        'message' => 'Introduzca la contraseña',
                     ]),
                     new Length([
-                        'min' => 8,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'min' => 4,
+                        'minMessage' => 'La contraseña debe tener al menos 6 carácteres',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),

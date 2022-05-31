@@ -51,8 +51,8 @@
                             <h3>{{ item.nombre }}
                                 <img src="{{ asset('/media/icons/monumento_R1T_icon.ico') }}" width="30px"></h3>
                             <p>{{ item.descripcion }} </p>
-                            <div class="see-more d-flex justify-content-center align-content-end mt-5">
-                                <a href="{{ path('app_patrimonio_get', {uid : item.uid}) }}" class="col-12 col-lg-4 btn btn-secondary">Ver más</a>
+                            <div class="see-more d-flex justify-content-center align-items-center mt-5">
+                                <a href="{{ path('app_patrimonio_get', {uid : item.uid}) }}" class="col-12 col-lg-4 btn btn-secondary align-self-center">Ver más</a>
                             </div>
                         </div>
                     </div>

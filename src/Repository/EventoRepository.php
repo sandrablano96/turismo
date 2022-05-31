@@ -60,21 +60,7 @@ class EventoRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    /**
-     * @return Evento[] Returns an array of Evento objects
-     */
     
-    public function findByNameEvents($title) : array
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.titulo LIKE :title')
-            ->setParameter('type', '%'.$title.'%')
-            ->orderBy('e.fecha', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
     /**
      * @return Evento[] Returns an array of Evento objects
      */
@@ -95,14 +81,15 @@ class EventoRepository extends ServiceEntityRepository
      * @return Evento[] Returns an array of Evento objects
      */
     
-    public function findByMonthAndTypeEvents($month, $type)
+    public function findEventsByMonthAndType($month, $types)
     {
         $actual_year = (new DateTime)->format("Y");
+
         return $this->createQueryBuilder('e')
-            ->andWhere('MONTH(fecha) = :month and YEAR(fecha) = :actual_year and e.type = :type')
+            ->andWhere('MONTH(e.fecha) = :month and YEAR(e.fecha) = :actual_year and e.tipo_evento in (:types)')
             ->setParameter('month', $month)
             ->setParameter('actual_year', $actual_year)
-            ->setParameter('type', $type)
+            ->setParameter('types', $types)
             ->orderBy('e.fecha', 'ASC')
             ->getQuery()
             ->getResult()
