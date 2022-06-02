@@ -72,6 +72,7 @@ class EventoGetController extends AbstractController {
             $month = $parametersAsArray['month'];
             $eventos = $doctrine->getRepository(Evento::class)->findEventsByMonthAndType($month, $types);
             $html = $this->render( 'Eventos/evento_get/eventos_ajax.html.twig', ['eventos' => $eventos] )->getContent();
+            
             $response = array("code" => 200, "response" => $html);
             return new JsonResponse($response);
         }

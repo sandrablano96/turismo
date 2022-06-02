@@ -64,7 +64,8 @@
         </main>
         {% endblock %}
 
-            {% block  page_javascripts %}
+            {% block javascripts %}
+                {{ parent() }}
                 <script>
                     $("#advancedButton").on("click", function () {
                         console.log("click");

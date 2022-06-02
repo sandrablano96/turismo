@@ -70,50 +70,74 @@
                         </div>
                     {% endfor %}
                 </div>
-                        <div id="search-results"  class="col-12 d-flex justify-content-center d-none">
-                            <p id="no-results" class="d-none">No hay resultados que coincidan con tu búsqueda<p>
-                        </div>
-                
+                <div id="loading" class="d-none d-flex col-12 justify-content-center align-items-center">
+                    <img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px">
+                </div>
+                <div id="messages">
+                    <p id="no-results" class="d-none">No hay resultados que coincidan con tu búsqueda<p>
+                    <p id="error" class="d-none">Ha habido un error. Inténtelo de nuevo<p>
+                </div>
+
+                <div id="search-results"  class="col-12 d-flex justify-content-center d-none">
+
+                </div>
+
             </div>
-                    </section>
-                    </main>
-                {% endblock %}
-                {% block javascripts %}
-                    {{ parent() }}
-                    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
-                    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-                    <script>
+        </section>
+    </main>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script>
 
-                        $(document).ready(function () {
-                            $('#form_tipos').on('change', function (e) {
-                                let types = [];
-                                $(":checkbox").each(function () {
-                                    var ischecked = $(this).is(":checked");
-                                    if (ischecked) {
-                                        types.push($(this).val());
-                                    }
-                                });
-                                //console.log(types.length)
-                                //console.log(types)
-                                let monthSelected = $('#form_mes').children("option:selected").val();
-                                console.log(monthSelected);
+        $(document).ready(function () {
+            $('#form_tipos, #form_meses').on('change', function (e) {
+                let types = [];
+                $(":checkbox").each(function () {
+                    var ischecked = $(this).is(":checked");
+                    if (ischecked) {
+                        types.push($(this).val());
+                    }
+                });
+                //console.log(types.length)
+                //console.log(types)
+                let monthSelected = $('#form_mes').children("option:selected").val();
+                console.log(monthSelected);
 
-                                let url = Routing.generate('app_eventos_type_get');
+                let url = Routing.generate('app_eventos_type_get');
 
-                                $.ajax({
-                                    type: 'POST',
-                                    url: url,
-                                    dataType: 'JSON',
-                                    data: JSON.stringify({month: monthSelected, types: types}),
-                                    success: function (response) {
-                                        console.log(response)
-                                        $('#all-events').remove();
-                                        $('#search-results').html(response.response);
-                                        $('#search-results').removeClass('d-none');
-                                    }
-                                });
-                            });
-                        });
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'JSON',
+                    data: JSON.stringify({month: monthSelected, types: types}),
+                    beforeSend: function () {
+                        $('#all-events').remove();
+                        $('#loading').removeClass('d-none');
+                    },
+                    success: function (response) {
 
-                    </script>
-                {% endblock %}
+                        $('#loading').addClass('d-none');
+                        if (response.response == "") {
+                            $('#no-results').removeClass('d-none');
+                        } else {
+                            $('#search-results').html(response.response);
+                            $('#search-results').removeClass('d-none');
+                        }
+
+                    },
+                    complete: function () {
+                        $('#loading').addClass('d-none');
+                    },
+                    error: function () {
+                        $$('#error').removeClass('d-none');
+                    }
+
+                });
+            });
+        });
+
+    </script>
+{% endblock %}

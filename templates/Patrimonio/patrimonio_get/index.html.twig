@@ -3,6 +3,37 @@
 {% block title %}Patrimonio {{ tipo }}
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            $("#advancedButton").on("click", function () {
+                console.log("click");
+                $("#formFiltros").parent().toggleClass("d-none");
+            });
+        });
+
+        $(document).ready(function () {
+            $('#formFiltros').on("keyup", e => {
+                if (e.key === "Escape")
+                    e.target.value = ""
+
+                $(".element-container").each(function () {
+                    $(this).attr('id').toLowerCase().includes(e.target.value.toLowerCase())
+                            ? $(this).removeClass("d-none")
+                            : $(this).addClass("d-none")
+                })
+                if($(".element-container").children(':visible').length == 0){
+                    $("#no-results").removeClass('d-none');
+                }else{
+                    $("#no-results").addClass('d-none');
+                }
+
+            })
+            
+        })
+    </script>
+{% endblock %}
 {% block main %}
     <main class="w-75 mx-auto mt-5 mb-5">
         <section id="search-header" class="row mb-3">
@@ -17,30 +48,24 @@
         <section class="row d-flex">
             <button class="col-12 col-lg-3 mx-auto btn btn-sm btn-secondary-dark mb-3 align-self-center" id="advancedButton">Búsqueda avanzada</button>
             <div class="col-12 col-lg-5 m-auto d-none">
-                <form action="" id="formFiltros" method="post">
-                    <label for="tipo" class="form-label text-center mb-2">Filtrar por:</label>
-                    <select id="tipo" name="tipo" class="form-select mb-2">
-                        <option selected value="">Busqueda por tipo</option>
-                        <option value="monumento">Monumentos</option>
-                        <option value="espacio_natural">Espacios naturales</option>
-                        <option value="museo">Museos</option>
-                        <option value="visita">Visita</option>
-                    </select>
-                    <label for="nombre" class="form-label">Nombre:
+                <form id="formFiltros">
+                    <label for="nombre" class="form-label">Búscar por nombre:
                     </label>
                     <input type="text" name="nombre" id="nombre" class="form-control">
                     <div class="text-center mt-3">
-                        <button type="submit" id="buscar" class="btn btn-sm btn-secondary col-4">Buscar</button>
-                        <button type="reset" class="btn btn-sm btn-secondary col-4">Borrar</button>
                     </div>
                 </form>
             </div>
         </section>
 
-        <section id="search-results">
+        <section>
             <div class="col-12 mb-3 order-2 list">
+                <div class='d-flex justify-content-center my-5'>
+                    <p class='d-none' id='no-results'>No hay resultados para tu búsqueda</p>
+                </div>
+                
                 {% for item in arrayPatrimonio %}
-                    <div class="element-container row m-5 d-flex">
+                    <div class="element-container row m-5 d-flex" id='{{item.nombre}}'>
                         <div class="element-container__img col-12 col-lg-4 p-0">
                             <img src="{{ asset('/media/') ~ item.imagen }}" class="element__img">
                         </div>
@@ -57,18 +82,10 @@
                         </div>
                     </div>
                 {% endfor %}
-                </div>
-            </section>
+            </div>
+        </section>
 
 
-        </main>
-        {% endblock %}
+    </main>
+{% endblock %}
 
-            {% block  page_javascripts %}
-                <script>
-                    $("#advancedButton").on("click", function () {
-                        console.log("click");
-                        $("#formFiltros").parent().toggleClass("d-none");
-                    });
-                </script>
-            {% endblock %}

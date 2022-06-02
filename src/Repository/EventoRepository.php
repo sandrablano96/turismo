@@ -84,7 +84,6 @@ class EventoRepository extends ServiceEntityRepository
     public function findEventsByMonthAndType($month, $types)
     {
         $actual_year = (new DateTime)->format("Y");
-
         return $this->createQueryBuilder('e')
             ->andWhere('MONTH(e.fecha) = :month and YEAR(e.fecha) = :actual_year and e.tipo_evento in (:types)')
             ->setParameter('month', $month)
