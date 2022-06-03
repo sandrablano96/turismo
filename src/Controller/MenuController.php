@@ -31,6 +31,7 @@ class MenuController extends AbstractController
     {
         return $this->render('menu/whatToSeeMenu.html.twig');
     }
+    
     /**
      * @Route("/admin", name="app_admin_menu")
      * @return Response

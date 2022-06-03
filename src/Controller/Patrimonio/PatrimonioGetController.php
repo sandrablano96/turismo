@@ -7,22 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class PatrimonioGetController extends AbstractController
 {
-    /*
-    #[Route('/patrimonio', name: 'app_patrimonio_all_get')]
-    
-    public function getAllHeritage(ManagerRegistry $doctrine): Response
-    {
-        $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findAll();
-
-        return $this->render('patrimonio/index.html.twig', [
-            'arrayPatrimonio' => $arrayPatrimonio
-        ]);
-    }
-    */
-
     /**
      * @Route("/listado_patrimonio/{type}", name="app_patrimonio_tipo_get")
      * @return Response
@@ -32,25 +21,42 @@ class PatrimonioGetController extends AbstractController
     {
         $typeId = $type === 'cultural' ? 2 : 1;
         $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findByTypeHeritage($typeId);
-
-        return $this->render('Patrimonio/patrimonio_get/index.html.twig', [
-            'arrayPatrimonio' => $arrayPatrimonio, 'tipo' => $type
+        $orderForm = $this->createFormBuilder()
+                ->add('order', ChoiceType::class, [
+                    'choices' => ['Ascendente' => 'asc', 'Descendente' => 'desc'],
+                    'label' => false,
+                    'data' => 'asc'
+                ])
+                ->getForm();
+        return $this->renderForm('Patrimonio/patrimonio_get/index.html.twig', [
+            'arrayPatrimonio' => $arrayPatrimonio, 'tipo' => $type, 'formOrder' => $orderForm
         ]);
     }
 
     /**
-     * @Route("/patrimonio", name="app_patrimonioOrdered_get",methods={"POST"})
+     * @Route("/patrimonio/search", name="app_patrimonio_ordered_get", options={"expose"=true}, methods={"POST"})
      * @return Response
      * 
      */
     public function getAllHeritageOrdered(ManagerRegistry $doctrine, Request $request): Response
     {
-        $order = $request->request->get('order');
-        $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findBy(array(), array('nombre' => $order));
-
-        return $this->render('Patrimonio/patrimonio_get/index.html.twig', [
-            'arrayPatrimonio' => $arrayPatrimonio
-        ]);
+        if ($request->isXmlHttpRequest()) {
+            $parametersAsArray = [];
+            if ($content = $request->getContent()) {
+                $parametersAsArray = json_decode($content, true);
+            }
+            $order = $parametersAsArray['orden'];
+            if($order == 'asc'){
+                $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findAllAsc();
+            }else{
+                $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findAllDesc();
+            }
+            
+            $html = $this->render( 'Patrimonio/patrimonio_get/patrimonio_ajax.html.twig', ['arrayPatrimonio' => $arrayPatrimonio] )->getContent();
+            
+            $response = array("code" => 200, "response" => $html);
+            return new JsonResponse($response);
+        }
     }
 
     /**

@@ -3,45 +3,111 @@
 {% block title %}Museos
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#advancedButton").on("click", function () {
+                console.log("click");
+                $("#formFiltros").parent().toggleClass("d-none");
+            });
+        });
+
+        $(document).ready(function () {
+            $('#formFiltros').on("keyup", e => {
+                if (e.key === "Escape")
+                    e.target.value = ""
+
+                $(".element-container").each(function () {
+                    $(this).attr('id').toLowerCase().includes(e.target.value.toLowerCase())
+                            ? $(this).removeClass("d-none")
+                            : $(this).addClass("d-none")
+                })
+                if ($(".element-container").children(':visible').length == 0) {
+                    $("#no-results").removeClass('d-none');
+                } else {
+                    $("#no-results").addClass('d-none');
+                }
+
+            })
+
+        })
+
+        $(document).ready(function () {
+            $('#form_ordenar').on('change', function (e) {
+                event.preventDefault();
+                let order = $('#form_order').children("option:selected").val();
+                console.log(order);
+
+                let url = Routing.generate('app_museos_ordered_get');
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'JSON',
+                    data: JSON.stringify({orden: order}),
+                    beforeSend: function () {
+                        $('#all-museum').remove();
+                        $('#loading').removeClass('d-none');
+                    },
+                    success: function (response) {
+
+                        $('#loading').addClass('d-none');
+                        if (response.response == "") {
+                            $('#no-results').removeClass('d-none');
+                        } else {
+                            $('#search-results').html(response.response);
+                            $('#search-results').removeClass('d-none');
+                            $('#no-results').addClass('d-none');
+                            
+                        }
+
+                    },
+                    complete: function () {
+                        $('#loading').addClass('d-none');
+                    },
+                    error: function () {
+                        $('#error').removeClass('d-none');
+                    }
+
+                });
+                
+            });
+
+        });
+    </script>
+{% endblock %}
+
 {% block main %}
     <main class="w-75 mx-auto mt-5 mb-5">
         <section id="search-header" class="row mb-3">
             <div class="col-12 col-md-3 order-1 d-inline-flex justify-content-end h-50">
-                <select class="form-select">
-                    <option selected value="desc">Descendente</option>
-                    <option value="asc">Ascendente</option>
-                </select>
+                {{form_start(formOrder, {'attr': {'id': 'form_ordenar', 'autocomplete':'off'}})}}
+                {{form_widget(formOrder.order, { 'attr' : { 'class' : 'form-select' } })  }}
+                {{form_end(formOrder)}}
             </div>
             <h2 class="text-center col-12 col-md-9 order-0 m-auto mb-3">Listado de búsqueda</h2>
         </section>
         <section class="row d-flex">
             <button class="col-12 col-lg-3 mx-auto btn btn-sm btn-secondary-dark mb-3 align-self-center" id="advancedButton">Búsqueda avanzada</button>
             <div class="col-12 col-lg-5 m-auto d-none">
-                <form action="" id="formFiltros" method="post">
-                    <label for="tipo" class="form-label text-center mb-2">Filtrar por:</label>
-                    <select id="tipo" name="tipo" class="form-select mb-2">
-                        <option selected value="">Busqueda por tipo</option>
-                        <option value="monumento">Monumentos</option>
-                        <option value="espacio_natural">Espacios naturales</option>
-                        <option value="museo">Museos</option>
-                        <option value="visita">Visita</option>
-                    </select>
-                    <label for="nombre" class="form-label">Nombre:
+                <form id="formFiltros" autocomplete="off">
+                    <label for="nombre" class="form-label">Búscar por nombre:
                     </label>
                     <input type="text" name="nombre" id="nombre" class="form-control">
                     <div class="text-center mt-3">
-                        <button type="submit" id="buscar" class="btn btn-sm btn-secondary col-4">Buscar</button>
-                        <button type="reset" class="btn btn-sm btn-secondary col-4">Borrar</button>
                     </div>
                 </form>
             </div>
         </section>
 
-        <section id="search-results">
-            <div class="col-12 mb-3 order-2 list">
+        <section>
+            <div class="col-12 mb-3 order-2 list" id="all-museum"> 
                 {% for item in museos %}
-                    <div class="element-container row m-5 d-flex">
-                        <div class="element-container__img col-12 col-lg-4 p-0">
+                    <div class="element-container row m-5 d-flex" id="{{item.nombre}}">
+                        <div class="element-container__img col-12 col-lg-4 p-0" >
                             <img src="{{ asset('/media/') ~ item.imagen }}" class="element__img">
                         </div>
                         <div class="element-container__text col-12 col-lg-7 ps-4 py-3">
@@ -57,19 +123,21 @@
                         </div>
                     </div>
                 {% endfor %}
-                </div>
-            </section>
+            </div>
+            <div id="loading" class="d-none d-flex col-12 justify-content-center align-items-center">
+                <img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px">
+            </div>
+            <div id="messages">
+                <p id="no-results" class="d-none">No hay resultados que coincidan con tu búsqueda<p>
+                <p id="error" class="d-none">Ha habido un error. Inténtelo de nuevo<p>
+            </div>
+            <div id="search-results">
+
+            </div>
+        </section>
 
 
-        </main>
-        {% endblock %}
 
-            {% block javascripts %}
-                {{ parent() }}
-                <script>
-                    $("#advancedButton").on("click", function () {
-                        console.log("click");
-                        $("#formFiltros").parent().toggleClass("d-none");
-                    });
-                </script>
-            {% endblock %}
+    </main>
+{% endblock %}
+

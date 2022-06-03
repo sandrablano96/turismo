@@ -62,29 +62,27 @@ class PatrimonioRepository extends ServiceEntityRepository
     /**
      * @return Patrimonio[] Returns an array of Patrimonio objects
      */
-   
-    public function findAdvancedHeritage($name, $type) : array
+    
+    public function findAllDesc() : array
     {
-        $this->createQueryBuilder('p');
-        if(!$type->is_null() && !$name->is_null()){
-            $this->andWhere('p.nombre LIKE :nombre and p.tipo = :tipo')
-            ->setParameter('nombre', '&'.$name.'&')
-            ->setParameter('tipo', $type)
-            ->orderBy('p.nombre', 'ASC');
-        } else if(!$name->is_null()){
-            $this->andWhere('p.nombre LIKE :nombre')
-            ->setParameter('nombre', '&'.$name.'&')
-            ->orderBy('p.nombre', 'ASC');
-        } else{
-            $this->andWhere('p.tipo = :tipo')
-            ->setParameter('tipo', $type)
-            ->orderBy('p.tipo', 'ASC');
-        }
+        return $this->createQueryBuilder('p')
+            ->addOrderBy('p.nombre', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    /**
+     * @return Patrimonio[] Returns an array of Patrimonio objects
+     */
     
-            return $this->getQuery()->getResult();
-            
-    }    
-    
+    public function findAllAsc() : array
+    {
+        return $this->createQueryBuilder('p')
+            ->addOrderBy('p.nombre', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     
 
     /*

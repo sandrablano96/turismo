@@ -49,13 +49,22 @@ class MuseoRepository extends ServiceEntityRepository
      * @return Museos[] Returns an array of Museos objects
      */
     
-    public function findByNameMuseum($name) : array
+    public function findAllDesc() : array
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.nombre LIKE :name')
-            ->setParameter('name', '&'.$name.'&')
-            ->orderBy('m.name', 'ASC')
-            ->setMaxResults(10)
+            ->addOrderBy('m.nombre', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    /**
+     * @return Museos[] Returns an array of Museos objects
+     */
+    
+    public function findAllAsc() : array
+    {
+        return $this->createQueryBuilder('m')
+            ->addOrderBy('m.nombre', 'ASC')
             ->getQuery()
             ->getResult()
         ;

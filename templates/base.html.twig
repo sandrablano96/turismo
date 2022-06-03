@@ -94,6 +94,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path("app_oficina_get", {uid: 'asda656'}) }}">Contacto</a>
                             </li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ path("app_admin_menu") }}">Gestión</a>
+                            </li>
+                            {% endif %}
 
                         </ul>
                     </div>
@@ -118,10 +123,14 @@
                                 <i class="fa-solid fa-xmark" class="pb-1" style="font-size: 1.2rem;"> </i>
                             </button>
                         </div>
-                        <!-- fin modal-->
-                        <button type="button" class="btn btn-outline-primary d-flex flex-row gap-2 align-items-center"
-                                data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fa-regular fa-user"></i><span
-                                class="d-none d-lg-inline"> LOGIN </span></button>
+                        {% if app.user is not null %}
+                            <a href="{{ path('app_logout') }}" class="btn btn-outline-primary d-flex flex-row gap-2 align-items-center"><i class="fa-solid fa-user-large" style="font-size: 1.5rem"></i><span
+                                class="d-none d-lg-inline"> LOGOUT </span></a>
+                        
+                        {% else %}
+                        <a href="{{ path('app_login') }}" class="btn btn-outline-primary d-flex flex-row gap-2 align-items-center"><i class="fa-regular fa-user"></i><span
+                                class="d-none d-lg-inline"> LOGIN </span></a>
+                        {% endif %}
                     </div>
                 </div>
             </nav>
@@ -170,5 +179,5 @@
                     {% endblock %}
             </div>
         </footer>
-</body>
+    </body>
 </html>

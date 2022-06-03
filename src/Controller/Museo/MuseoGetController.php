@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class MuseoGetController extends AbstractController
 {
@@ -13,22 +15,41 @@ class MuseoGetController extends AbstractController
     public function getAllMuseos(ManagerRegistry $doctrine): Response
     {
         $arrayMuseos = $doctrine->getRepository(Museo::class)->findAll();
-        return $this->render('Museo/museo_get/index.html.twig', [
-            'museos' => $arrayMuseos
+        $orderForm = $this->createFormBuilder()
+                ->add('order', ChoiceType::class, [
+                    'choices' => ['Ascendente' => 'asc', 'Descendente' => 'desc'],
+                    'label' => false,
+                    'data' => 'asc'
+                ])
+                ->getForm();
+        return $this->renderForm('Museo/museo_get/index.html.twig', [
+            'museos' => $arrayMuseos, 'formOrder' => $orderForm
         ]);
     }
 
     /**
-     * @Route("/museos", name="app_museosOrdered_get", methods={"POST"})
+     * @Route("/museos/search", name="app_museos_ordered_get",options={"expose"=true}, methods={"POST"})
      * @return Response
      */
     public function getAllMuseosOrdered(ManagerRegistry $doctrine, Request $request): Response
     {
-        $order = $request->request->get('order');
-        $museos = $doctrine->getRepository(Museo::class)->findBy(array(), array('nombre' => $order));
-        return $this->render('Museo/museo_get/index.html.twig', [
-            'museos' => $museos
-        ]);
+        if ($request->isXmlHttpRequest()) {
+            $parametersAsArray = [];
+            if ($content = $request->getContent()) {
+                $parametersAsArray = json_decode($content, true);
+            }
+            $order = $parametersAsArray['orden'];
+            if($order == 'asc'){
+                $museos = $doctrine->getRepository(Museo::class)->findAllAsc();
+            }else{
+                $museos = $doctrine->getRepository(Museo::class)->findAllDesc();
+            }
+            
+            $html = $this->render( 'Museo/museo_get/museos_ajax.html.twig', ['museos' => $museos] )->getContent();
+            
+            $response = array("code" => 200, "response" => $html);
+            return new JsonResponse($response);
+        }
     }
     
     /**

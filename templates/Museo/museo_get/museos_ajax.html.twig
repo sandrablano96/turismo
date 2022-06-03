@@ -1,0 +1,18 @@
+{% for item in museos %}
+                    <div class="element-container row m-5 d-flex" id="{{item.nombre}}">
+                        <div class="element-container__img col-12 col-lg-4 p-0" >
+                            <img src="{{ asset('/media/') ~ item.imagen }}" class="element__img">
+                        </div>
+                        <div class="element-container__text col-12 col-lg-7 ps-4 py-3">
+                            <div class="element-container__fav col-12 d-flex justify-content-end">
+                                <img src="{{ asset('/media/icons/estrella(1).png') }}" width="35px" class="justify-content-end">
+                            </div>
+                            <h3>{{ item.nombre }}</h3>
+                            <p>{{ item.descripcion }}
+                            </p>
+                            <div class="see-more d-flex justify-content-center align-content-end mt-5">
+                                <a href="{{ path('app_museo_get', {uid : item.uid}) }}" class="col-12 col-lg-4 btn btn-secondary">Ver más</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}{# empty Twig template #}

@@ -4,7 +4,6 @@ namespace App\Controller\Eventos;
 
 use App\Entity\Evento;
 use DateTime;
-use Doctrine\Common\Collections\Expr\Value;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
