@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UsuarioRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -37,6 +39,15 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 20)]
     private $uid;
+
+    #[ORM\OneToMany(mappedBy: 'usuario', targetEntity: OpinionesVisitasGuiadas::class, orphanRemoval: true)]
+    private $opiniones;
+
+    public function __construct()
+    {
+        $this->listado_favoritos = new ArrayCollection();
+        $this->opiniones = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -157,6 +168,37 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUid(string $uid): self
     {
         $this->uid = $uid;
+
+        return $this;
+    }
+
+
+    /**
+     * @return Collection<int, OpinionesVisitasGuiadas>
+     */
+    public function getOpiniones(): Collection
+    {
+        return $this->opiniones;
+    }
+
+    public function addOpinione(OpinionesVisitasGuiadas $opinione): self
+    {
+        if (!$this->opiniones->contains($opinione)) {
+            $this->opiniones[] = $opinione;
+            $opinione->setUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOpinione(OpinionesVisitasGuiadas $opinione): self
+    {
+        if ($this->opiniones->removeElement($opinione)) {
+            // set the owning side to null (unless already changed)
+            if ($opinione->getUsuario() === $this) {
+                $opinione->setUsuario(null);
+            }
+        }
 
         return $this;
     }

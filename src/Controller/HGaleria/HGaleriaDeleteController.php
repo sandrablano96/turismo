@@ -7,8 +7,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\HistoriaImagenes;
 use Doctrine\Persistence\ManagerRegistry;
-use App\Entity\Historia;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * Require ROLE_ADMIN for all the actions of this controller
+ *
+ * @IsGranted("ROLE_ADMIN")
+ */
 class HGaleriaDeleteController extends AbstractController
 {
     #[Route('/historia/galeria/delete/{uid}', name: 'app_h_galeria_delete')]

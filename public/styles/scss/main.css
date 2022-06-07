@@ -12,16 +12,40 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
 p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
+
 p {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .card {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 .navbar-brand, h2 {
@@ -30,34 +54,34 @@ p {
 
 a {
   text-decoration: none;
+  font-size: 1.6rem;
 }
 
 .btn {
   text-align: center;
-  padding-inline: 2rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
   cursor: pointer;
-  border-radius: 40px;
+  border-radius: 3.5rem;
   box-shadow: none !important;
-  font-size: 15px;
+  font-size: 1.6rem;
   font-weight: 600;
   text-transform: uppercase;
-  max-height: 3rem;
 }
 .btn:hover, .btn:active, .btn:focus {
   outline: none;
 }
 .btn.btn-primary {
-  background-color: white !important;
-  border: 1px solid white !important;
-  color: black !important;
+  background-color: #55aacc !important;
+  border: none;
+  color: #000 !important;
 }
 .btn.btn-primary:hover {
-  border: 1px solid white;
-  background: transparent;
-  color: white;
+  transition: 0.3s all ease;
+  font-weight: bolder;
 }
 .btn.btn-outline-primary {
-  border: 1px solid white;
+  border: 0.1rem solid white;
   background: transparent;
   color: white;
 }
@@ -68,9 +92,8 @@ a {
 }
 .btn.btn-secondary {
   background: #F2BA52 !important;
-  border: 1px solid #F2BA52 !important;
+  border: 0.1rem solid #F2BA52 !important;
   color: black !important;
-  height: 50px;
 }
 .btn.btn-secondary:hover {
   border: 1px solid #F2BA52;
@@ -80,7 +103,7 @@ a {
 }
 .btn.btn-secondary-dark {
   background: #192340 !important;
-  border: 1px solid #192340 !important;
+  border: 0.1rem solid #192340 !important;
   color: white !important;
 }
 .btn.btn-transparent {
@@ -92,7 +115,6 @@ a {
   background-color: #55aacc !important;
   outline: none;
   padding-inline: 8rem;
-  font-size: larger;
   font-weight: 600;
   color: white;
 }
@@ -107,16 +129,40 @@ a {
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
 p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
+
 p {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .card {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 .navbar-brand, h2 {
@@ -125,11 +171,7 @@ p {
 
 a {
   text-decoration: none;
-}
-
-* {
-  margin: 0;
-  box-sizing: border-box;
+  font-size: 1.6rem;
 }
 
 #header {
@@ -139,23 +181,23 @@ a {
 /* NAVBAR */
 .navbar-light .navbar-brand {
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 2px;
 }
 
 .nav-item .nav-link {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 @media screen and (min-width: 1200px) {
   .navbar-light .navbar-brand {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   .nav-item .nav-link {
-    font-size: 1.2rem;
+    font-size: 1.7rem;
   }
 }
 .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
@@ -184,7 +226,7 @@ a {
 
 .navbar-toggler {
   padding: 1px 5px;
-  font-size: 18px;
+  font-size: 1.8rem;
   line-height: 0.3;
 }
 
@@ -194,7 +236,7 @@ a {
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-  font-size: 1.3rem;
+  font-size: 1.9rem;
   color: white;
 }
 
@@ -214,16 +256,40 @@ a {
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
 p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
+
 p {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .card {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 .navbar-brand, h2 {
@@ -232,13 +298,14 @@ p {
 
 a {
   text-decoration: none;
+  font-size: 1.6rem;
 }
 
 #footer {
-  height: 12rem;
+  height: 17rem;
   background-color: #192340;
   color: white;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   line-height: normal;
 }
 
@@ -333,16 +400,40 @@ menu-container {
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
 p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
+
 p {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .card {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 .navbar-brand, h2 {
@@ -351,6 +442,7 @@ p {
 
 a {
   text-decoration: none;
+  font-size: 1.6rem;
 }
 
 * {
@@ -359,16 +451,40 @@ a {
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
 p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
+
 p {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .card {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 .navbar-brand, h2 {
@@ -377,11 +493,7 @@ p {
 
 a {
   text-decoration: none;
-}
-
-* {
-  margin: 0;
-  box-sizing: border-box;
+  font-size: 1.6rem;
 }
 
 #header {
@@ -391,23 +503,23 @@ a {
 /* NAVBAR */
 .navbar-light .navbar-brand {
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 2px;
 }
 
 .nav-item .nav-link {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 @media screen and (min-width: 1200px) {
   .navbar-light .navbar-brand {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   .nav-item .nav-link {
-    font-size: 1.2rem;
+    font-size: 1.7rem;
   }
 }
 .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
@@ -436,7 +548,7 @@ a {
 
 .navbar-toggler {
   padding: 1px 5px;
-  font-size: 18px;
+  font-size: 1.8rem;
   line-height: 0.3;
 }
 
@@ -446,7 +558,7 @@ a {
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-  font-size: 1.3rem;
+  font-size: 1.9rem;
   color: white;
 }
 
@@ -462,30 +574,29 @@ a {
 
 .btn {
   text-align: center;
-  padding-inline: 2rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
   cursor: pointer;
-  border-radius: 40px;
+  border-radius: 3.5rem;
   box-shadow: none !important;
-  font-size: 15px;
+  font-size: 1.6rem;
   font-weight: 600;
   text-transform: uppercase;
-  max-height: 3rem;
 }
 .btn:hover, .btn:active, .btn:focus {
   outline: none;
 }
 .btn.btn-primary {
-  background-color: white !important;
-  border: 1px solid white !important;
-  color: black !important;
+  background-color: #55aacc !important;
+  border: none;
+  color: #000 !important;
 }
 .btn.btn-primary:hover {
-  border: 1px solid white;
-  background: transparent;
-  color: white;
+  transition: 0.3s all ease;
+  font-weight: bolder;
 }
 .btn.btn-outline-primary {
-  border: 1px solid white;
+  border: 0.1rem solid white;
   background: transparent;
   color: white;
 }
@@ -496,9 +607,8 @@ a {
 }
 .btn.btn-secondary {
   background: #F2BA52 !important;
-  border: 1px solid #F2BA52 !important;
+  border: 0.1rem solid #F2BA52 !important;
   color: black !important;
-  height: 50px;
 }
 .btn.btn-secondary:hover {
   border: 1px solid #F2BA52;
@@ -508,7 +618,7 @@ a {
 }
 .btn.btn-secondary-dark {
   background: #192340 !important;
-  border: 1px solid #192340 !important;
+  border: 0.1rem solid #192340 !important;
   color: white !important;
 }
 .btn.btn-transparent {
@@ -520,7 +630,6 @@ a {
   background-color: #55aacc !important;
   outline: none;
   padding-inline: 8rem;
-  font-size: larger;
   font-weight: 600;
   color: white;
 }
@@ -533,19 +642,23 @@ a {
   background-color: rgba(85, 170, 204, 0.15);
   border-radius: 20px;
 }
-.element-container .element__img {
-  max-width: 100%;
-  height: 100%;
+.element-container .element-container__img {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  border-end-end-radius: 0;
+  border-end-start-radius: 0;
+  border: 0.1rem solid gainsboro;
+  border-bottom: none;
 }
 .element-container:hover {
   transform: scale(1.1);
   transition: 0.3s all ease;
 }
 
-#formFiltros {
-  background-color: rgba(25, 35, 64, 0.15);
-  padding: 2rem;
-  border-radius: 0.5rem;
+#form_ordenar {
+  font-size: 1.2rem;
 }
 
 @media screen and (min-width: 992px) {
@@ -555,27 +668,87 @@ a {
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
   }
+  .element-container .element-container__img {
+    border-radius: 0;
+    border: none;
+    justify-content: end;
+  }
 
   #search-header h2 {
     padding-left: 25%;
   }
+
+  .element__img {
+    max-width: 100%;
+    height: 100%;
+  }
 }
+#reviewModal textarea {
+  font-size: 1.6rem;
+  width: 100%;
+  min-height: 100px;
+  resize: none;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  color: #666;
+  box-shadow: inset 0 0 0.1rem #ddd;
+}
+#reviewModal textarea:focus {
+  outline: none;
+  border: 1px solid #d0d0d0;
+  box-shadow: inset 0 0 0.5rem #d0d0d0;
+}
+#reviewModal textarea[placeholder] {
+  font-style: italic;
+  font-size: 1.2rem;
+}
+#reviewModal #the-count {
+  float: right;
+  padding: 0.1rem 0 0 0;
+  font-size: 1.4rem;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
 p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
+
 p {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .card {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 .navbar-brand, h2 {
@@ -584,6 +757,7 @@ p {
 
 a {
   text-decoration: none;
+  font-size: 1.6rem;
 }
 
 * {
@@ -592,16 +766,40 @@ a {
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
 p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
+
 p {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .card {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 .navbar-brand, h2 {
@@ -610,11 +808,7 @@ p {
 
 a {
   text-decoration: none;
-}
-
-* {
-  margin: 0;
-  box-sizing: border-box;
+  font-size: 1.6rem;
 }
 
 #header {
@@ -624,23 +818,23 @@ a {
 /* NAVBAR */
 .navbar-light .navbar-brand {
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 2px;
 }
 
 .nav-item .nav-link {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 @media screen and (min-width: 1200px) {
   .navbar-light .navbar-brand {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   .nav-item .nav-link {
-    font-size: 1.2rem;
+    font-size: 1.7rem;
   }
 }
 .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
@@ -669,7 +863,7 @@ a {
 
 .navbar-toggler {
   padding: 1px 5px;
-  font-size: 18px;
+  font-size: 1.8rem;
   line-height: 0.3;
 }
 
@@ -679,7 +873,7 @@ a {
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-  font-size: 1.3rem;
+  font-size: 1.9rem;
   color: white;
 }
 
@@ -757,7 +951,7 @@ a {
   border: none;
   border-bottom: solid 2px #192340;
   color: #192340;
-  font-size: 1em;
+  font-size: 1.4rem;
   font-weight: 400;
   letter-spacing: 1px;
   margin: 0em 0 1.875em 0;
@@ -829,7 +1023,7 @@ a {
     width: 53px;
   }
   #contact-form input[type=text], #contact-form [type=email], #contact-form select, #contact-form textarea {
-    font-size: 0.875em;
+    font-size: 1.1rem;
   }
 }
 
@@ -916,16 +1110,40 @@ a {
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
 p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
+
 p {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .card {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 .navbar-brand, h2 {
@@ -934,6 +1152,7 @@ p {
 
 a {
   text-decoration: none;
+  font-size: 1.6rem;
 }
 
 #museum {
@@ -951,7 +1170,7 @@ a {
 
 #info {
   background-color: #F2BA52;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 #info span {
   font-weight: 600;
@@ -973,7 +1192,7 @@ a {
   border: none;
 }
 #loginModal .login-body .login-title, .login-header .login-title, .login-footer .login-title {
-  font-size: 1.4rem;
+  font-size: 2rem;
   justify-self: center;
   color: #000;
 }
@@ -1041,7 +1260,7 @@ textarea.form-control {
   padding-left: 30px;
   margin-bottom: 12px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 500;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -1050,7 +1269,7 @@ textarea.form-control {
 }
 
 #loginModal a {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   transition: 0.3s all ease;
   color: #000;
 }

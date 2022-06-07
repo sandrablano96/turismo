@@ -20,7 +20,7 @@ class PatrimonioGetController extends AbstractController
     public function getAllByType(ManagerRegistry $doctrine, Request $request, $type): Response
     {
         $typeId = $type === 'cultural' ? 2 : 1;
-        $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findByTypeHeritage($typeId);
+        $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findHeritageElements($typeId);
         $orderForm = $this->createFormBuilder()
                 ->add('order', ChoiceType::class, [
                     'choices' => ['Ascendente' => 'asc', 'Descendente' => 'desc'],
@@ -79,7 +79,7 @@ class PatrimonioGetController extends AbstractController
     public function getAll(ManagerRegistry $doctrine, Request $request, $type): Response
     {
         $typeId = $type === 'cultural' ? 2 : 1;
-        $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findByTypeHeritage($typeId);
+        $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findHeritageElements($typeId);
 
         return $this->render('admin/admin_patrimonio.html.twig', [
             'patrimonio' => $arrayPatrimonio, 'tipo' => $type

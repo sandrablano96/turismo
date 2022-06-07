@@ -4,7 +4,7 @@
 	
 	border:none;
 	.login-title{
-		font-size: 1.4rem;
+		font-size: 2rem;
 		justify-self: center;
 		color: $black;
 	}
@@ -73,7 +73,7 @@ textarea.form-control {
   padding-left: 30px;
   margin-bottom: 12px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 500;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -81,7 +81,7 @@ textarea.form-control {
   user-select: none;
 }
 #loginModal a {
-	font-size: 1.2rem;
+	font-size: 1.6rem;
 	transition: .3s all ease;
 	color: $black;
 	&:hover, &:focus {

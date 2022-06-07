@@ -19,7 +19,13 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\File\File;
 use \Symfony\Component\String\Slugger\SluggerInterface;
 use App\Entity\TipoPatrimonio;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * Require ROLE_ADMIN for all the actions of this controller
+ *
+ * @IsGranted("ROLE_ADMIN")
+ */
 class PatrimonioPutController extends AbstractController
 {
     #[Route('/patrimonio/{type}/put/{uid}', name: 'app_patrimonio_put')]

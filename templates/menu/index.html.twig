@@ -43,6 +43,13 @@
     
 {% block main %}
 <main class="w-75 mx-auto mt-5 mb-5">
+    <div class="messages">
+            {% for message in app.flashes('seguridad') %}
+                 <div class="flash-notice">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
 
       <section id="visitingthecity" class="row menu-container">
         <h3 class="col-12 mb-3 d-flex align-items-center"><span class="title-icon me-2 mb-3">»</span>¿Por dónde empezamos?

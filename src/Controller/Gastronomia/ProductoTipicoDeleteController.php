@@ -7,7 +7,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use \App\Entity\ProductoTipico;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * Require ROLE_ADMIN for all the actions of this controller
+ *
+ * @IsGranted("ROLE_ADMIN")
+ */
 class ProductoTipicoDeleteController extends AbstractController
 {
     #[Route('/gastronomia/producto/delete/{uid}', name: 'app_producto_tipico_delete')]

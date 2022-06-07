@@ -114,7 +114,11 @@
                                 <img src="{{ asset('/media/icons/estrella(1).png') }}" width="35px" class="justify-content-end">
                             </div>
                             <h3>{{ item.nombre }}
-                                <img src="{{ asset('/media/icons/monumento_R1T_icon.ico') }}" width="30px"></h3>
+                                {% if item.tipo.tipo == "cultural" %}
+                                    <img src="{{ asset('/media/icons/monumento.ico') }}" width="30px"></h3>
+                                {% else %}
+                                     <img src="{{ asset('/media/icons/naturaleza.ico') }}" width="30px"></h3>
+                                {% endif %}    
                             <p>{{ item.descripcion }} </p>
                             <div class="see-more d-flex justify-content-center align-items-center mt-5">
                                 <a href="{{ path('app_patrimonio_get', {uid : item.uid}) }}" class="col-12 col-lg-4 btn btn-secondary align-self-center">Ver más</a>

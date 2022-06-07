@@ -1,15 +1,21 @@
 {% extends "base.html.twig" %} 
+{% block title %}Login{% endblock %}
 {% block  main %}
-<main class="w-75 mx-auto mt-5 mb-5">
-    <div>
-        <div class="login-content border-0 w-50 m-auto" 
-            <div class="login-header d-flex flex-column">
-                <h5 class="modal-title col-12 text-center text-uppercase fw-bold" id="loginModalLabel">Iniciar sesion</h5>
+    <main class="w-75 mx-auto mt-5 mb-5">
+        <div>
+            <div class="login-content border-0 w-50 m-auto" 
+                 <div class="login-header d-flex flex-column">
+                <h5 class="modal-title col-12 text-center text-uppercase fw-bold">Iniciar sesion</h5>
             </div>
             <div class="login-body py-3">
                 <div class="row justify-content-center">
                     <div class="col-md-6 col-lg-8">
                         <div class="login-wrap p-0">
+                            <div class="messages">
+                                {% if error %}
+                                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                {% endif %}
+                            </div>
                             <form action="{{ path('app_login') }}" method="post" class="signin-form w-50 m-auto" id="loginModal">
                                 <input type="hidden" name="_target_path" value="/" />
                                 <div class="form-group">
@@ -44,23 +50,25 @@
             <img src="{{ asset("media/svg/wave(7).svg") }}">
         </div>
 
-        </main>
-        {% endblock %}
-        {% block javascripts  %}
-            
-            {{ parent() }}
-            <script>
-    $(".toggle-password").click(function () {
+    </main>
+{% endblock %}
+{% block javascripts%}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $(".toggle-password").click(function () {
+            console.log('ey')
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $(this).attr("toggle");
+            if ($(input).attr("type") == "password") {
+                $(input).attr("type", "text");
+            } else {
+                $(input).attr("type", "password");
+            }
+        });
+        })
+        
+    </script>
+{% endblock %}
 
-        $(this).toggleClass("fa-eye fa-eye-slash");
-        var input = $(this).attr("toggle");
-        if ($(input).attr("type") == "password") {
-            $(input).attr("type", "text");
-        } else {
-            $(input).attr("type", "password");
-        }
-    });
-</script>
-        {% endblock %}
-            
 

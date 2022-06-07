@@ -27,7 +27,7 @@ class OficinaTurismo
     #[ORM\Column(type: 'string', length: 255)]
     private $horario;
 
-    #[ORM\OneToMany(mappedBy: 'organizador1', targetEntity: VisitaGuiada::class)]
+    #[ORM\OneToMany(mappedBy: 'oficinaTurismo', targetEntity: VisitaGuiada::class)]
     private $visitasOrganizadas;
 
     #[ORM\Column(type: 'string', length: 20)]

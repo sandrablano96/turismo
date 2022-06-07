@@ -3,59 +3,276 @@
 {% block title %}Visitas guiadas{% endblock %}
 
 
-    
+
 {% block main %}
-<main class="w-75 mx-auto mt-5 mb-5">
+    <main class="w-75 mx-auto mt-5 mb-5">
         <section id="search-header" class="row mb-3">
-            <div class="col-12 col-md-3 order-1 d-inline-flex justify-content-end h-50">
-                <select class="form-select">
-                    <option selected value="desc">Descendente</option>
-                    <option value="asc">Ascendente</option>
-                </select>
-            </div>
             <h2 class="text-center col-12 col-md-9 order-0 m-auto mb-3">Listado de búsqueda</h2>
         </section>
-        
+
         <section id="search-results">
             <div class="col-12 mb-3 order-2 list">
                 {% for item in visitas %}
-                    <div class="element-container row m-5 d-flex" style="height: 20rem">
+                    <div class="element-container row m-5 d-flex">
                         <div class="element-container__img col-12 col-lg-4 p-0">
                             <img src="{{ asset('/media/icons/visita.webp')}}" class="element__img" alt="icono visita">
                         </div>
                         <div class="element-container__text col-12 col-lg-7 ps-4 py-3">
-                            <div class="element-container__fav col-12 d-flex justify-content-end">
-                                <img src="{{ asset('/media/icons/estrella(1).png') }}" width="35px" class="justify-content-end">
-                            </div>
+                            {% if app.user and not is_granted('ROLE_ADMIN')  %}
+                                <div class="element-container__fav col-12 d-flex justify-content-end">
+                                    <button type="button" class="btn btn-transparent" data-bs-toggle="modal" data-bs-target="#reviewModal" data-bs-id="{{ item.uid }}">
+                                        <i class="fa-solid fa-comment" style="font-size: 1.5rem"></i>
+                                    </button>
+                                </div>
+
+                            {% endif %}
                             <h3>
                                 {{ item.titulo }}
-                                <img src="{{ asset('/media/icons/monumento_R1T_icon.ico.png') }} width="30px">
+                                <img src="{{ asset('/media/icons/map.ico') }}" width="30px">
                             </h3>
                             <p>{{ item.descripcion }}
                             <p> {{ item.fecha | date("Y-m-d")  }}
-                            
+
                             <p> 
-                            {% if item.precio is not null %} 
-                                {{ item.precio  }}
-                            {% else %} 
-                                Gratuita
-                            {% endif %}
+                                {% if item.precio is not null %} 
+                                    {{ item.precio  }}
+                                {% else %} 
+                                    Gratuita
+                                {% endif %}
                             </p>
-                            <div class="see-more d-flex justify-content-center align-content-end mt-5">
-                            {% if item.guiaTurismo is not null %}
-                            
-                                <a href="{{ path('app_guia_get', {uid : item.guiaTurismo.uid}) }}" class="col-12 col-lg-4 btn btn-secondary">Más de este guía</a>
-                            
-                            {% else %}
-                                 <a href="{{ path('app_oficina_get', {uid : item.oficinaTurismo.uid}) }}" class="col-12 col-lg-4 btn btn-secondary">Pedir información</a>
-                            {% endif %}
+                            <div class="d-flex justify-content-center align-content-end mt-5 row">
+                                <div class="col-12" id="opinions-{{item.uid}}">
+                                    {% if item.opiniones is not empty %}
+                                        <div>
+                                            {% for op in item.opiniones %}
+
+                                                <p data-id="opinion-{{op.uid}}">
+                                                    {{ op.usuario.nombre |capitalize  }}  opina: {{ op.opinion |capitalize }} 
+
+                                                    {% if op.usuario.id == app.user.id %}
+                                                        <button class="btn btn-transparent btn-delete"><i class="fa-solid fa-circle-minus" style="pointer-events: none"></i></button>
+                                                    {% endif %}
+                                                </p> 
+
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <p>Todavía no hay comentarios</p>
+                                    {% endif %}
+                                    <div class="messages">
+                                        <p id="deleting" class="d-none">Borrando comentario...</p>
+                                        <p id="delete_err" class="d-none">Error al eliminar. Inténtelo de nuevo</p>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-12 d-flex justify-content-center align-items-center">
+                                    {% if item.guiaTurismo is not null %}
+
+                                        <a href="{{ path('app_guia_get', {uid : item.guiaTurismo.uid}) }}" class="col-12 col-lg-5 btn btn-secondary">Más de este guía</a>
+
+                                    {% else %}
+                                        <a href="{{ path('app_oficina_get', {uid : item.oficinaTurismo.uid}) }}#contact-form" class="col-12 col-lg-5 btn btn-secondary">Más información</a>
+                                    {% endif %}
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 {% endfor %}
+            </div>
+        </section>
+        <!-- modal -->
+        <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reviewModalLabel">Comparte tu experiencia</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-5">
+                        <form autocomplete="off">
+                            <textarea maxlength="255" rows="4" col="10" " id="textarea"></textarea>
+                            <div id="the-count">
+                                <span id="current">0</span>
+                                <span id="maximum">/ 255</span>
+                            </div>
+                            <div id="loading" class="d-none d-flex col-12 justify-content-center align-items-center">
+                                <img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px">
+                            </div>
+                            <div class="messages">
+                                <p id="error" class="d-none"><p>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="comentar">Comentar</button>
+                    </div>
                 </div>
-            </section>
+            </div>
+        </div>
+
+    </main>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('textarea').keyup(function () {
+
+                var characterCount = $(this).val().length,
+                        current = $('#current'),
+                        maximum = $('#maximum'),
+                        theCount = $('#the-count');
+
+                current.text(characterCount);
 
 
-        </main>
+                /*This isn't entirely necessary, just playin around*/
+                if (characterCount < 70) {
+                    current.css('color', '#666');
+                }
+                if (characterCount > 70 && characterCount < 90) {
+                    current.css('color', '#6d5555');
+                }
+                if (characterCount > 90 && characterCount < 100) {
+                    current.css('color', '#793535');
+                }
+                if (characterCount > 100 && characterCount < 120) {
+                    current.css('color', '#841c1c');
+                }
+                if (characterCount > 120 && characterCount < 139) {
+                    current.css('color', '#8f0001');
+                }
+
+                if (characterCount >= 140) {
+                    maximum.css('color', '#8f0001');
+                    current.css('color', '#8f0001');
+                    theCount.css('font-weight', 'bold');
+                } else {
+                    maximum.css('color', '#666');
+                    theCount.css('font-weight', 'normal');
+                }
+
+
+            });
+        });
+
+        $(document).ready(function () {
+            var itemId = '';
+            var button = null;
+            $('#reviewModal').on('show.bs.modal', function (e) {
+                button = $(e.relatedTarget);
+                $('#error').addClass('d-none');
+                itemId = $(button).attr('data-bs-id');
+                $('#reviewModal').unbind('shown.bs.modal')
+
+            })
+
+            $('#comentar').on('click', function (e) {
+                let opinion = $('textarea').val();
+                let url = Routing.generate('app_opiniones_post', {uid: itemId});
+                /*
+                 console.log("mostrando valores............")
+                 console.log('id' + itemId);
+                 console.log('button' + button);
+                 console.log('url'+ url)*/
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'JSON',
+                    data: JSON.stringify({opinion: opinion}),
+                    beforeSend: function () {
+                        $('#loading').removeClass('d-none');
+                    },
+                    success: function (response) {
+                        if (response.code == 200) {
+                            $('#loading').addClass('d-none');
+                            $('#reviewModal').modal('hide');
+                            $('#textarea').val("");
+                            //console.log(response.data.usuario);
+                            //console.log(response.data.opinion);
+                            
+                            $(`#opinions-${itemId}>p`).remove();
+                            if ($(`#opinions-${itemId}`).children('div') > 1) {
+                                $(`#opinions-${itemId}`).children('div').append(`<p data-id=${response.data.uid}> ${response.data.usuario}> ${response.data.usuario} opina: ${response.data.opinion} 
+                                <button class=btn btn-transparent btn-delete><i class="fa-solid fa-circle-minus"></i></button></p>`)
+                            } else {
+                                $(`#opinions-${itemId}`).append(`<div><p data-id=${response.data.uid}> ${response.data.usuario} opina: ${response.data.opinion} 
+                                <button class=btn btn-transparent btn-delete><i class="fa-solid fa-circle-minus"></i></button></p></div>`)
+                            }
+
+                        } else {
+                            $('#loading').addClass('d-none');
+                            $('#error').removeClass('d-none');
+                            $('#error').html('Ya ha comentado en esta visita previamente');
+                        }
+
+
+                    },
+                    complete: function () {
+                        $('#delete').addClass('d-none');
+                    },
+                    error: function () {
+                        $('#error').removeClass('d-none');
+                        $('#error').html('Ha sucedido un error. Inténtelo de nuevo');
+                    }
+
+                });
+            })
+        });
+        
+        $(document).ready(function () {
+            
+            $('.btn-delete').on('click', function (e){
+                
+                let button = $(e.target)
+                let parentP = $(button).parent();
+                let opinion = $(parentP).attr('data-id').split('ion-');
+                let opinionId = opinion[1];
+                let visitOpinionsDiv = $(parentP).parent().parent();
+                console.log(visitOpinionsDiv);
+                let deleteUrl = Routing.generate('app_opiniones_delete', {uid: opinionId});
+                
+                
+                
+                $.ajax({
+                    type: 'DELETE',
+                    url: deleteUrl,
+                    dataType: 'JSON',
+                    beforeSend: function () {
+                        $('#deleting').removeClass('d-none');
+                    },
+                    success: function (response) {
+                        if (response.code == 200) {
+                            $('#deleting').addClass('d-none');
+                            $(parentP).remove();
+                            $(visitOpinionsDiv).append('<p>Todavía no hay comentarios</p>');
+                        } else {
+                            $('#deleting').addClass('d-none');
+                            $('#delete_err').removeClass('d-none');
+                        }
+
+
+                    },
+                    complete: function () {
+                        $('#deleting').addClass('d-none');
+                    },
+                    error: function () {
+                        $('#delete_err').removeClass('d-none');
+                    }
+
+                });
+                
+                
+            });
+        });
+        
+
+    </script>
 {% endblock %}

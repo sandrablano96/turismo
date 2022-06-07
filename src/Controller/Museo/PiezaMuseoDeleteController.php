@@ -5,7 +5,13 @@ namespace App\Controller\Museo;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * Require ROLE_ADMIN for all the actions of this controller
+ *
+ * @IsGranted("ROLE_ADMIN")
+ */
 class PiezaMuseoDeleteController extends AbstractController
 {
     #[Route('/museo/piezas/delete/{uid}', name: 'app_pieza_museo_delete')]

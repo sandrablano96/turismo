@@ -1,26 +1,25 @@
 //BUTTON
 .btn {
 	text-align: center;
-	padding-inline: 2rem;
+	padding-inline: 1rem;
+	padding-block: 0.5rem;
 	cursor: pointer;
-	border-radius: 40px;
+	border-radius: 3.5rem;
 	box-shadow: none!important;
-	font-size: 15px;
+	font-size: 1.6rem;
 	font-weight: 600;
 	text-transform: uppercase;
-	max-height: 3rem;
 	&:hover, &:active, &:focus {
 		outline: none;
 		
 	}
 	&.btn-primary {
-		background-color:$white !important;
-		border: 1px solid $white !important;
-		color: black !important;
+		background-color:$primaryColor !important;
+		border: none;
+		color: $black !important;
 		&:hover {
-			border: 1px solid $white;
-			background: transparent;
-			color: $white; 
+			transition: .3s all ease;
+			font-weight: bolder;
         
 		}
 		
@@ -28,7 +27,7 @@
 	}
 
 	&.btn-outline-primary {
-		border: 1px solid $white;
+		border: 0.1rem solid $white;
 		background: transparent;
 		color : $white;
 		&:hover {
@@ -42,9 +41,8 @@
 	&.btn-secondary{
 		
 		background: $secondaryColor !important;
-		border: 1px solid $secondaryColor !important;
+		border: 0.1rem solid $secondaryColor !important;
 		color: black !important;
-		height: 50px;
 		&:hover {
 			border: 1px solid $secondaryColor;
 			background: transparent;
@@ -54,7 +52,7 @@
 		}
 		&-dark{
 			background: $primaryColorDark !important;
-			border: 1px solid $primaryColorDark !important;
+			border: 0.1rem solid $primaryColorDark !important;
 			color: $white !important;
 		}
 	}
@@ -64,16 +62,16 @@
 		border:none;
 		box-shadow: none;
 	}
+        
 	&.btn-login{
 	background-color: $primaryColor !important;
 	outline: none;
 	padding-inline: 8rem;
-	font-size: larger;
 	font-weight: 600;
 	color:$white;
 	&:hover {
 		transition: .3s all ease;
-	font-weight: bolder;
+		font-weight: bolder;
 	
 	}
 }

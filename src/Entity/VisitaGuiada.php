@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\VisitaGuiadaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: VisitaGuiadaRepository::class)]
@@ -33,6 +35,14 @@ class VisitaGuiada
 
     #[ORM\Column(type: 'string', length: 20)]
     private $uid;
+
+    #[ORM\OneToMany(mappedBy: 'visitaGuiada', targetEntity: OpinionesVisitasGuiadas::class, orphanRemoval: true)]
+    private $opiniones;
+
+    public function __construct()
+    {
+        $this->opiniones = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,6 +129,36 @@ class VisitaGuiada
     public function setUid(string $uid): self
     {
         $this->uid = $uid;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OpinionesVisitasGuiadas>
+     */
+    public function getOpiniones(): Collection
+    {
+        return $this->opiniones;
+    }
+
+    public function addOpinione(OpinionesVisitasGuiadas $opinione): self
+    {
+        if (!$this->opiniones->contains($opinione)) {
+            $this->opiniones[] = $opinione;
+            $opinione->setVisitaGuiada($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOpinione(OpinionesVisitasGuiadas $opinione): self
+    {
+        if ($this->opiniones->removeElement($opinione)) {
+            // set the owning side to null (unless already changed)
+            if ($opinione->getVisitaGuiada() === $this) {
+                $opinione->setVisitaGuiada(null);
+            }
+        }
 
         return $this;
     }

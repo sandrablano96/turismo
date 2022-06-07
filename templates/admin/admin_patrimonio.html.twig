@@ -36,7 +36,7 @@
                     <td>{{ item.horario }}</td>
                     <td><img src="{{ asset('media/patrimonio/') ~ item.imagen }}" alt="{{ item.nombre }}" style="width: 50px"</td>
                     <td><a href="{{ path('app_patrimonio_put', {type: tipo, uid: item.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
-                    <td><a href="{{ path('app_patrimonio_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>
+                    <td><a href="{{ path('app_patrimonio_delete', {type: tipo, uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>
                 <tr>
             {% endfor %}
             

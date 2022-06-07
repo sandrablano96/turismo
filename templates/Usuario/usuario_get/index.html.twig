@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mi perfil{% endblock %}
+
+{% block main %}
+    <main class="w-75 mx-auto mt-5 mb-5">
+	<h2 class="text-center m-5">Datos de usuario</h2>
+        <div class="d-flex justify-content-center align-items-center row w-50 m-auto">
+            <div class="col-12 col-md-6 d-flex justify-content-end align-items-center pe-4 mb-3">
+                <i class="fa-solid fa-address-card" style="font-size: 4rem"></i>
+            </div>
+            <div class="col-12 col-md-6 ps-4">
+                <p>{{ usuario.nombre }}  {{ usuario.apellidos }} <a href="{{ path('app_usuario_put', {uid: usuario.uid})}}"><i class="fa-solid fa-user-pen"></i></a></p> 
+                <p>{{ usuario.email }} </p>
+                <a href="{{ path('app_usuario_delete', {uid: usuario.uid}) }}">Borrar mi cuenta</a>
+            </div>
+        </div>
+            <div class="row d-flex justify-content-center align-items-center" id="all-opinions">
+                {% if usuario.opiniones is not empty %}
+                {% for item in usuario.opiniones %}
+                    <div>
+                        <h3>{{ item.opiniones.visitaGuiada.nombre }}</h3>
+                        <p> {{ item.opiniones }} </p>
+                    </div>
+                {% endfor %}
+                {% else %}
+                    <p>No has opinado sobre ninguna visita guiada todavía.  <a href="{{ path('app_visitas_get') }}">Empieza a ayudar a los demás</a><p>
+                {% endif %}
+            </div>
+    </main>
+{% endblock %}

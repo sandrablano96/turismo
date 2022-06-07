@@ -76,7 +76,7 @@ button {
     border: none;
       border-bottom: solid 2px $primaryColorDark;
       color: $primaryColorDark;
-      font-size: 1.000em;
+      font-size: 1.4rem;
     font-weight: 400;
     letter-spacing: 1px;
       margin: 0em 0 1.875em 0;
@@ -170,7 +170,7 @@ button {
     }
     
     input[type='text'], [type='email'], select, textarea {
-      font-size: 0.875em;
+      font-size: 1.1rem;
     }
   }
 }

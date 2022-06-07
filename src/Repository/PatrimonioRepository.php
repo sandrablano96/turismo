@@ -49,7 +49,7 @@ class PatrimonioRepository extends ServiceEntityRepository
      * @return Patrimonio[] Returns an array of Patrimonio objects
      */
     
-    public function findByTypeHeritage($type) : array
+    public function findHeritageElements($type) : array
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.tipo = :type')

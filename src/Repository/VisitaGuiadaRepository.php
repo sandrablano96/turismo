@@ -44,31 +44,15 @@ class VisitaGuiadaRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
-
-    /**
-     * @return VisitasGuiadas[] Returns an array of VisitasGuiadas objects
-     */
-    public function findByNameVisits($name) : array
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.titulo LIKE :name')
-            ->setParameter('name', '&'.$name.'&')
-            ->orderBy('m.name', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    /*
-    public function findOneBySomeField($value): ?VisitasGuiadas
+    
+    public function findOneByUid($value): ?VisitaGuiada
     {
         return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
+            ->andWhere('v.uid = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }
