@@ -57,7 +57,8 @@ class HistoriaPostController extends AbstractController
             $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Historia de la localidad guardada con éxito");
 
-            return $this->redirectToRoute("");
+            return $this->redirectToRoute("admin_historia_get", [
+                'uid' => $historia->getUid()]);
         } else{
             return $this->renderForm("Historia/historia_post/index.html.twig", ['formulario' => $form]);
         }

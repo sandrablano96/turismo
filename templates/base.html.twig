@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% set route_name = app.request.attributes.get('_route') %}
 <html>
     <head>
         <meta charset="UTF-8">
@@ -29,7 +30,7 @@
         <header id="header" class="sticky-top">
             <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between align-items-center">
                 <div class="container-fluid w-100">
-                    <div class="d-flex col-1 justify-content-lg-between gap-2 align-items-center">
+                    <div class="d-flex col-1 justify-content-lg-between gap-2 align-items-center order-first">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                                 aria-label="Toggle navigation">
@@ -38,17 +39,17 @@
                         <a class="navbar-brand"><img src="">LOGO</a>
                     </div>
 
-                    <div class="collapse navbar-collapse order-sm-last order-lg-1 align-items-center col-6"
+                    <div class="collapse navbar-collapse order-last order-lg-1 align-items-center col-6"
                          id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{ path('app_main_menu') }}">Inicio</a>
+                                <a class="nav-link {%if route_name == 'app_main_menu'%} active {%endif%}" href="{{ path('app_main_menu') }}">Inicio</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{path('app_historia_get', {uid: 'asd5s'})}}">Historia</a>
+                                <a class="nav-link {%if route_name == 'app_historia_get'%} active {%endif%}" href="{{path('app_historia_get', {uid: 'asd5s'})}}">Historia</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="{{ path("app_see_menu") }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                <a class="nav-link dropdown-toggle {%if route_name == 'app_see_menu'%} active {%endif%}" href="{{ path("app_see_menu") }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                    aria-expanded="false">
                                     Qué visitar
                                 </a>
@@ -60,32 +61,33 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="{{ path("app_gastronomia_get", {uid: 'asd34'}) }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                <a class="nav-link {%if route_name == 'app_gastronomía_get'%} active {%endif%} dropdown-toggle" href="{{ path("app_gastronomia_get", {uid: 'asd34'}) }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                    aria-expanded="false">
                                     Gastronomía
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{ path("app_gastronomia_get", {uid: 'asd34'}) }}">Gastronomía de la zona</a></li>
                                     <li><a class="dropdown-item" href="{{ path("app_gastronomia_get", {uid: 'asd34'}) }}#typical_products">Productos típicos</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{path ("app_eventos_get")}}">Ocio</a>
+                                <a class="nav-link {%if route_name == 'app_eventos_get'%} active {%endif%}" href="{{path ("app_eventos_get")}}">Ocio</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path("app_oficina_get", {uid: 'asda656'}) }}">Contacto</a>
+                                <a class="nav-link {%if route_name == 'app_oficina_get'%} active {%endif%}" href="{{ path("app_oficina_get", {uid: 'asda656'}) }}">Contacto</a>
                             </li>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ path("app_admin_menu") }}">Gestión</a>
+                                    <a class="nav-link {%if route_name == 'app_admin_menu'%} active {%endif%} " href="{{ path("app_admin_menu") }}">Gestión</a>
                                 </li>
                             {% endif %}
 
                         </ul>
                     </div>
-                    <div class="d-flex order-md-2 col-lg-3 col-7 justify-content-end gap-2 align-self-start align-items-center order-lg-2 order-1 pt-3">
+                    <div class="d-flex col-lg-3 col-7 justify-content-end gap-2 align-self-start align-items-center pt-3 order-lg-last">
                         <div class="d-flex gap-3">
                             {% if app.user is not null %}
-                                <a href="{{ path('app_usuario_get', {uid:app.user.uid}) }}" class="d-flex flex-row gap-2 align-items-center"><i class="fa-solid fa-house-user" style="font-size: 3rem; color: white"></i></a>
+                                <a href="{{ path('app_usuario_get', {uid:app.user.uid}) }}" class="d-flex flex-row gap-2 align-items-center" id="user"><i class="fa-solid fa-house-user"></i></a>
                                 <a href="{{ path('app_logout') }}" class="btn btn-outline-primary d-flex flex-row gap-2 align-items-center"><i class="fa-solid fa-user-large" style="font-size: 2rem"></i><span
                                         class="d-none d-lg-inline"> LOGOUT </span></a>
 

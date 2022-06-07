@@ -18,9 +18,6 @@ html {
 
 body {
   font-size: 1.6rem;
-}
-
-p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -40,7 +37,7 @@ h4 {
   font-size: 1.8rem;
 }
 
-p {
+.form-control, .form-select, p {
   font-size: 1.6rem;
 }
 
@@ -135,9 +132,6 @@ html {
 
 body {
   font-size: 1.6rem;
-}
-
-p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -157,7 +151,7 @@ h4 {
   font-size: 1.8rem;
 }
 
-p {
+.form-control, .form-select, p {
   font-size: 1.6rem;
 }
 
@@ -197,9 +191,13 @@ a {
   }
 
   .nav-item .nav-link {
-    font-size: 1.7rem;
+    font-size: 2rem !important;
   }
 }
+.nav-item .nav-link {
+  font-size: 1.8rem !important;
+}
+
 .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
   color: white;
 }
@@ -236,8 +234,28 @@ a {
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-  font-size: 1.9rem;
+  font-size: larger;
   color: white;
+}
+
+ul .dropdown-menu {
+  background-color: transparent;
+  border: none;
+  text-align: center;
+}
+ul .dropdown-menu a {
+  font-size: 1.6rem;
+  color: white;
+}
+
+/* Usuario */
+#user {
+  color: white;
+  font-size: 3rem;
+}
+#user:hover {
+  color: #F2BA52;
+  transition: 0.3s ease-in-out;
 }
 
 /* BUSCADOR */
@@ -250,6 +268,15 @@ a {
   justify-self: left;
 }
 
+@media screen and (min-width: 992px) {
+  ul .dropdown-menu {
+    background-color: white;
+    border: 1px solid rgb(235, 235, 235);
+  }
+  ul .dropdown-menu a {
+    color: black;
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -262,9 +289,6 @@ html {
 
 body {
   font-size: 1.6rem;
-}
-
-p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -284,7 +308,7 @@ h4 {
   font-size: 1.8rem;
 }
 
-p {
+.form-control, .form-select, p {
   font-size: 1.6rem;
 }
 
@@ -406,9 +430,6 @@ html {
 
 body {
   font-size: 1.6rem;
-}
-
-p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -428,7 +449,7 @@ h4 {
   font-size: 1.8rem;
 }
 
-p {
+.form-control, .form-select, p {
   font-size: 1.6rem;
 }
 
@@ -457,9 +478,6 @@ html {
 
 body {
   font-size: 1.6rem;
-}
-
-p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -479,7 +497,7 @@ h4 {
   font-size: 1.8rem;
 }
 
-p {
+.form-control, .form-select, p {
   font-size: 1.6rem;
 }
 
@@ -519,9 +537,13 @@ a {
   }
 
   .nav-item .nav-link {
-    font-size: 1.7rem;
+    font-size: 2rem !important;
   }
 }
+.nav-item .nav-link {
+  font-size: 1.8rem !important;
+}
+
 .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
   color: white;
 }
@@ -558,8 +580,28 @@ a {
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-  font-size: 1.9rem;
+  font-size: larger;
   color: white;
+}
+
+ul .dropdown-menu {
+  background-color: transparent;
+  border: none;
+  text-align: center;
+}
+ul .dropdown-menu a {
+  font-size: 1.6rem;
+  color: white;
+}
+
+/* Usuario */
+#user {
+  color: white;
+  font-size: 3rem;
+}
+#user:hover {
+  color: #F2BA52;
+  transition: 0.3s ease-in-out;
 }
 
 /* BUSCADOR */
@@ -572,6 +614,15 @@ a {
   justify-self: left;
 }
 
+@media screen and (min-width: 992px) {
+  ul .dropdown-menu {
+    background-color: white;
+    border: 1px solid rgb(235, 235, 235);
+  }
+  ul .dropdown-menu a {
+    color: black;
+  }
+}
 .btn {
   text-align: center;
   padding-inline: 1rem;
@@ -642,6 +693,14 @@ a {
   background-color: rgba(85, 170, 204, 0.15);
   border-radius: 20px;
 }
+.element-container button {
+  font-size: 2rem;
+  color: #192340;
+}
+.element-container button:hover {
+  color: #55aacc;
+  transition: 0.3s ease-in-out;
+}
 .element-container .element-container__img {
   background-color: white;
   display: flex;
@@ -651,6 +710,12 @@ a {
   border-end-start-radius: 0;
   border: 0.1rem solid gainsboro;
   border-bottom: none;
+}
+.element-container .element-container__img img {
+  border-radius: 8px;
+  border-end-end-radius: 0;
+  border-end-start-radius: 0;
+  max-width: 100%;
 }
 .element-container:hover {
   transform: scale(1.1);
@@ -673,14 +738,12 @@ a {
     border: none;
     justify-content: end;
   }
+  .element-container .element-container__img img {
+    border-radius: 0;
+  }
 
   #search-header h2 {
     padding-left: 25%;
-  }
-
-  .element__img {
-    max-width: 100%;
-    height: 100%;
   }
 }
 #reviewModal textarea {
@@ -721,9 +784,6 @@ html {
 
 body {
   font-size: 1.6rem;
-}
-
-p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -743,7 +803,7 @@ h4 {
   font-size: 1.8rem;
 }
 
-p {
+.form-control, .form-select, p {
   font-size: 1.6rem;
 }
 
@@ -772,9 +832,6 @@ html {
 
 body {
   font-size: 1.6rem;
-}
-
-p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -794,7 +851,7 @@ h4 {
   font-size: 1.8rem;
 }
 
-p {
+.form-control, .form-select, p {
   font-size: 1.6rem;
 }
 
@@ -834,9 +891,13 @@ a {
   }
 
   .nav-item .nav-link {
-    font-size: 1.7rem;
+    font-size: 2rem !important;
   }
 }
+.nav-item .nav-link {
+  font-size: 1.8rem !important;
+}
+
 .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
   color: white;
 }
@@ -873,8 +934,28 @@ a {
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-  font-size: 1.9rem;
+  font-size: larger;
   color: white;
+}
+
+ul .dropdown-menu {
+  background-color: transparent;
+  border: none;
+  text-align: center;
+}
+ul .dropdown-menu a {
+  font-size: 1.6rem;
+  color: white;
+}
+
+/* Usuario */
+#user {
+  color: white;
+  font-size: 3rem;
+}
+#user:hover {
+  color: #F2BA52;
+  transition: 0.3s ease-in-out;
 }
 
 /* BUSCADOR */
@@ -887,6 +968,15 @@ a {
   justify-self: left;
 }
 
+@media screen and (min-width: 992px) {
+  ul .dropdown-menu {
+    background-color: white;
+    border: 1px solid rgb(235, 235, 235);
+  }
+  ul .dropdown-menu a {
+    color: black;
+  }
+}
 .contact-info h3 {
   margin-bottom: 3rem;
 }
@@ -1116,9 +1206,6 @@ html {
 
 body {
   font-size: 1.6rem;
-}
-
-p, h3, h4, h5, a {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -1138,7 +1225,7 @@ h4 {
   font-size: 1.8rem;
 }
 
-p {
+.form-control, .form-select, p {
   font-size: 1.6rem;
 }
 

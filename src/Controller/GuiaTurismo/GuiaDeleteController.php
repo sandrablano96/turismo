@@ -23,7 +23,7 @@ class GuiaDeleteController extends AbstractController
         $entityManager->remove($guia);
         $entityManager->flush();
         $this->addFlash("aviso", "Guia turística borrada correctamente");
-        return $this->redirectToRoute("");
+        return $this->redirectToRoute("admin_guias_app");
         
     }
 }

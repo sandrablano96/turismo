@@ -3,35 +3,37 @@
 {% block title %}Gastronomía{% endblock %}
 
 {% block main %}
-<main class="mt-5 mb-5">
-            <h2 class="text-center m-5">Gastronomia</h2>
-            <section id="monthly-product" class="row w-100 p-5 m-0 d-flex justify-content-md-center">
-                <div class="col-12 col-lg-4 p-4">
+    <main class="mt-5 mb-5">
+        <h2 class="text-center m-5">Gastronomia</h2>
+        <section id="monthly-product" class="row w-100 p-5 m-0 d-flex justify-content-md-center">
+            <div class="row w-75 m-auto">
+                <div class="col-12 col-xl-4 p-4 d-flex justify-content-center">
                     <img src="{{asset('/media/') ~ gastronomia.productoMes.imagen}}">
                 </div>
-                <div class="col-12 col-lg-8 ps-3 d-flex align-content-center flex-column">
+                <div class="col-12 col-xl-8 ps-3 d-flex align-content-center flex-column">
                     <h3>{{ gastronomia.productoMes.nombre }}</h3>
                     <p>{{ gastronomia.productoMes.descripcion }}</p>
                     <div class="see-more d-flex justify-content-center align-content-end mt-5">
                         <button class="col-12 col-md-4 btn btn-secondary">Ver receta</button>
                     </div>
                 </div>
-            </section>
-            <section id="typical_products"class="w-75 mx-auto mt-5 mb-5">
+            </div>
+        </section>
+        <section id="typical_products"class="w-75 mx-auto mt-5 mb-5">
             <h3 class="mb-3">Productos típicos de la zona</h3>
-                <div class="row order-last m-auto w-75 list d-flex justify-content-center">
-                    {% for item in gastronomia.productosTipicos %}
+            <div class="row order-last m-auto w-75 list d-flex justify-content-center">
+                {% for item in gastronomia.productosTipicos %}
                     <div class="col-12 col-md-6 col-lg-4 event d-flex align-content-stretch  mb-2">
-                      <div class="card" style="width: 20rem;">
-                        <img src="{{asset('/media/gastronomia/') ~ item.imagen}}" class="card-img-bottom" alt="{{item.nombre}}">
-                        <div class="card-body">
-                          <h5 class="card-title">{{item.nombre}}</h5>
-                          <p>{{item.descripcion}}</p>
+                        <div class="card" style="width: 20rem;">
+                            <img src="{{asset('/media/gastronomia/') ~ item.imagen}}" class="card-img-bottom" alt="{{item.nombre}}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{item.nombre}}</h5>
+                                <p>{{item.descripcion}}</p>
+                            </div>
                         </div>
-                      </div>
                     </div>
-                    {% endfor %}
-                  </div>
-            </section>
-        </main>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
 {% endblock %}

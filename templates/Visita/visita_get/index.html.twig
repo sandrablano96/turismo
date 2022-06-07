@@ -19,9 +19,9 @@
                         </div>
                         <div class="element-container__text col-12 col-lg-7 ps-4 py-3">
                             {% if app.user and not is_granted('ROLE_ADMIN')  %}
-                                <div class="element-container__fav col-12 d-flex justify-content-end">
+                                <div class="col-12 d-flex justify-content-end">
                                     <button type="button" class="btn btn-transparent" data-bs-toggle="modal" data-bs-target="#reviewModal" data-bs-id="{{ item.uid }}">
-                                        <i class="fa-solid fa-comment" style="font-size: 1.5rem"></i>
+                                        <i class="fa-solid fa-comment"></i>
                                     </button>
                                 </div>
 
@@ -49,7 +49,7 @@
                                                 <p data-id="opinion-{{op.uid}}">
                                                     {{ op.usuario.nombre |capitalize  }}  opina: {{ op.opinion |capitalize }} 
 
-                                                    {% if op.usuario.id == app.user.id %}
+                                                    {% if app.user and op.usuario.id == app.user.id %}
                                                         <button class="btn btn-transparent btn-delete"><i class="fa-solid fa-circle-minus" style="pointer-events: none"></i></button>
                                                     {% endif %}
                                                 </p> 
