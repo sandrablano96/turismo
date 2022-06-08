@@ -103,7 +103,10 @@
         "symfony": {
             "allow-contrib": false,
             "require": "6.0.*"
-        }
+        }, 
+        "symfony-app-dir":"app", 
+        "symfony-web-dir":"public", 
+        "symfony-assets-install": "relative"
     },
     "require-dev": {
         "symfony/debug-bundle": "6.0.*",
