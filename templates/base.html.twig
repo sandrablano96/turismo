@@ -3,8 +3,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+          <meta name="description" content="Página de consulta sobre turismo y eventos de Ciudad Real capital"/>
+          <meta name="keywords" content="turismo, ciudad real, informacion"/>
+          <link rel="icon" href="{{ asset('media/icons/logoprov.ico') }}">
         <title>
-            {% block title %}Welcome!
+            {% block title %}Turismo en Ciudad Real
             {% endblock %}
         </title>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
@@ -24,19 +29,33 @@
                     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.0/dist/index.bundle.min.js"></script>
+            <script>
+                $(document).ready(function(){
+                    $('.navbar-toggler').on('click', function(){
+                        $('.fa-bars').toggleClass('d-none');
+                        $('.fa-xmark').toggleClass('d-none');
+                        
+                    });
+                })
+            </script>
+            
         {% endblock %}
     </head>
     <body>
         <header id="header" class="sticky-top">
-            <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between align-items-center">
+            <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between align-items-center mx-5">
                 <div class="container-fluid w-100">
-                    <div class="d-flex col-1 justify-content-lg-between gap-2 align-items-center order-first">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    <div class="d-flex justify-content-lg-end gap-2 align-items-center order-first ">
+                        <button class="navbar-toggler btn btn-transparent" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                                 aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+                            <span>
+                                <i class="fa-solid fa-bars" style="font-size: 30px; color:white"></i>
+                                <i class="fa-solid fa-xmark d-none" style="font-size: 30px; color:white"></i>
+                               
+                            </span>
                         </button>
-                        <a class="navbar-brand"><img src="">LOGO</a>
+                        <a class="navbar-brand" href="{{ path('app_main_menu') }}"><img src="{{ asset('media/icons/logoprov.svg') }}" alt="turismo ciudad real" style="height: 50px"></a>
                     </div>
 
                     <div class="collapse navbar-collapse order-last order-lg-1 align-items-center col-6"

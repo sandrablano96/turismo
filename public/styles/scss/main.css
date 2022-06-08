@@ -54,6 +54,10 @@ a {
   font-size: 1.6rem;
 }
 
+i {
+  pointer-events: none;
+}
+
 .btn {
   text-align: center;
   padding-inline: 1rem;
@@ -623,6 +627,10 @@ ul .dropdown-menu a {
     color: black;
   }
 }
+i {
+  pointer-events: none;
+}
+
 .btn {
   text-align: center;
   padding-inline: 1rem;
