@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\OpinionesVisitasGuiadasRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OpinionesVisitasGuiadasRepository::class)]
@@ -26,6 +27,14 @@ class OpinionesVisitasGuiadas
 
     #[ORM\Column(type: 'string', length: 255)]
     private $opinion;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $fecha;
+
+    public function __construct()
+    {
+        $this->fecha= new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -76,6 +85,18 @@ class OpinionesVisitasGuiadas
     public function setOpinion(string $opinion): self
     {
         $this->opinion = $opinion;
+
+        return $this;
+    }
+
+    public function getFecha(): ?\DateTimeInterface
+    {
+        return $this->fecha;
+    }
+
+    public function setFecha(): self
+    {
+        $this->fecha = new DateTime();
 
         return $this;
     }

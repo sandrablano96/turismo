@@ -15,7 +15,7 @@
                 </a>
                 {% if  historia.galeriaImagenes is not empty%}
                 <!-- elements not showing -->
-                <div data-toggle="lightbox" data-gallery="hidden-images" data-src="{{ asset('media/' ~ historia.imagen) }}" data-title="{{ historia.imagen }}" data-caption="{{historia.imagen}}"></div>
+
                 {% for item in historia.galeriaImagenes %}
                 <div data-toggle="lightbox" data-gallery="hidden-images" data-src="{{ asset('media/' ~ item.archivo) }}" data-title="{{ item.alt }}" data-caption="{{item.alt}}"></div>
                 

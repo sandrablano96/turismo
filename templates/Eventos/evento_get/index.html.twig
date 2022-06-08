@@ -115,6 +115,7 @@
                     dataType: 'JSON',
                     data: JSON.stringify({month: monthSelected, types: types}),
                     beforeSend: function () {
+                        $('#search-results').html("")
                         $('#all-events').remove();
                         $('#loading').removeClass('d-none');
                         $('#no-results').addClass('d-none');
