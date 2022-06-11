@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
@@ -26,7 +27,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class VisitaPutController extends AbstractController
 {
     #[Route('/visita/put/{uid}', name: 'app_visita_put')]
-    public function put(Request $request, ManagerRegistry $doctrine, VisitaGuiada $visita): Response
+    public function put(Request $request, ManagerRegistry $doctrine, VisitaGuiada $visita, Session $sesion): Response
     {
         $guias = $doctrine->getRepository(GuiaTurismo::class)->findAll();
         $oficinas = $doctrine->getRepository(OficinaTurismo::class)-> findAll();
@@ -82,10 +83,12 @@ class VisitaPutController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($visita);
             $entityManager->flush();
-            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Visita guiada actualizada con éxito");
-
-            return $this->redirectToRoute("admin_visitas_get");
+    
+            if($visita->getGuiaTurismo() != null){
+                return $this->redirectToRoute("app_guia_visitas_get", ['uid' => $visita->getGuiaTurismo()->getUid()]);
+            }
+            return $this->redirectToRoute("admin_oficina_get", ['uid' => $visita->getOficinaTurismo()->getUid()]);
         } else{
             return $this->renderForm("Visita/visita_put/index.html.twig", ['formulario' => $form]);
         }

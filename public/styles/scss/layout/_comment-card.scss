@@ -1,0 +1,15 @@
+.card {
+    max-height: 12rem;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1rem;
+    border: none;
+    box-shadow: 2px 3px 3px 1px #e9ecef;
+    border-radius: 4px;
+    overflow: auto;
+}
+
+.font-weight-bold{
+    font-weight: 600;
+    font-stretch: semi-condensed;
+}

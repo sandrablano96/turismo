@@ -76,7 +76,7 @@ class HistoriaPutController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($historia);
             $entityManager->flush();
-            $this->get('session')->getFlashBag()->clear();
+
             $this->addFlash("aviso","Historia de la localidad actualizada con éxito");
 
             return $this->redirectToRoute("admin_historia_get", [

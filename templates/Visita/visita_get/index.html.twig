@@ -41,17 +41,19 @@
                                 {% endif %}
                             </p>
                             <div class="d-flex justify-content-center align-content-end mt-5 row">
-                                <div class="col-12" id="opinions-{{item.uid}}">
+                                <div class="col-12 opinions-list" id="opinions-{{item.uid}}">
                                     {% if item.opiniones is not empty %}
-                                        <div>
+                                        <div class="card">
                                             {% for op in item.opiniones %}
-
+                                                
                                                 <p data-id="opinion-{{op.uid}}">
-                                                    {{ op.usuario.nombre |capitalize  }}  opina: {{ op.opinion |capitalize }} 
-
                                                     {% if app.user and op.usuario.id == app.user.id %}
                                                         <button class="btn btn-transparent btn-delete"><i class="fa-solid fa-circle-minus"></i></button>
+                                                    
                                                     {% endif %}
+                                                    <span class="font-weight-bold">{{ op.usuario.nombre |capitalize  }}</span>  opina: {{ op.opinion |capitalize }} 
+
+                                                    
                                                 </p> 
 
                                             {% endfor %}
@@ -200,11 +202,11 @@
                             
                             $(`#opinions-${itemId}>p`).remove();
                             if ($(`#opinions-${itemId}`).children('div') > 1) {
-                                $(`#opinions-${itemId}`).children('div').append(`<p data-id=${response.data.uid}> ${response.data.usuario}> ${response.data.usuario} opina: ${response.data.opinion} 
-                                <button class=btn btn-transparent btn-delete><i class="fa-solid fa-circle-minus"></i></button></p>`)
+                                $(`#opinions-${itemId}`).children('div').append(`<p data-id=opinion-${response.data.uid}><button class="btn btn-transparent btn-delete"><i class="fa-solid fa-circle-minus"></i></button> <span class="font-weight-bold">${response.data.usuario}</span> opina: ${response.data.opinion} 
+                                </p>`)
                             } else {
-                                $(`#opinions-${itemId}`).append(`<div><p data-id=${response.data.uid}> ${response.data.usuario} opina: ${response.data.opinion} 
-                                <button class=btn btn-transparent btn-delete><i class="fa-solid fa-circle-minus"></i></button></p></div>`)
+                                $(`#opinions-${itemId}`).append(`<div class="card"><p data-id=opinion-${response.data.uid}><button class="btn btn-transparent btn-delete"><i class="fa-solid fa-circle-minus"></i></button> <span class="font-weight-bold">${response.data.usuario}</span> opina: ${response.data.opinion} 
+                                </p></div>`)
                             }
 
                         } else {
@@ -219,6 +221,7 @@
                         $('#delete').addClass('d-none');
                     },
                     error: function () {
+                         $('#loading').addClass('d-none');
                         $('#error').removeClass('d-none');
                         $('#error').html('Ha sucedido un error. Inténtelo de nuevo');
                     }
@@ -229,14 +232,13 @@
         
         $(document).ready(function () {
             
-            $('.btn-delete').on('click', function (e){
-                
+            $('.opinions-list').on('click','.btn-delete', function (e){
                 let button = $(e.target)
                 let parentP = $(button).parent();
                 let opinion = $(parentP).attr('data-id').split('ion-');
                 let opinionId = opinion[1];
                 let visitOpinionsDiv = $(parentP).parent().parent();
-                console.log(visitOpinionsDiv);
+                //console.log(visitOpinionsDiv);
                 let deleteUrl = Routing.generate('app_opiniones_delete', {uid: opinionId});
                 
                 

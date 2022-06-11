@@ -45,4 +45,15 @@ class GuiaGetController extends AbstractController
             'guias' => $guias
         ]);
     }
+    
+    /**
+     * @Route("admin/guia/{uid}/visitas", name="app_guia_visitas_get")
+     * @return Response
+     */
+    public function getGuideVisits(GuiaTurismo $guide): Response
+    {
+        return $this->render('admin/admin_guia_visitas.html.twig', [
+            'guia' => $guide
+        ]);
+    }
 }

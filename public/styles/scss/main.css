@@ -52,6 +52,10 @@ h4 {
 a {
   text-decoration: none;
   font-size: 1.6rem;
+  color: #000;
+}
+a:hover {
+  color: #55aacc;
 }
 
 i {
@@ -59,6 +63,7 @@ i {
 }
 
 .btn {
+  margin: 1rem;
   text-align: center;
   padding-inline: 1rem;
   padding-block: 0.5rem;
@@ -73,13 +78,14 @@ i {
   outline: none;
 }
 .btn.btn-primary {
-  background-color: #55aacc !important;
+  background-color: #55aacc;
   border: none;
-  color: #000 !important;
+  color: #000;
 }
 .btn.btn-primary:hover {
   transition: 0.3s all ease;
   font-weight: bolder;
+  color: white;
 }
 .btn.btn-outline-primary {
   border: 0.1rem solid white;
@@ -92,20 +98,24 @@ i {
   color: #000;
 }
 .btn.btn-secondary {
-  background: #F2BA52 !important;
-  border: 0.1rem solid #F2BA52 !important;
-  color: black !important;
+  background: #F2BA52;
+  border: 0.1rem solid #F2BA52;
+  color: black;
 }
 .btn.btn-secondary:hover {
-  border: 1px solid #F2BA52;
-  background: transparent;
+  color: white;
   transition: 0.3s all ease;
   font-weight: bolder;
 }
 .btn.btn-secondary-dark {
-  background: #192340 !important;
-  border: 0.1rem solid #192340 !important;
-  color: white !important;
+  background-color: transparent;
+  color: #192340;
+  border: 1px solid #192340;
+}
+.btn.btn-secondary-dark:hover {
+  background: #192340;
+  border: 0.1rem solid #192340;
+  color: white;
 }
 .btn.btn-transparent {
   background: transparent;
@@ -122,6 +132,29 @@ i {
 .btn.btn-login:hover {
   transition: 0.3s all ease;
   font-weight: bolder;
+}
+
+.admin-btn {
+  font-size: 2rem;
+  margin: 1rem;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  height: 5rem;
+}
+.admin-btn:hover {
+  background-color: #55aacc;
+  font-size: x-large;
+}
+.admin-btn a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 0.5rem;
+}
+.admin-btn a:hover {
+  color: white;
 }
 
 * {
@@ -170,6 +203,10 @@ h4 {
 a {
   text-decoration: none;
   font-size: 1.6rem;
+  color: #000;
+}
+a:hover {
+  color: #55aacc;
 }
 
 #header {
@@ -327,6 +364,10 @@ h4 {
 a {
   text-decoration: none;
   font-size: 1.6rem;
+  color: #000;
+}
+a:hover {
+  color: #55aacc;
 }
 
 #footer {
@@ -409,7 +450,7 @@ menu-container {
   transition: 1s;
   transform: translateY(1rem);
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 2.5rem;
   color: #F2BA52;
   text-decoration: none;
   text-transform: uppercase;
@@ -419,7 +460,7 @@ menu-container {
 }
 
 .carousel-item img {
-  height: 30rem;
+  height: 35rem;
 }
 
 * {
@@ -468,6 +509,10 @@ h4 {
 a {
   text-decoration: none;
   font-size: 1.6rem;
+  color: #000;
+}
+a:hover {
+  color: #55aacc;
 }
 
 * {
@@ -516,6 +561,10 @@ h4 {
 a {
   text-decoration: none;
   font-size: 1.6rem;
+  color: #000;
+}
+a:hover {
+  color: #55aacc;
 }
 
 #header {
@@ -632,6 +681,7 @@ i {
 }
 
 .btn {
+  margin: 1rem;
   text-align: center;
   padding-inline: 1rem;
   padding-block: 0.5rem;
@@ -646,13 +696,14 @@ i {
   outline: none;
 }
 .btn.btn-primary {
-  background-color: #55aacc !important;
+  background-color: #55aacc;
   border: none;
-  color: #000 !important;
+  color: #000;
 }
 .btn.btn-primary:hover {
   transition: 0.3s all ease;
   font-weight: bolder;
+  color: white;
 }
 .btn.btn-outline-primary {
   border: 0.1rem solid white;
@@ -665,20 +716,24 @@ i {
   color: #000;
 }
 .btn.btn-secondary {
-  background: #F2BA52 !important;
-  border: 0.1rem solid #F2BA52 !important;
-  color: black !important;
+  background: #F2BA52;
+  border: 0.1rem solid #F2BA52;
+  color: black;
 }
 .btn.btn-secondary:hover {
-  border: 1px solid #F2BA52;
-  background: transparent;
+  color: white;
   transition: 0.3s all ease;
   font-weight: bolder;
 }
 .btn.btn-secondary-dark {
-  background: #192340 !important;
-  border: 0.1rem solid #192340 !important;
-  color: white !important;
+  background-color: transparent;
+  color: #192340;
+  border: 1px solid #192340;
+}
+.btn.btn-secondary-dark:hover {
+  background: #192340;
+  border: 0.1rem solid #192340;
+  color: white;
 }
 .btn.btn-transparent {
   background: transparent;
@@ -695,6 +750,29 @@ i {
 .btn.btn-login:hover {
   transition: 0.3s all ease;
   font-weight: bolder;
+}
+
+.admin-btn {
+  font-size: 2rem;
+  margin: 1rem;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  height: 5rem;
+}
+.admin-btn:hover {
+  background-color: #55aacc;
+  font-size: x-large;
+}
+.admin-btn a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 0.5rem;
+}
+.admin-btn a:hover {
+  color: white;
 }
 
 .element-container {
@@ -826,6 +904,10 @@ h4 {
 a {
   text-decoration: none;
   font-size: 1.6rem;
+  color: #000;
+}
+a:hover {
+  color: #55aacc;
 }
 
 * {
@@ -874,6 +956,10 @@ h4 {
 a {
   text-decoration: none;
   font-size: 1.6rem;
+  color: #000;
+}
+a:hover {
+  color: #55aacc;
 }
 
 #header {
@@ -1008,43 +1094,43 @@ ul .dropdown-menu a {
   padding-top: 5rem;
 }
 
-#contact-form {
+#contact-form__container {
   background-color: rgba(106, 211, 253, 0.1);
   /*FORM*/
 }
-#contact-form button {
+#contact-form__container button {
   overflow: visible;
 }
-#contact-form input {
+#contact-form__container input {
   line-height: normal;
 }
-#contact-form textarea {
+#contact-form__container textarea {
   overflow: auto;
 }
-#contact-form form {
+#contact-form__container form {
   margin: 50px 0;
 }
-#contact-form .underline {
+#contact-form__container .underline {
   border-bottom: solid 2px #192340;
   margin: -0.512em auto;
   width: 80px;
 }
-#contact-form .icon_wrapper {
+#contact-form__container .icon_wrapper {
   margin: 50px auto 0;
   width: 100%;
 }
-#contact-form .icon {
+#contact-form__container .icon {
   display: block;
   fill: #192340;
   height: 50px;
   margin: 0 auto;
   width: 50px;
 }
-#contact-form .email {
+#contact-form__container .email {
   float: right;
   width: 45%;
 }
-#contact-form input[type=text], #contact-form [type=email], #contact-form [type=tel], #contact-form select, #contact-form textarea {
+#contact-form__container input[type=text], #contact-form__container [type=email], #contact-form__container [type=tel], #contact-form__container select, #contact-form__container textarea {
   background: none;
   border: none;
   border-bottom: solid 2px #192340;
@@ -1061,66 +1147,66 @@ ul .dropdown-menu a {
   box-sizing: border-box;
   transition: all 0.3s;
 }
-#contact-form input[type=text]:focus, #contact-form [type=email]:focus, #contact-form textarea:focus {
+#contact-form__container input[type=text]:focus, #contact-form__container [type=email]:focus, #contact-form__container textarea:focus {
   outline: none;
   padding: 0 0 0.875em 0;
 }
-#contact-form .message {
+#contact-form__container .message {
   float: none;
 }
-#contact-form .name {
+#contact-form__container .name {
   float: left;
   width: 45%;
 }
-#contact-form .subject {
+#contact-form__container .subject {
   width: 100%;
 }
-#contact-form .telephone {
+#contact-form__container .telephone {
   width: 100%;
 }
-#contact-form textarea {
+#contact-form__container textarea {
   line-height: 150%;
   height: 150px;
   resize: none;
   width: 100%;
 }
-#contact-form ::-webkit-input-placeholder {
+#contact-form__container ::-webkit-input-placeholder {
   color: #474544;
 }
-#contact-form :-moz-placeholder {
-  color: #474544;
-  opacity: 1;
-}
-#contact-form ::-moz-placeholder {
+#contact-form__container :-moz-placeholder {
   color: #474544;
   opacity: 1;
 }
-#contact-form :-ms-input-placeholder {
+#contact-form__container ::-moz-placeholder {
+  color: #474544;
+  opacity: 1;
+}
+#contact-form__container :-ms-input-placeholder {
   color: #474544;
 }
 @media screen and (max-width: 768px) {
-  #contact-form #contact-form {
+  #contact-form__container #contact-form {
     margin: 20px auto;
     width: 95%;
   }
 }
 @media screen and (max-width: 480px) {
-  #contact-form .underline {
+  #contact-form__container .underline {
     width: 68px;
   }
-  #contact-form #form_button {
+  #contact-form__container #form_button {
     padding: 15px 25px;
   }
 }
 @media screen and (max-width: 420px) {
-  #contact-form .icon {
+  #contact-form__container .icon {
     height: 35px;
     width: 35px;
   }
-  #contact-form .underline {
+  #contact-form__container .underline {
     width: 53px;
   }
-  #contact-form input[type=text], #contact-form [type=email], #contact-form select, #contact-form textarea {
+  #contact-form__container input[type=text], #contact-form__container [type=email], #contact-form__container select, #contact-form__container textarea {
     font-size: 1.1rem;
   }
 }
@@ -1248,6 +1334,10 @@ h4 {
 a {
   text-decoration: none;
   font-size: 1.6rem;
+  color: #000;
+}
+a:hover {
+  color: #55aacc;
 }
 
 #museum {
@@ -1379,4 +1469,20 @@ textarea.form-control {
   font-size: 5rem;
   font-weight: 700;
   color: #F2BA52;
+}
+
+.card {
+  max-height: 12rem;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1rem;
+  border: none;
+  box-shadow: 2px 3px 3px 1px #e9ecef;
+  border-radius: 4px;
+  overflow: auto;
+}
+
+.font-weight-bold {
+  font-weight: 600;
+  font-stretch: semi-condensed;
 }/*# sourceMappingURL=main.css.map */

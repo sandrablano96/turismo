@@ -48,6 +48,15 @@ class ProductoTipicoPutController extends AbstractController
                     ])
                     ]
                 ])
+                ->add("receta", TextareaType:: class, [
+                    'required' => true,
+                    'constraints' => [
+                    new NotBlank([
+                        'message' => 'Introduzca una receta',
+                    ]), 
+                         'placeholder' => 'Link a la receta'
+                    ]
+                ])
                 ->add("imagen", FileType:: class, [
                     'mapped' => false,
                     'required' => false,
@@ -84,7 +93,7 @@ class ProductoTipicoPutController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($producto);
             $entityManager->flush();
-            $this->get('session')->getFlashBag()->clear();
+
             $this->addFlash("aviso","Producto actualizado con éxito");
             
             $gastronomiaUid = $producto->getGastronomia()->getUid();

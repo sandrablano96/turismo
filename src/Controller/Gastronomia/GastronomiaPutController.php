@@ -40,7 +40,7 @@ class GastronomiaPutController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($gastronomia);
             $entityManager->flush();
-            $this->get('session')->getFlashBag()->clear();
+ 
             $this->addFlash("aviso","Gastronomia actualizada correctamente");
             return $this->redirectToRoute('admin_gastronomia_get', [
                 'uid' => $gastronomia->getUid()

@@ -6,7 +6,7 @@ use App\Repository\ContactoRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ContactoRepository::class)]
-class Contacto
+class Consulta
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -27,6 +27,9 @@ class Contacto
 
     #[ORM\Column(type: 'text')]
     private $consulta;
+
+    #[ORM\Column(type: 'string', length: 36)]
+    private $uid;
 
     public function getId(): ?int
     {
@@ -89,6 +92,18 @@ class Contacto
     public function setConsulta(string $consulta): self
     {
         $this->consulta = $consulta;
+
+        return $this;
+    }
+
+    public function getUid(): ?string
+    {
+        return $this->uid;
+    }
+
+    public function setUid(string $uid): self
+    {
+        $this->uid = $uid;
 
         return $this;
     }

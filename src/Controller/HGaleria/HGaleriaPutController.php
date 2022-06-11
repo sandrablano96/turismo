@@ -70,7 +70,7 @@ class HGaleriaPutController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($galeria);
             $entityManager->flush();
-            $this->get('session')->getFlashBag()->clear();
+      
             $this->addFlash("aviso","Imagen actualizada con éxito");
             
             $historiaUid = $galeria->getHistoria()->getUid();

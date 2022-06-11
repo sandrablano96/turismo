@@ -6,7 +6,7 @@
     
     <main class="w-75 mx-auto mt-5 mb-5">
         <h2>Nueva visita guiada </h2>
-        {{ form_start(formulario, {'attr': {'class': 'w-50 m-auto'}} ) }}
+        {{ form_start(formulario, {'attr': {'class': 'w-50 m-auto', 'id': 'form-visits'}} ) }}
          <div class="form_error">
                  {{ form_errors(formulario) }}
             </div>
@@ -33,5 +33,27 @@
                 {{ form_row(formulario.enviar, {'attr': {'class': 'form-control mb-2'}} ) }}
             </div>
             {{ form_end(formulario) }}
+            
+            
     </main>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+                $(document).ready(function(){
+            $('#form-visits').on('submit', function(e){
+                
+                let guia = $('#form_guiaTurismo').val();
+                let oficina = $('#form_oficinaTurismo').val();
+                console.log(guia);
+                console.log(oficina);
+                if(oficina == '' && guia == ''){
+                    $('.form_error').html(`<p>Tienes que escoger al menos un organizador</p>`);
+                    e.preventDefault();
+                    return;
+                    
+                }
+            });
+        });
+    </script>
 {% endblock %}

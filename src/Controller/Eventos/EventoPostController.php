@@ -105,7 +105,7 @@ class EventoPostController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($evento);
             $entityManager->flush();
-            $this->get('session')->getFlashBag()->clear();
+
             $this->addFlash("aviso","Evento guardado con éxito");
 
             return $this->redirectToRoute("admin_eventos_get");

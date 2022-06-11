@@ -1,11 +1,10 @@
-
 {% extends 'base.html.twig' %}
-{% block title %} Datos de la Oficina de Turismo {% endblock %}
+{% block title %} Gestión de visitas guiadas {% endblock %}
 {% block main %}
     
     <main class="w-75 mx-auto mt-5 mb-5">
         
-        <h2>Oficina de Turismo</h2>
+        <h2>Gestión de visitas guiadas de {{ guia.nombre }}</h2>
         <div class="messages">
             {% for message in app.flashes('aviso') %}
                  <div class="flash-notice">
@@ -13,27 +12,16 @@
                 </div>
             {% endfor %}
         </div>
-        <table class="table">
-            <th>Dirección</th>
-            <th>Télefono de contacto</th>
-            <th>E-mail</th>
-            <th>Horario de atención al público</th>
-                <tr>
-                    <td>{{ oficina.direccion }}</td>
-                    <td>{{ oficina.telefono }}</td>
-                    <td>{{ oficina.email }}</td>
-                    <td>{{ oficina.horario }}</td>
-                    <td><a href="{{ path('app_oficina_put', {uid: oficina.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
-                <tr>
-        </table>
-        <h3>Visitas programadas por la oficina</h3>
-        <a href="{{ path('app_visita_post', {uid: oficina.uid}) }}" class="btn btn-secondary-dark">Alta</a>
+        <a href="{{ path('app_visita_post', {uid: guia.uid}) }}" class="btn btn-secondary-dark">Alta</a>
+        {% if guia.visitasOrganizadas is empty %}
+            <p>Todavía no ha registrado ningún dato </p>
+        {% else %}
         <table class="table">
             <th>Título del evento</th>
             <th>Descripción</th>
             <th>Fecha</th>
             <th>Precio</th>
-            {% for item in oficina.visitasOrganizadas %}
+            {% for item in guia.visitasOrganizadas %}
                 <tr>
                     <td>{{ item.titulo }}</td>
                     <td>{{ item.descripcion }}</td>
@@ -43,6 +31,8 @@
                     <td><a href="{{ path('app_visita_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>
                 <tr>
             {% endfor %}
+            
         </table>
+        {% endif %}
     </main>
 {% endblock %}{# empty Twig template #}

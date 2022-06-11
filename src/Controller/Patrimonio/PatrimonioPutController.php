@@ -128,7 +128,6 @@ class PatrimonioPutController extends AbstractController
             $entityManager = $doctrine->getManager();
                 $entityManager->persist($patrimonio);
                 $entityManager->flush();
-                $this->get('session')->getFlashBag()->clear();
                 $this->addFlash("aviso","Registro actualizado con éxito");
 
             return $this->redirectToRoute("admin_patrimonio_tipo_get", ['type' => $type]);

@@ -110,7 +110,7 @@ class EventoPutController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($evento);
             $entityManager->flush();
-            $this->get('session')->getFlashBag()->clear();
+     
             $this->addFlash("aviso","Evento actualizzado con éxito");
 
             return $this->redirectToRoute("admin_eventos_get");

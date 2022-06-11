@@ -49,6 +49,11 @@ h4{
 a {
     text-decoration: none;
     font-size: 1.6rem;
+    color: $black;
+
+    &:hover{
+        color: $primaryColor;
+    }
 }
 
 

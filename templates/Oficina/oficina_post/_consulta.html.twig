@@ -1,0 +1,21 @@
+ {{ form_start(formulario, {'attr': {'class': 'w-50 m-auto', 'id': 'contact-form'}}) }}
+                {{ form_errors(formulario) }}
+                    <div class="name">
+                        {{ form_row(formulario.nombre) }}
+                    </div>
+                    <div class="email">
+                        {{ form_row(formulario.email) }}
+                    </div>
+                    <div class="telephone">
+                        {{ form_row(formulario.telefono) }}
+                    </div>
+                    <div class="subject">
+                        {{ form_row(formulario.asunto) }}
+                    </div>
+                    <div class="message">
+                        {{ form_row(formulario.consulta) }}
+                    </div>
+                    <div class="submit">
+                        {{ form_row(formulario.enviar, {'attr': {'class': 'btn btn-secondary px-5'}}) }}
+                    </div>
+                {{form_end(formulario)}}{# empty Twig template #}

@@ -112,7 +112,7 @@ class MuseoPutController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($museo);
             $entityManager->flush();
-            $this->get('session')->getFlashBag()->clear();
+    
             $this->addFlash("aviso","Museo actualizado con éxito");
             
             return $this->redirectToRoute('admin_museo_get', [

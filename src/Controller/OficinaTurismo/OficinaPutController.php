@@ -74,7 +74,6 @@ class OficinaPutController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($oficina);
             $entityManager->flush();
-            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Datos de la oficina actualizados con éxito");
 
             return $this->redirectToRoute("admin_oficina_get");
