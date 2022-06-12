@@ -28,6 +28,9 @@
         </table>
         <h3>Visitas programadas por la oficina</h3>
         <a href="{{ path('app_visita_post', {uid: oficina.uid}) }}" class="btn btn-secondary-dark">Alta</a>
+        {% if oficina.visitasOrganizadas is empty %}
+            <p>La Oficina no ha programado ninguna visita</p>
+        {% else %}
         <table class="table">
             <th>Título del evento</th>
             <th>Descripción</th>
@@ -44,5 +47,6 @@
                 <tr>
             {% endfor %}
         </table>
+        {% endif %}
     </main>
 {% endblock %}{# empty Twig template #}

@@ -32,6 +32,7 @@ class EventoPostController extends AbstractController
         $evento = new Evento();
         $form = $this->createFormBuilder($evento)
                 ->add("titulo", TextType:: class, [
+                    'label' => 'Titulo*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -40,6 +41,7 @@ class EventoPostController extends AbstractController
                     ]
                 ])
                 ->add("descripcion", TextareaType:: class, [
+                    'label' => 'Descripción*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -48,6 +50,7 @@ class EventoPostController extends AbstractController
                     ]
                 ])
                 ->add("fecha", DateType:: class, [
+                    'label' => 'Fechas*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -56,9 +59,11 @@ class EventoPostController extends AbstractController
                     ]
                 ])
                 ->add("precio", TextType:: class, [
+                    'label' => 'Precio',
                     'required' => false
                 ])
                 ->add("tipo_evento", ChoiceType:: class, [
+                    'label' => 'Tipo de evento*',
                         'choices' => [
                             'Evento deportivo' => 'deportivo',
                             'Evento cultural' => 'cultural', 
@@ -67,6 +72,7 @@ class EventoPostController extends AbstractController
 
                 ])
                 ->add("imagen", FileType:: class, [
+                    'label' => 'Imagen*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([

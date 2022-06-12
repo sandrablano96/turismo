@@ -13,6 +13,9 @@
             {% endfor %}
         </div>
         <a href="{{ path('app_museo_post') }}"  class="btn btn-secondary-dark">Alta</a>
+        {% if museos is empty %}
+            <p>Todavía no ha añadido ningún museo</p>
+        {% else %}
         <table class="table w-25 m-auto">
             <th>Museo</th>
             {% for item in museos %}
@@ -21,8 +24,8 @@
                     <td><a href="{{ path('admin_museo_get', {uid: item.uid}) }}">Gestionar museo</td>
                     <td><a href="{{ path('app_museo_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></td>
                 <tr>
-            {% endfor %}
-            
+            {% endfor %} 
         </table>
+        {% endif %}
     </main>
 {% endblock %}

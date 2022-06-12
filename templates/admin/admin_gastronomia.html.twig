@@ -24,19 +24,25 @@
         </table>
         <h3>Productos tipicos</h3>
         <a href="{{ path('app_producto_tipico_post', {uid: gastronomia.uid}) }}" class="btn btn-secondary-dark">Alta</a>
+        {% if gastronomia.productosTipicos is empty %}
+            <p>Todavía no se han añadido productos </p>
+        {% else %}
         <table class="table">
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Imagen</th>
+            <th>Receta</th>
             {% for item in gastronomia.productosTipicos %}
                 <tr>
                 <td>{{ item.nombre }}</td>
                 <td>{{ item.descripcion }}</td>
                 <td><img src="{{ asset('media/gastronomia/') ~ item.imagen }}" alt="{{ item.nombre }}" style="width:50px"></td>
+                <td>{{ item.receta }}</td>
                 <td><a href="{{ path('app_producto_tipico_put', {uid: item.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
                 <td><a href="{{ path('app_producto_tipico_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>
                 </tr>
             {% endfor %}
         </table>
+        {% endif %}
     </main>
 {% endblock %}

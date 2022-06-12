@@ -8,13 +8,19 @@
 {% block main %}
     <main class="mt-5 mb-5">
             <h2 class="text-center m-5">Patrimonio de Ciudad Real</h2>
-            <section id="museum" class="row w-100 p-5 m-0 d-flex justify-content-md-center">
+            <section id="item" class="row w-100 m-0 d-flex justify-content-md-center">
                 <div class="col-12 col-lg-4 p-4">
-                    <img src="{{ asset('/media/') ~ patrimonio.imagen}}) }}" alt="{{ patrimonio.nombre }}">
+                    <img src="{{ asset('/media/patrimonio/') ~ patrimonio.imagen }}" alt="{{ patrimonio.nombre }}">
                 </div>
                 <div class="col-12 col-lg-8 ps-3 d-flex align-content-center flex-column">
                     <h3>{{ patrimonio.nombre }}</h3>
-                    {{ patrimonio.descripcion }}
+                    <div>
+                    {% set paragraphs = patrimonio.descripcion | split('//') %}
+
+                    {% for p in paragraphs %}
+                        <p>{{ p }}<p>
+                        {% endfor %}
+                </div>
 
                 </div>
             </section>

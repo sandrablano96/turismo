@@ -19,10 +19,11 @@
             <h4>Mis comentarios</h4>
                 {% if usuario.opiniones is not empty %}
                 {% for item in usuario.opiniones %}
-                    <div>
+                    <div class="comment-card">
                         <h3>{{ item.visitaGuiada.titulo }}</h3>
                         <p> {{ item.opinion }} </p>
-                        <p>Opinón publicada el {{item.fecha}} |date('Y-m-d') </p>
+                        <p>Opinón publicada el {{item.fecha |date('d-m-Y')}}  </p>
+                        <a href="{{ path('app_opiniones_delete', {uid:item.uid}) }}" class="btn btn-transparent btn-delete"><i class="fa-solid fa-circle-minus"></i></button>
                     </div>
                 {% endfor %}
                 {% else %}

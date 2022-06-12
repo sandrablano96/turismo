@@ -17,7 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class PatrimonioDeleteController extends AbstractController
 {
     #[Route('/patrimonio/{type}/delete/{uid}', name: 'app_patrimonio_delete')]
-    public function delete(Patrimonio $patrimonio, ManagerRegistry $doctrine): Response
+    public function delete(Patrimonio $patrimonio, ManagerRegistry $doctrine, String $type): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $entityManager = $doctrine->getManager();

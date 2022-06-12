@@ -1,83 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Museos
+{% block title %}Museos de Ciudad Real
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-    <script>
-        $(document).ready(function () {
-            $("#advancedButton").on("click", function () {
-                console.log("click");
-                $("#formFiltros").parent().toggleClass("d-none");
-            });
-        });
-
-        $(document).ready(function () {
-            $('#formFiltros').on("keyup", e => {
-                if (e.key === "Escape")
-                    e.target.value = ""
-
-                $(".element-container").each(function () {
-                    $(this).attr('id').toLowerCase().includes(e.target.value.toLowerCase())
-                            ? $(this).removeClass("d-none")
-                            : $(this).addClass("d-none")
-                })
-                if ($(".element-container").children(':visible').length == 0) {
-                    $("#no-results").removeClass('d-none');
-                } else {
-                    $("#no-results").addClass('d-none');
-                }
-
-            })
-
-        })
-
-        $(document).ready(function () {
-            $('#form_ordenar').on('change', function (e) {
-                event.preventDefault();
-                let order = $('#form_order').children("option:selected").val();
-                console.log(order);
-
-                let url = Routing.generate('app_museos_ordered_get');
-
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    dataType: 'JSON',
-                    data: JSON.stringify({orden: order}),
-                    beforeSend: function () {
-                        $('#all-museum').remove();
-                        $('#loading').removeClass('d-none');
-                    },
-                    success: function (response) {
-
-                        $('#loading').addClass('d-none');
-                        if (response.response == "") {
-                            $('#no-results').removeClass('d-none');
-                        } else {
-                            $('#search-results').html(response.response);
-                            $('#search-results').removeClass('d-none');
-                            $('#no-results').addClass('d-none');
-                            
-                        }
-
-                    },
-                    complete: function () {
-                        $('#loading').addClass('d-none');
-                    },
-                    error: function () {
-                        $('#error').removeClass('d-none');
-                    }
-
-                });
-                
-            });
-
-        });
-    </script>
+    <script src="{{ asset('js/Museo/MuseumScript.js') }}"></script>
+    <script src="{{ asset('js/Common/Common.js') }}"></script>
 {% endblock %}
 
 {% block main %}
@@ -88,7 +19,7 @@
                 {{form_widget(formOrder.order, { 'attr' : { 'class' : 'form-select' } })  }}
                 {{form_end(formOrder)}}
             </div>
-            <h2 class="text-center col-12 col-md-9 order-0 m-auto mb-3">Listado de búsqueda</h2>
+            <h2 class="text-center col-12 col-md-9 order-0 m-auto mb-3">Museos de Ciudad Real</h2>
         </section>
         <section class="row d-flex">
             <button class="col-12 col-lg-3 mx-auto btn btn-sm btn-secondary-dark mb-3 align-self-center" id="advancedButton">Búsqueda avanzada</button>
@@ -108,12 +39,11 @@
                 {% for item in museos %}
                     <div class="element-container row m-5 d-flex" id="{{item.nombre}}">
                         <div class="element-container__img col-12 col-lg-4 p-0" >
-                            <img src="{{ asset('/media/') ~ item.imagen }}" class="element__img">
+                            <img src="{{ asset('/media/museos/') ~ item.imagen }}" class="element__img">
                         </div>
                         <div class="element-container__text col-12 col-lg-7 ps-4 py-3">
                             <h3>{{ item.nombre }} <img src="{{ asset('/media/icons/museo.ico') }}" width="30px"></h3>
-                            <p>{{ item.descripcion }}
-                            </p>
+                            <p>{{ item.descripcion | u.truncate(200)}}... </p>
                             <div class="see-more d-flex justify-content-center align-content-end mt-5">
                                 <a href="{{ path('app_museo_get', {uid : item.uid}) }}" class="col-12 col-lg-4 btn btn-secondary">Ver más</a>
                             </div>

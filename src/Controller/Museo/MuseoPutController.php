@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
 /**
  * Require ROLE_ADMIN for all the actions of this controller
@@ -35,6 +36,7 @@ class MuseoPutController extends AbstractController
         );
         $form = $this->createFormBuilder($museo)
                 ->add("nombre", TextType:: class, [
+                    'label' => 'Nombre*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -43,6 +45,7 @@ class MuseoPutController extends AbstractController
                     ]
                 ])
                 ->add("descripcion", TextareaType:: class, [
+                    'label' => 'Descripción*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -51,6 +54,7 @@ class MuseoPutController extends AbstractController
                     ]
                 ])
                 ->add("direccion", TextType:: class, [
+                    'label' => 'Dirección*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -59,6 +63,7 @@ class MuseoPutController extends AbstractController
                     ]
                 ])
                 ->add("telefono", TelType:: class, [
+                    'label' => 'Teléfono*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -67,16 +72,28 @@ class MuseoPutController extends AbstractController
                     ]
                 ])
                 ->add("email", EmailType:: class, [
+                    'label' => 'Email',
                     'required' => false,
                 ])
-                ->add("horario", TextareaType:: class)
+                ->add("horario", TextareaType:: class, [
+                    'label' => 'Horario*',
+                    'required' => true,
+                    'constraints' => [
+                    new NotBlank([
+                        'message' => 'Introduzca el horario',
+                    ])
+                    ]
+                ])
                 ->add("precio", TextareaType:: class, [
+                    'label' => 'Precio',
                     'required' => false
                 ])
-                ->add("web", TextType:: class, [
+                ->add("web", UrlType:: class, [
+                    'label' => 'Web',
                     'required' => false
                 ])
                 ->add("imagen", FileType::class, [
+                    'label' => 'Imagen',
                     'data_class' => null,
                     'required' => false,
                     'mapped' => false

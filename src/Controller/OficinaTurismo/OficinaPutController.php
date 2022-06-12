@@ -26,6 +26,7 @@ class OficinaPutController extends AbstractController
     {
         $form = $this->createFormBuilder($oficina)
                 ->add("direccion", TextType:: class, [
+                    'label' => 'Dirección*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -34,6 +35,7 @@ class OficinaPutController extends AbstractController
                     ]
                 ])
                 ->add("telefono", TextType:: class, [
+                    'label' => 'Teléfono*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -42,6 +44,7 @@ class OficinaPutController extends AbstractController
                     ]
                 ])
                 ->add("email", TextType:: class, [
+                    'label' => 'Email*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -50,6 +53,7 @@ class OficinaPutController extends AbstractController
                     ]
                 ])
                 ->add("horario", TextareaType:: class, [
+                    'label' => 'Horario*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -58,6 +62,7 @@ class OficinaPutController extends AbstractController
                     ]
                 ])
                 ->add("localidad", TextType:: class, [
+                    'label' => 'Localidad*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([

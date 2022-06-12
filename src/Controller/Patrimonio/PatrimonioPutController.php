@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\File\File;
 use \Symfony\Component\String\Slugger\SluggerInterface;
@@ -39,6 +40,7 @@ class PatrimonioPutController extends AbstractController
 
         $form = $this->createFormBuilder($patrimonio)
                 ->add("nombre", TextType::class, [
+                    'label' => 'Nombre*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -47,6 +49,7 @@ class PatrimonioPutController extends AbstractController
                     ]
                 ])
                 ->add("direccion", TextType::class, [
+                    'label' => 'Dirección*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -55,6 +58,7 @@ class PatrimonioPutController extends AbstractController
                     ]
                 ])
                 ->add("telefono", TelType::class, [
+                    'label' => 'Teléfono*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -62,9 +66,16 @@ class PatrimonioPutController extends AbstractController
                     ])
                     ]
                 ])
-                ->add("email", EmailType::class, ['required' => false])
-                ->add("web", TextType::class, ['required' => false])
+                ->add("email", EmailType::class, [
+                    'required' => false,
+                    'label' => 'Email'
+                    ])
+                ->add("web", UrlType::class, [
+                    'label' => 'Página web',
+                    'required' => false
+                    ])
                 ->add("horario", TextareaType::class, [
+                    'label' => 'Horario*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -73,6 +84,7 @@ class PatrimonioPutController extends AbstractController
                     ]
                 ])
                 ->add("descripcion", TextareaType::class, [
+                    'label' => 'Descripción*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -81,9 +93,12 @@ class PatrimonioPutController extends AbstractController
                     ]
                 ])
                 
-                ->add("precio", TextareaType::class, ['required' => false])
-                ->add('enviar', SubmitType::class)
+                ->add("precio", TextareaType::class, [
+                    'label' => 'Precio',
+                    'required' => false
+                    ])
                 ->add('tipo', EntityType::class, [
+                    'label' => 'HTipo*',
                     'required' => true,
                     'class' => TipoPatrimonio::class,
                     'choices' => $tipos, 
@@ -96,10 +111,12 @@ class PatrimonioPutController extends AbstractController
             ]
                 ])
                 ->add("imagen", FileType::class, [
+                   'label' => 'Imagen',
                    'data_class' => null,
                     'required' => false,
                     'mapped' => false
                 ])
+                ->add('enviar', SubmitType::class)
                 ->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

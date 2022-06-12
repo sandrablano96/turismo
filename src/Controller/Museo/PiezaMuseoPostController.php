@@ -31,6 +31,7 @@ class PiezaMuseoPostController extends AbstractController
         $pieza = new PiezaMuseo();
         $form = $this->createFormBuilder($pieza)
                 ->add("titulo", TextType:: class, [
+                    'label' => 'Título*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -39,6 +40,7 @@ class PiezaMuseoPostController extends AbstractController
                     ]
                 ])
                 ->add("descripcion", TextareaType:: class, [
+                    'label' => 'Descripción*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -47,6 +49,7 @@ class PiezaMuseoPostController extends AbstractController
                     ]
                 ])
                 ->add("epoca", TextType:: class, [
+                    'label' => 'Época*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -55,6 +58,7 @@ class PiezaMuseoPostController extends AbstractController
                     ]
                 ])
                 ->add("imagen", FileType::class, [
+                    'label' => 'Imagen*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([

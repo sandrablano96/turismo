@@ -32,11 +32,13 @@ class HGaleriaPutController extends AbstractController
         );
         $form = $this->createFormBuilder($galeria)
                 ->add("archivo", FileType:: class, [
+                    'label' => 'Imagen',
                     'data_class' => null,
                     'required' => false,
                     'mapped' => false
                 ])
                 ->add("alt", TextType:: class, [
+                    'label' => 'Titulo alternativo*',
                     'required' => false,
                     
                 ])

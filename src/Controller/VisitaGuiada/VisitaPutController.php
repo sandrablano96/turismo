@@ -16,7 +16,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
@@ -27,12 +26,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class VisitaPutController extends AbstractController
 {
     #[Route('/visita/put/{uid}', name: 'app_visita_put')]
-    public function put(Request $request, ManagerRegistry $doctrine, VisitaGuiada $visita, Session $sesion): Response
+    public function put(Request $request, ManagerRegistry $doctrine, VisitaGuiada $visita): Response
     {
         $guias = $doctrine->getRepository(GuiaTurismo::class)->findAll();
         $oficinas = $doctrine->getRepository(OficinaTurismo::class)-> findAll();
         $form = $this->createFormBuilder($visita)
                 ->add("titulo", TextType:: class, [
+                    'label' => 'Título*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -41,6 +41,7 @@ class VisitaPutController extends AbstractController
                     ]
                 ])
                 ->add("fecha", DateType:: class, [
+                    'label' => 'Fecha*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -49,6 +50,7 @@ class VisitaPutController extends AbstractController
                     ]
                 ])
                 ->add("descripcion", TextType:: class, [
+                    'label' => 'Descripción*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -57,6 +59,7 @@ class VisitaPutController extends AbstractController
                     ]
                 ])
                 ->add("precio", TextType:: class, [
+                    'label' => 'Precio',
                     "required" => false
                 ])
                 ->add('oficinaTurismo', EntityType::class, [

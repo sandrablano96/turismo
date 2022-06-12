@@ -35,6 +35,7 @@ class VisitaPostController extends AbstractController
         $visita = new VisitaGuiada();
         $form = $this->createFormBuilder($visita)
                 ->add("titulo", TextType:: class, [
+                    'label' => 'Título*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -43,6 +44,7 @@ class VisitaPostController extends AbstractController
                     ]
                 ])
                 ->add("fecha", DateType:: class, [
+                    'label' => 'Fecha*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -51,6 +53,7 @@ class VisitaPostController extends AbstractController
                     ]
                 ])
                 ->add("descripcion", TextType:: class, [
+                    'label' => 'Descripción*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -59,6 +62,7 @@ class VisitaPostController extends AbstractController
                     ]
                 ])
                 ->add("precio", TextType:: class, [
+                    'label' => 'Precio',
                     "required" => false
                 ])
                 ->add('oficinaTurismo', EntityType::class, [

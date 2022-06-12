@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
@@ -34,6 +35,7 @@ class PatrimonioPostController extends AbstractController
         $patrimonio = new Patrimonio();
          $form = $this->createFormBuilder($patrimonio)
                 ->add("nombre", TextType:: class, [
+                    'label' => 'Nombre*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -42,6 +44,7 @@ class PatrimonioPostController extends AbstractController
                     ]
                 ])
                 ->add("direccion", TextType:: class, [
+                    'label' => 'Dirección*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -50,6 +53,7 @@ class PatrimonioPostController extends AbstractController
                     ]
                 ])
                 ->add("telefono", TelType:: class, [
+                    'label' => 'Teléfono*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -57,9 +61,16 @@ class PatrimonioPostController extends AbstractController
                     ])
                     ]
                 ])
-                ->add("email", EmailType:: class, ['required' => false])
-                ->add("web", TextType:: class, ['required' => false])
+                ->add("email", EmailType:: class, [
+                    'required' => false, 
+                    'label' => 'Email',
+                    ])
+                ->add("web", UrlType:: class, [
+                    'required' => false,
+                    'label' => 'Página web'
+                    ])
                 ->add("horario", TextareaType:: class, [
+                    'label' => 'Horario*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -68,6 +79,7 @@ class PatrimonioPostController extends AbstractController
                     ]
                 ])
                 ->add("descripcion", TextareaType:: class, [
+                    'label' => 'Descripción*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -76,6 +88,7 @@ class PatrimonioPostController extends AbstractController
                     ]
                 ])
                 ->add("imagen", FileType:: class, [
+                    'label' => 'Imagen*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([

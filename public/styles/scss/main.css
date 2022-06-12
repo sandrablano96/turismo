@@ -6,6 +6,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;800&family=Montserrat:wght@300;400;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;800&family=Montserrat:wght@300;400;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;800&family=Montserrat:wght@300;400;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;800&family=Montserrat:wght@300;400;700;800&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -56,6 +57,48 @@ a {
 }
 a:hover {
   color: #55aacc;
+}
+
+/* Notificaciones */
+.messages > div {
+  margin: auto;
+  width: 50%;
+  padding: 1rem;
+  font-stretch: condensed;
+  background-color: rgba(242, 186, 82, 0.8);
+  border: 2px solid #F2BA52;
+  border-radius: 8px;
+  color: #000;
+  font-weight: 600;
+  -webkit-animation: append-animate 0.3s linear;
+          animation: append-animate 0.3s linear;
+}
+
+@-webkit-keyframes append-animate {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes append-animate {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+/* Tablas */
+table.table td, th {
+  max-width: 6rem;
+  word-wrap: break-word;
 }
 
 i {
@@ -209,6 +252,37 @@ a:hover {
   color: #55aacc;
 }
 
+/* Notificaciones */
+.messages > div {
+  margin: auto;
+  width: 50%;
+  padding: 1rem;
+  font-stretch: condensed;
+  background-color: rgba(242, 186, 82, 0.8);
+  border: 2px solid #F2BA52;
+  border-radius: 8px;
+  color: #000;
+  font-weight: 600;
+  -webkit-animation: append-animate 0.3s linear;
+          animation: append-animate 0.3s linear;
+}
+
+@keyframes append-animate {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+/* Tablas */
+table.table td, th {
+  max-width: 6rem;
+  word-wrap: break-word;
+}
+
 #header {
   background: #55aacc;
 }
@@ -288,6 +362,9 @@ ul .dropdown-menu a {
   font-size: 1.6rem;
   color: white;
 }
+ul .dropdown-menu a:active {
+  background-color: #55aacc;
+}
 
 /* Usuario */
 #user {
@@ -311,6 +388,7 @@ ul .dropdown-menu a {
 
 @media screen and (min-width: 992px) {
   ul .dropdown-menu {
+    text-align: start;
     background-color: white;
     border: 1px solid rgb(235, 235, 235);
   }
@@ -370,6 +448,37 @@ a:hover {
   color: #55aacc;
 }
 
+/* Notificaciones */
+.messages > div {
+  margin: auto;
+  width: 50%;
+  padding: 1rem;
+  font-stretch: condensed;
+  background-color: rgba(242, 186, 82, 0.8);
+  border: 2px solid #F2BA52;
+  border-radius: 8px;
+  color: #000;
+  font-weight: 600;
+  -webkit-animation: append-animate 0.3s linear;
+          animation: append-animate 0.3s linear;
+}
+
+@keyframes append-animate {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+/* Tablas */
+table.table td, th {
+  max-width: 6rem;
+  word-wrap: break-word;
+}
+
 #footer {
   height: 17rem;
   background-color: #192340;
@@ -390,9 +499,10 @@ main {
   min-height: calc(100vh - 19rem);
 }
 
-menu-container {
+.menu-container {
   padding-top: 2rem;
   padding-bottom: 2rem;
+  justify-content: space-evenly;
 }
 
 .menu-item:nth-of-type(1), .menu-item:nth-of-type(2), .menu-item:nth-of-type(3) {
@@ -515,6 +625,37 @@ a:hover {
   color: #55aacc;
 }
 
+/* Notificaciones */
+.messages > div {
+  margin: auto;
+  width: 50%;
+  padding: 1rem;
+  font-stretch: condensed;
+  background-color: rgba(242, 186, 82, 0.8);
+  border: 2px solid #F2BA52;
+  border-radius: 8px;
+  color: #000;
+  font-weight: 600;
+  -webkit-animation: append-animate 0.3s linear;
+          animation: append-animate 0.3s linear;
+}
+
+@keyframes append-animate {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+/* Tablas */
+table.table td, th {
+  max-width: 6rem;
+  word-wrap: break-word;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -565,6 +706,37 @@ a {
 }
 a:hover {
   color: #55aacc;
+}
+
+/* Notificaciones */
+.messages > div {
+  margin: auto;
+  width: 50%;
+  padding: 1rem;
+  font-stretch: condensed;
+  background-color: rgba(242, 186, 82, 0.8);
+  border: 2px solid #F2BA52;
+  border-radius: 8px;
+  color: #000;
+  font-weight: 600;
+  -webkit-animation: append-animate 0.3s linear;
+          animation: append-animate 0.3s linear;
+}
+
+@keyframes append-animate {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+/* Tablas */
+table.table td, th {
+  max-width: 6rem;
+  word-wrap: break-word;
 }
 
 #header {
@@ -646,6 +818,9 @@ ul .dropdown-menu a {
   font-size: 1.6rem;
   color: white;
 }
+ul .dropdown-menu a:active {
+  background-color: #55aacc;
+}
 
 /* Usuario */
 #user {
@@ -669,6 +844,7 @@ ul .dropdown-menu a {
 
 @media screen and (min-width: 992px) {
   ul .dropdown-menu {
+    text-align: start;
     background-color: white;
     border: 1px solid rgb(235, 235, 235);
   }
@@ -798,6 +974,7 @@ i {
   border-bottom: none;
 }
 .element-container .element-container__img img {
+  max-height: 30rem;
   border-radius: 8px;
   border-end-end-radius: 0;
   border-end-start-radius: 0;
@@ -826,6 +1003,10 @@ i {
   }
   .element-container .element-container__img img {
     border-radius: 0;
+  }
+
+  #all-visits .element-container .element-container__img img {
+    block-size: 25rem;
   }
 
   #search-header h2 {
@@ -910,6 +1091,37 @@ a:hover {
   color: #55aacc;
 }
 
+/* Notificaciones */
+.messages > div {
+  margin: auto;
+  width: 50%;
+  padding: 1rem;
+  font-stretch: condensed;
+  background-color: rgba(242, 186, 82, 0.8);
+  border: 2px solid #F2BA52;
+  border-radius: 8px;
+  color: #000;
+  font-weight: 600;
+  -webkit-animation: append-animate 0.3s linear;
+          animation: append-animate 0.3s linear;
+}
+
+@keyframes append-animate {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+/* Tablas */
+table.table td, th {
+  max-width: 6rem;
+  word-wrap: break-word;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -960,6 +1172,37 @@ a {
 }
 a:hover {
   color: #55aacc;
+}
+
+/* Notificaciones */
+.messages > div {
+  margin: auto;
+  width: 50%;
+  padding: 1rem;
+  font-stretch: condensed;
+  background-color: rgba(242, 186, 82, 0.8);
+  border: 2px solid #F2BA52;
+  border-radius: 8px;
+  color: #000;
+  font-weight: 600;
+  -webkit-animation: append-animate 0.3s linear;
+          animation: append-animate 0.3s linear;
+}
+
+@keyframes append-animate {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+/* Tablas */
+table.table td, th {
+  max-width: 6rem;
+  word-wrap: break-word;
 }
 
 #header {
@@ -1041,6 +1284,9 @@ ul .dropdown-menu a {
   font-size: 1.6rem;
   color: white;
 }
+ul .dropdown-menu a:active {
+  background-color: #55aacc;
+}
 
 /* Usuario */
 #user {
@@ -1064,6 +1310,7 @@ ul .dropdown-menu a {
 
 @media screen and (min-width: 992px) {
   ul .dropdown-menu {
+    text-align: start;
     background-color: white;
     border: 1px solid rgb(235, 235, 235);
   }
@@ -1244,10 +1491,10 @@ ul .dropdown-menu a {
 
 .cta {
   color: white;
-  height: 21rem;
+  height: 11rem;
   position: relative;
   z-index: 10;
-  top: 10rem;
+  top: 9rem;
   text-transform: uppercase;
   font-size: 1.6rem;
   font-weight: 700;
@@ -1285,7 +1532,8 @@ ul .dropdown-menu a {
   background-color: rgba(106, 211, 253, 0.1);
 }
 #monthly-product img {
-  width: 35rem;
+  max-width: 35rem;
+  max-height: 40rem;
 }
 
 * {
@@ -1340,17 +1588,49 @@ a:hover {
   color: #55aacc;
 }
 
-#museum {
-  background-color: rgba(106, 211, 253, 0.1);
+/* Notificaciones */
+.messages > div {
+  margin: auto;
+  width: 50%;
+  padding: 1rem;
+  font-stretch: condensed;
+  background-color: rgba(242, 186, 82, 0.8);
+  border: 2px solid #F2BA52;
+  border-radius: 8px;
+  color: #000;
+  font-weight: 600;
+  -webkit-animation: append-animate 0.3s linear;
+          animation: append-animate 0.3s linear;
 }
-#museum img {
-  width: 35rem;
+
+@keyframes append-animate {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+/* Tablas */
+table.table td, th {
+  max-width: 6rem;
+  word-wrap: break-word;
+}
+
+#item {
+  background-color: rgba(106, 211, 253, 0.1);
+  padding-inline: 15rem;
+  padding-block: 5rem;
+}
+#item img {
   top: 10rem;
   position: -webkit-sticky;
   position: sticky;
   text-decoration: none;
   width: 100%;
-  height: 21.5rem;
+  max-height: 30rem;
 }
 
 #info {
@@ -1471,11 +1751,11 @@ textarea.form-control {
   color: #F2BA52;
 }
 
-.card {
+.comment-card {
   max-height: 12rem;
   display: flex;
   justify-content: space-between;
-  padding-left: 1rem;
+  padding: 1rem;
   border: none;
   box-shadow: 2px 3px 3px 1px #e9ecef;
   border-radius: 4px;
@@ -1485,4 +1765,99 @@ textarea.form-control {
 .font-weight-bold {
   font-weight: 600;
   font-stretch: semi-condensed;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
+
+.form-control, .form-select, p {
+  font-size: 1.6rem;
+}
+
+.card {
+  font-size: 1.4rem;
+}
+
+.navbar-brand, h2 {
+  font-family: "Lexend Deca", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  font-size: 1.6rem;
+  color: #000;
+}
+a:hover {
+  color: #55aacc;
+}
+
+/* Notificaciones */
+.messages > div {
+  margin: auto;
+  width: 50%;
+  padding: 1rem;
+  font-stretch: condensed;
+  background-color: rgba(242, 186, 82, 0.8);
+  border: 2px solid #F2BA52;
+  border-radius: 8px;
+  color: #000;
+  font-weight: 600;
+  -webkit-animation: append-animate 0.3s linear;
+          animation: append-animate 0.3s linear;
+}
+
+@keyframes append-animate {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+/* Tablas */
+table.table td, th {
+  max-width: 6rem;
+  word-wrap: break-word;
+}
+
+#all-opinions {
+  background-color: rgba(242, 186, 82, 0.8);
+  padding: 3rem;
+  border-radius: 8px;
+}
+#all-opinions .card {
+  margin-bottom: 1rem;
+  max-height: -webkit-fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
 }/*# sourceMappingURL=main.css.map */

@@ -24,9 +24,6 @@ class Historia
     #[ORM\OneToMany(mappedBy: 'historia', targetEntity: HistoriaImagenes::class, orphanRemoval: true)]
     private $galeriaImagenes;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $imagen;
-
     public function __construct()
     {
         $this->galeriaImagenes = new ArrayCollection();
@@ -87,18 +84,6 @@ class Historia
                 $galeriaImagenes->setHistoria(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getImagen(): ?string
-    {
-        return $this->imagen;
-    }
-
-    public function setImagen(string $imagen): self
-    {
-        $this->imagen = $imagen;
 
         return $this;
     }

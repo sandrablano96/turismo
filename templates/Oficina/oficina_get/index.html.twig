@@ -249,7 +249,7 @@
             </div>
         </section>
         <section class=" row w-100 mt-5 m-0">
-            <div class="col-12 form_header mt-5 d-flex align-items-center justify-content-center" style="background-image: url('{{asset('/media/fachada_VxhcWlj.webp')}}')">
+            <div class="col-12 form_header mt-5 d-flex align-items-center justify-content-center" style="background-image: url('{{asset('/media/oficina/fachada_VxhcWlj.webp')}}')">
                 <h3 class="text-uppercase">Formulario de contacto</h3>
             </div>
             
@@ -257,14 +257,31 @@
                {{ include('Oficina/oficina_post/_consulta.html.twig') }}
                 <div id="loading" class="d-none d-flex col-12 justify-content-center align-items-center">
                     <img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px">
-                </div>
-                <div id="messages" class="col-8 m-auto">
-                    
-                    <p id="success" class="d-none">Se ha enviado correctamente<p>
-                    <p id="error" class="d-none">Ha habido un error. Inténtelo de nuevo<p>
-                </div>
+                </div>               
             </div>
         </section>
+
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="contactModalLabel">¡Hola!</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="messages" class="col-12 m-auto">
+                    <p id="success" class="d-none"><img src="{{asset('media/icons/check.gif')}}">Se ha enviado correctamente. Te contestaremos lo antes posible<p>
+                    <p id="error" class="d-none"><img src="{{asset('media/icons/error.gif')}}">Ha habido un error. Inténtelo de nuevo<p>
+                </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
     </main>
 
@@ -274,44 +291,5 @@
     {{ parent() }}
         <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-    <script>
-         $(document).ready(function () {
-
-            $('#contact-form').on('submit', function (e) {
-                e.preventDefault();
-                let form = $(e.target);
-                console.log(form);
-                
-                let url = Routing.generate('app_oficina_get', {uid: 'asda656'});
-                
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: $(form).serialize(),
-                    beforeSend: function () {
-                        $('#loading').removeClass('d-none');
-                    },
-                    success: function (response) {
-                        if (response.code == 200) {
-                            $('#loading').addClass('d-none');
-                            $('#success').removeClass('d-none');
-                            $(form).trigger('reset');
-                        }
-
-
-                    },
-                    complete: function () {
-                        $('#delete').addClass('d-none');
-                    },
-                    error: function () {
-                        $('#error').removeClass('d-none');
-                        $('#loading').addClass('d-none');
-                        $('#error').html('Ha sucedido un error. Inténtelo de nuevo');
-                    }
-
-                });
-            });
-        });
-        
-    </script>
+    <script src="{{ asset('js/Oficina/ContactScript.js') }}"> </script>
 {% endblock %}

@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\File;
@@ -33,6 +34,7 @@ class ProductoTipicoPutController extends AbstractController
         );
         $form = $this->createFormBuilder($producto)
                 ->add("nombre", TextType:: class, [
+                    'label' => 'Nombre*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -41,6 +43,7 @@ class ProductoTipicoPutController extends AbstractController
                     ]
                 ])
                 ->add("descripcion", TextareaType:: class, [
+                    'label' => 'Descripción*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -48,16 +51,18 @@ class ProductoTipicoPutController extends AbstractController
                     ])
                     ]
                 ])
-                ->add("receta", TextareaType:: class, [
+                ->add("receta", UrlType:: class, [
                     'required' => true,
+                    'label' => 'Link a la receta*',
                     'constraints' => [
                     new NotBlank([
-                        'message' => 'Introduzca una receta',
+                        'message' => 'Introduzca una receta'
                     ]), 
-                         'placeholder' => 'Link a la receta'
+                        
                     ]
                 ])
                 ->add("imagen", FileType:: class, [
+                    'label' => 'Imagen*',
                     'mapped' => false,
                     'required' => false,
                     'data_class' => null,

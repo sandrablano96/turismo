@@ -7,25 +7,28 @@
         <h2 class="text-center m-5">Historia de Ciudad Real</h2>
         <section class="row w-100 p-5 m-0 d-flex justify-content-md-center" id="history">
             <div class="col-12 col-lg-4 history__gallery p-4">
-                <a href="{{ asset('media/' ~ historia.imagen) }}" data-toggle="lightbox" data-gallery="hidden-images"
-                    data-title="{{historia.imagen}}" data-caption="{{historia.imagen}}" class="gallery_img d-block" style="background-image: url('{{asset("media/" ~ historia.imagen)}}')">
+                <a href="{{ asset('media/historia/' ~ historia.galeriaImagenes[0].archivo) }}" data-toggle="lightbox" data-gallery="hidden-images"
+                    data-title="{{historia.galeriaImagenes[0].alt}}" data-caption="{{historia.galeriaImagenes[0].alt}}" class="gallery_img d-block" style="background-image: url('{{asset("media/historia/" ~ historia.galeriaImagenes[0].archivo)}}')">
                     <div class="cta text-center">
                         <span>Ver galeria</span>
                     </div>
                 </a>
-                {% if  historia.galeriaImagenes is not empty%}
+                    {% if historia.galeriaImagenes |length > 1%}
                 <!-- elements not showing -->
 
-                {% for item in historia.galeriaImagenes %}
-                <div data-toggle="lightbox" data-gallery="hidden-images" data-src="{{ asset('media/' ~ item.archivo) }}" data-title="{{ item.alt }}" data-caption="{{item.alt}}"></div>
+                {% for item in historia.galeriaImagenes.slice(1, historia.galeriaImagenes |length) %}
+                <div data-toggle="lightbox" data-gallery="hidden-images" data-src="{{ asset('media/historia/' ~ item.archivo) }}" data-title="{{ item.alt }}" data-caption="{{item.alt}}"></div>
                 
                 {% endfor %}
                 {% endif %}
             </div>
 
             <div class="col-12 col-lg-8 ps-3 d-flex align-content-center flex-column">
-                
-                <p>{{ historia.historia }}<p>
+                {% set paragraphs = historia.historia | split('//') %}
+
+                {% for p in paragraphs %}
+                <p>{{ p }}<p>
+                {% endfor %}
             </div>
         </section>
         

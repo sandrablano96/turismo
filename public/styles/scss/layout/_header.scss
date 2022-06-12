@@ -81,6 +81,9 @@ ul .dropdown-menu{
 	a{	
 		font-size: 1.6rem;
 		color:$white;
+		&:active{
+			background-color: $primaryColor;
+		}
 	}
   }
 
@@ -111,10 +114,12 @@ ul .dropdown-menu{
 
 @media screen and (min-width:992px) {
 	ul .dropdown-menu{
+		text-align: start;
 		background-color: white;		
 		border: 1px solid rgb(235, 235, 235);
 		a{
 			color: black;
+			
 		}
 	  }
 }

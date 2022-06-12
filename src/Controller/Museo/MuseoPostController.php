@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -32,6 +33,7 @@ class MuseoPostController extends AbstractController
         $museo = new Museo();
         $form = $this->createFormBuilder($museo)
                 ->add("nombre", TextType:: class, [
+                    'label' => 'Nombre*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -40,14 +42,16 @@ class MuseoPostController extends AbstractController
                     ]
                 ])
                 ->add("descripcion", TextareaType:: class, [
+                    'label' => 'Descripción*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
-                        'message' => 'Introduzca la dirección',
+                        'message' => 'Introduzca la descripción',
                     ])
                     ]
                 ])
                 ->add("direccion", TextType:: class, [
+                    'label' => 'Dirección completa*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -56,24 +60,37 @@ class MuseoPostController extends AbstractController
                     ]
                 ])
                 ->add("telefono", TelType:: class, [
+                    'label' => 'Teléfono*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
-                        'message' => 'Introduzca el telefono',
+                        'message' => 'Introduzca el teléfono',
                     ])
                     ]
                 ])
                 ->add("email", EmailType:: class, [
+                    'label' => 'Email',
                     'required' => false,
                 ])
-                ->add("horario", TextareaType:: class)
+                ->add("horario", TextareaType:: class, [
+                    'label' => 'Horario*',
+                    'required' => true,
+                    'constraints' => [
+                    new NotBlank([
+                        'message' => 'Introduzca el horario',
+                    ])
+                    ]
+                ])
                 ->add("precio", TextareaType:: class, [
+                    'label' => 'Precio',
                     'required' => false
                 ])
-                ->add("web", TextType:: class, [
+                ->add("web", UrlType:: class, [
+                    'label' => 'Página web',
                     'required' => false
                 ])
                 ->add("imagen", FileType::class, [
+                    'label' => 'Imagen',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
