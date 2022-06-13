@@ -26,5 +26,27 @@
                     <td><a href="{{ path('app_oficina_put', {uid: oficina.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
                 <tr>
         </table>
+        <h3>Visitas programadas por la oficina</h3>
+        <a href="{{ path('app_visita_post', {uid: oficina.uid}) }}" class="btn btn-secondary-dark">Alta</a>
+        {% if oficina.visitasOrganizadas is empty %}
+            <p>La Oficina no ha programado ninguna visita</p>
+        {% else %}
+        <table class="table">
+            <th>Título del evento</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+            <th>Precio</th>
+            {% for item in oficina.visitasOrganizadas %}
+                <tr>
+                    <td>{{ item.titulo }}</td>
+                    <td>{{ item.descripcion }}</td>
+                    <td>{{ item.fecha | date("d-m-Y") }}</td>
+                    <td>{{ item.precio }}</td>
+                    <td><a href="{{ path('app_visita_put', {uid: item.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
+                    <td><a href="{{ path('app_visita_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>
+                <tr>
+            {% endfor %}
+        </table>
+        {% endif %}
     </main>
 {% endblock %}{# empty Twig template #}

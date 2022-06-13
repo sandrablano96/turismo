@@ -33,6 +33,7 @@ class PiezaMuseoPutController extends AbstractController
         );
         $form = $this->createFormBuilder($pieza)
                 ->add("titulo", TextType:: class, [
+                    'label' => 'Título*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -41,6 +42,7 @@ class PiezaMuseoPutController extends AbstractController
                     ]
                 ])
                 ->add("descripcion", TextareaType:: class, [
+                    'label' => 'Descripción*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -49,6 +51,7 @@ class PiezaMuseoPutController extends AbstractController
                     ]
                 ])
                 ->add("epoca", TextType:: class, [
+                    'label' => 'Época*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -57,6 +60,7 @@ class PiezaMuseoPutController extends AbstractController
                     ]
                 ])
                 ->add("imagen", FileType::class, [
+                    'label' => 'Imagen',
                     'data_class' => null,
                     'required' => false,
                     'mapped' => false
@@ -91,8 +95,7 @@ class PiezaMuseoPutController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($pieza);
             $entityManager->flush();
-            $this->get('session')->getFlashBag()->clear();
-            $this->get('session')->getFlashBag()->clear();
+        
             $this->addFlash("aviso","Pieza añadida con éxito");
 
             return $this->redirectToRoute('admin_museo_get', [

@@ -1,7 +1,7 @@
 {% for item in museos %}
                     <div class="element-container row m-5 d-flex" id="{{item.nombre}}">
                         <div class="element-container__img col-12 col-lg-4 p-0" >
-                            <img src="{{ asset('/media/') ~ item.imagen }}" class="element__img">
+                            <img src="{{ asset('/media/museos/') ~ item.imagen }}" class="element__img">
                         </div>
                         <div class="element-container__text col-12 col-lg-7 ps-4 py-3">
                             <div class="element-container__fav col-12 d-flex justify-content-end">

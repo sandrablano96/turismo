@@ -7,7 +7,7 @@
     background-color: rgba($color: $primaryColor, $alpha: .15);
     border-radius: 20px;
 
-    & button{
+    button{
       font-size: 2rem;
       color: $primaryColorDark;
 	  &:hover{
@@ -27,6 +27,7 @@
         border-bottom: none;
 
         img{
+          max-height: 30rem;
           border-radius: 8px;
           border-end-end-radius: 0;
           border-end-start-radius: 0;
@@ -56,8 +57,16 @@
           border: none;
           justify-content: end;
           img{
+            
             border-radius: 0;
           }
+      }
+    }
+    #all-visits{
+
+      .element-container .element-container__img img{
+        block-size: 25rem;
+
       }
     }
 

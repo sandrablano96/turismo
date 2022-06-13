@@ -27,14 +27,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class VisitaPostController extends AbstractController
 {
-    #[Route('/visita/post', name: 'app_visita_post')]
-    public function post(Request $request, ManagerRegistry $doctrine): Response
+    #[Route('{uid}/visitas/post', name: 'app_visita_post')]
+    public function post(Request $request, ManagerRegistry $doctrine, ?OficinaTurismo $oficina, ?GuiaTurismo $guia): Response
     {
         $guias = $doctrine->getRepository(GuiaTurismo::class)->findAll();
         $oficinas = $doctrine->getRepository(OficinaTurismo::class)-> findAll();
         $visita = new VisitaGuiada();
         $form = $this->createFormBuilder($visita)
                 ->add("titulo", TextType:: class, [
+                    'label' => 'Título*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -43,6 +44,7 @@ class VisitaPostController extends AbstractController
                     ]
                 ])
                 ->add("fecha", DateType:: class, [
+                    'label' => 'Fecha*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -51,6 +53,7 @@ class VisitaPostController extends AbstractController
                     ]
                 ])
                 ->add("descripcion", TextType:: class, [
+                    'label' => 'Descripción*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -59,6 +62,7 @@ class VisitaPostController extends AbstractController
                     ]
                 ])
                 ->add("precio", TextType:: class, [
+                    'label' => 'Precio',
                     "required" => false
                 ])
                 ->add('oficinaTurismo', EntityType::class, [
@@ -67,7 +71,8 @@ class VisitaPostController extends AbstractController
                     'choice_label' => 'localidad', 
                     'choice_value' => 'uid', 
                     'required' => false, 
-                    'placeholder' => 'Oficinas disponibles'
+                    'placeholder' => 'Oficinas disponibles',
+                    'data' => $oficina
                 ])
                 ->add('guiaTurismo', EntityType::class, [
                     'class' => GuiaTurismo::class,
@@ -75,7 +80,8 @@ class VisitaPostController extends AbstractController
                     'choice_label' => 'nombre', 
                     'choice_value' => 'uid', 
                     'required' => false, 
-                    'placeholder' => 'Guias disponibles'
+                    'placeholder' => 'Guias disponibles',
+                    'data' => $guia
                 ])
                 ->add('enviar', SubmitType::class)
                 ->getForm();
@@ -88,10 +94,11 @@ class VisitaPostController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($visita);
             $entityManager->flush();
-            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Visita guiada guardada con éxito");
-
-            return $this->redirectToRoute("admin_visitas_get");
+            if($visita->getGuiaTurismo() != null){
+                return $this->redirectToRoute("app_guia_visitas_get", ['uid' => $visita->getGuiaTurismo()->getUid()]);
+            }
+            return $this->redirectToRoute("admin_oficina_get", ['uid' => $visita->getOficinaTurismo()->getUid()]);
         } else{
             return $this->renderForm("Visita/visita_post/index.html.twig", ['formulario' => $form]);
         }

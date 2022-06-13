@@ -1,0 +1,22 @@
+@import "../base/base";
+#item {
+    background-color: rgba($primaryColorLight, 0.1);
+    padding-inline: 15rem;
+    padding-block: 5rem;
+    img {
+            top: 10rem;
+            position: -webkit-sticky;
+            position: sticky;
+            text-decoration: none;
+            width: 100%;
+            max-height: 30rem;
+    }
+}
+
+#info{
+    background-color: $secondaryColor;
+    font-size: 1.6rem;
+    span {
+        font-weight: 600;
+    }
+}

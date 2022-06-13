@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,6 +31,7 @@ class GuiaPostController extends AbstractController
         $guia = new GuiaTurismo();
         $form = $this->createFormBuilder($guia)
                 ->add("nombre", TextType:: class, [
+                    'label' => 'Nombre*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -38,6 +40,7 @@ class GuiaPostController extends AbstractController
                     ]
                 ])
                 ->add("telefono", TelType:: class, [
+                    'label' => 'Teléfono*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -45,9 +48,17 @@ class GuiaPostController extends AbstractController
                     ])
                     ]
                 ])
-                ->add("email", EmailType:: class)
-                ->add("paginaWeb", TextType:: class)
-                ->add("tipo", TextType:: class)
+                ->add("email", EmailType:: class, [
+                    'label' => 'Email',
+                ])
+                ->add("paginaWeb", UrlType:: class, [
+                    'label' => 'Página web',
+                ])
+                ->add("tipo", TextType:: class, [
+                    'required' => true,
+                    'label' => 'Tipo*',
+                    'placeholder' => 'Empresa / Particular'
+                ])
                 ->add('enviar', SubmitType::class)
                 ->getForm();
         $form->handleRequest($request);
@@ -58,7 +69,7 @@ class GuiaPostController extends AbstractController
             $entityManager = $doctrine->getManager();
                 $entityManager->persist($guia);
                 $entityManager->flush();
-                $this->get('session')->getFlashBag()->clear();
+         
                 $this->addFlash("aviso","Guia guardado con éxito");
 
             return $this->redirectToRoute("app_visita_post");

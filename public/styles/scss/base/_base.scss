@@ -49,6 +49,41 @@ h4{
 a {
     text-decoration: none;
     font-size: 1.6rem;
+    color: $black;
+
+    &:hover{
+        color: $primaryColor;
+    }
+}
+/* Notificaciones */
+.messages > div {
+    margin: auto;
+    width: 50%;
+    padding: 1rem;
+    font-stretch: condensed;
+    background-color: rgba($color: $secondaryColor, $alpha: .8);
+    border: 2px solid $secondaryColor;
+    border-radius: 8px;
+    color: $black;
+    font-weight: 600;
+    animation: append-animate .3s linear;
+
+}
+@keyframes append-animate {
+	from {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0%);
+		opacity: 1;
+	}
+}
+
+/* Tablas */
+table.table td, th{
+    max-width:6rem;
+    word-wrap:break-word;
 }
 
 

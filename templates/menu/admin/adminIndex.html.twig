@@ -6,15 +6,16 @@
     <main class="mt-5 mb-5">
         <section class="w-75 mx-auto mb-5">
             <h2 class="text-center m-5">Bienvenido</h2>
-            <a href="{{ path('admin_historia_get', {uid: 'asd5s'}) }}">Historia</a>
-            <a href="{{ path('admin_patrimonio_tipo_get', {type: 'natural'}) }}">Patrimonio natural</a>
-            <a href="{{ path('admin_patrimonio_tipo_get', {type: 'cultural'}) }}">Patrimonio cultural</a>
-            <a href="{{ path('admin_gastronomia_get', {uid: 'asd34'}) }}">Gastronomía y productos tipicos</a>
-            <a href="{{ path('admin_museos_get') }}">Museos y piezas destacadas</a>
-            <a href="{{ path('admin_eventos_get') }}">Eventos de ocio</a>
-            <a href="{{ path('admin_guias_get') }}">Guías turísticas</a>
-            <a href="{{ path('admin_visitas_get') }}">Visitas guiadas</a>
-            <a href="{{ path('admin_oficina_get', {uid: 'asda656'}) }}">Página de contacto</a>
+            <div id="admin_menu" class="row d-flex justify-content-evenly w-100">
+                <div class="admin-btn col-12 col-md-4"><a href="{{ path('admin_historia_get', {uid: 'asd5s'}) }}"><i class="fas fa-book-reader"></i> Historia</a></div>
+                <div class="admin-btn col-12 col-md-4"><a href="{{ path('admin_patrimonio_tipo_get', {type: 'natural'}) }}"><i class="fa-solid fa-tree"></i> Patrimonio natural</a></div>
+                <div class="admin-btn col-12 col-md-4"><a href="{{ path('admin_patrimonio_tipo_get', {type: 'cultural'}) }}"><i class="fa-solid fa-archway"></i> Patrimonio cultural</a></div>
+                <div class="admin-btn col-12 col-md-4"><a href="{{ path('admin_gastronomia_get', {uid: 'asd34'}) }}"><i class="fas fa-utensils"></i> Gastronomía y productos tipicos</a></div>
+                <div class="admin-btn col-12 col-md-4"><a href="{{ path('admin_museos_get') }}"><i class="fa-solid fa-landmark"></i> Museos y piezas destacadas</a></div>
+                <div class="admin-btn col-12 col-md-4"><a href="{{ path('admin_eventos_get') }}"><i class="fa-solid fa-calendar-day"></i> Eventos de ocio</a></div>
+                <div class="admin-btn col-12 col-md-4"><a href="{{ path('admin_guias_get') }}"><i class="fa-solid fa-person-chalkboard"></i> Guías turísticas</a></div>
+                <div class="admin-btn col-12 col-md-4"><a href="{{ path('admin_oficina_get', {uid: 'asda656'}) }}"><i class="fa-solid fa-circle-info"></i> Oficina de turismo y visitas</a></div>
+            </div>
         </section>
     </main>
 {% endblock %}

@@ -1,7 +1,8 @@
 #monthly-product {
     background-color: rgba($primaryColorLight, 0.1);
     img {
-        width: 35rem;
+        max-width: 35rem;
+        max-height: 40rem;
     }
 }
 

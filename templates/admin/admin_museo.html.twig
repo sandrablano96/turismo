@@ -37,7 +37,10 @@
                 <tr>
         </table>
         <h3>Piezas relevantes</h3>
-        <a href="{{ path('app_pieza_museo_post', {uid: museo.uid}) }}">Alta</a>
+        <a href="{{ path('app_pieza_museo_post', {uid: museo.uid}) }}"  class="btn btn-secondary-dark">Alta</a>
+        {% if museo.piezas is empty %}
+            <p>Todavía no ha añadido piezas al museo</p>
+        {% else %}
         <table class="table">
             <th>Nombre</th>
             <th>Descripción</th>
@@ -54,5 +57,6 @@
                 </tr>
             {% endfor %}
         </table>
+        {% endif %}
     </main>
 {% endblock %}

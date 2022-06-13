@@ -32,6 +32,7 @@ class VisitaPutController extends AbstractController
         $oficinas = $doctrine->getRepository(OficinaTurismo::class)-> findAll();
         $form = $this->createFormBuilder($visita)
                 ->add("titulo", TextType:: class, [
+                    'label' => 'Título*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -40,6 +41,7 @@ class VisitaPutController extends AbstractController
                     ]
                 ])
                 ->add("fecha", DateType:: class, [
+                    'label' => 'Fecha*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -48,6 +50,7 @@ class VisitaPutController extends AbstractController
                     ]
                 ])
                 ->add("descripcion", TextType:: class, [
+                    'label' => 'Descripción*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -56,6 +59,7 @@ class VisitaPutController extends AbstractController
                     ]
                 ])
                 ->add("precio", TextType:: class, [
+                    'label' => 'Precio',
                     "required" => false
                 ])
                 ->add('oficinaTurismo', EntityType::class, [
@@ -82,10 +86,12 @@ class VisitaPutController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($visita);
             $entityManager->flush();
-            $this->get('session')->getFlashBag()->clear();
             $this->addFlash("aviso","Visita guiada actualizada con éxito");
-
-            return $this->redirectToRoute("admin_visitas_get");
+    
+            if($visita->getGuiaTurismo() != null){
+                return $this->redirectToRoute("app_guia_visitas_get", ['uid' => $visita->getGuiaTurismo()->getUid()]);
+            }
+            return $this->redirectToRoute("admin_oficina_get", ['uid' => $visita->getOficinaTurismo()->getUid()]);
         } else{
             return $this->renderForm("Visita/visita_put/index.html.twig", ['formulario' => $form]);
         }

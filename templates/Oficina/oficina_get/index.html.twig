@@ -249,35 +249,47 @@
             </div>
         </section>
         <section class=" row w-100 mt-5 m-0">
-            <div class="col-12 form_header mt-5 d-flex align-items-center justify-content-center" style="background-image: url('{{asset('/media/fachada_VxhcWlj.webp')}}')">
+            <div class="col-12 form_header mt-5 d-flex align-items-center justify-content-center" style="background-image: url('{{asset('/media/oficina/fachada_VxhcWlj.webp')}}')">
                 <h3 class="text-uppercase">Formulario de contacto</h3>
             </div>
             
-            <div class="col-12 pb-3 pt-5 m-auto" id="contact-form">
-                {{ form_start(formulario, {'attr': {'class': 'w-50 m-auto'}}) }}
-                {{ form_errors(formulario) }}
-                    <div class="name">
-                        {{ form_row(formulario.nombre) }}
-                    </div>
-                    <div class="email">
-                        {{ form_row(formulario.email) }}
-                    </div>
-                    <div class="telephone">
-                        {{ form_row(formulario.telefono) }}
-                    </div>
-                    <div class="subject">
-                        {{ form_row(formulario.asunto) }}
-                    </div>
-                    <div class="message">
-                        {{ form_row(formulario.consulta) }}
-                    </div>
-                    <div class="submit">
-                        {{ form_row(formulario.enviar, {'attr': {'class': 'btn btn-secondary px-5'}}) }}
-                    </div>
-                {{form_end(formulario)}}
+            <div class="col-12 pb-3 pt-5 m-auto" id="contact-form__container">
+               {{ include('Oficina/oficina_post/_consulta.html.twig') }}
+                <div id="loading" class="d-none d-flex col-12 justify-content-center align-items-center">
+                    <img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px">
+                </div>               
             </div>
         </section>
 
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="contactModalLabel">¡Hola!</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="messages" class="col-12 m-auto">
+                    <p id="success" class="d-none"><img src="{{asset('media/icons/check.gif')}}">Se ha enviado correctamente. Te contestaremos lo antes posible<p>
+                    <p id="error" class="d-none"><img src="{{asset('media/icons/error.gif')}}">Ha habido un error. Inténtelo de nuevo<p>
+                </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
     </main>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+        <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script src="{{ asset('js/Oficina/ContactScript.js') }}"> </script>
 {% endblock %}

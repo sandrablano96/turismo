@@ -4,8 +4,8 @@
 
 {% block main %}
     <main class="w-75 mx-auto mt-5 mb-5">
-	<h2 class="text-center m-5">Datos de usuario</h2>
-        <div class="d-flex justify-content-center align-items-center row w-50 m-auto">
+	<h3 class="text-center m-5">Datos de usuario</h3>
+        <div class="d-flex justify-content-center align-items-center row w-50 m-auto mb-5">
             <div class="col-12 col-md-6 d-flex justify-content-end align-items-center pe-4 mb-3">
                 <i class="fa-solid fa-address-card" style="font-size: 4rem"></i>
             </div>
@@ -16,11 +16,14 @@
             </div>
         </div>
             <div class="row d-flex justify-content-center align-items-center" id="all-opinions">
+            <h4>Mis comentarios</h4>
                 {% if usuario.opiniones is not empty %}
                 {% for item in usuario.opiniones %}
-                    <div>
-                        <h3>{{ item.opiniones.visitaGuiada.nombre }}</h3>
-                        <p> {{ item.opiniones }} </p>
+                    <div class="comment-card">
+                        <h3>{{ item.visitaGuiada.titulo }}</h3>
+                        <p> {{ item.opinion }} </p>
+                        <p>Opinón publicada el {{item.fecha |date('d-m-Y')}}  </p>
+                        <a href="{{ path('app_opiniones_delete', {uid:item.uid}) }}" class="btn btn-transparent btn-delete"><i class="fa-solid fa-circle-minus"></i></button>
                     </div>
                 {% endfor %}
                 {% else %}

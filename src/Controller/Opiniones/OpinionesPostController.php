@@ -32,12 +32,12 @@ class OpinionesPostController extends AbstractController {
                 $parametersAsArray = json_decode($content, true);
             }
             $opinion = $parametersAsArray['opinion'];
-
+            $opinionSanitized = filter_var($opinion, FILTER_SANITIZE_SPECIAL_CHARS);
             $opinionesDB = $doctrine->getManager()->getRepository(OpinionesVisitasGuiadas::class)->findOneByUserAndVisit($visita->getId(), $this->getUser()->getId());
 
             if (count($opinionesDB) == 0) {
                 $opinionVisita = new OpinionesVisitasGuiadas();
-                $opinionVisita->setOpinion($opinion);
+                $opinionVisita->setOpinion($opinionSanitized);
                 $opinionVisita->setVisitaGuiada($visita);
                 $opinionVisita->setUsuario($this->getUser());
                 $uuid = Uuid::uuid4();
@@ -47,7 +47,7 @@ class OpinionesPostController extends AbstractController {
                 $entityManager->persist($opinionVisita);
                 $entityManager->flush();
                 $response = array("code" => 200, "data" => array(
-                    "usuario" => $this->getUser()->getNombre(), "opinion" => $opinion, 
+                    "usuario" => $this->getUser()->getNombre(), "opinion" => $opinionSanitized, 
                     "uid" => $opinionVisita->getUid()));
             }
             else{

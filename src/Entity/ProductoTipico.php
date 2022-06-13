@@ -29,6 +29,9 @@ class ProductoTipico
     #[ORM\Column(type: 'string', length: 255)]
     private $imagen;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $receta;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class ProductoTipico
     public function setImagen(string $imagen): self
     {
         $this->imagen = $imagen;
+
+        return $this;
+    }
+
+    public function getReceta(): ?string
+    {
+        return $this->receta;
+    }
+
+    public function setReceta(string $receta): self
+    {
+        $this->receta = $receta;
 
         return $this;
     }

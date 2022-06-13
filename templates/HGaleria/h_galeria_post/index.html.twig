@@ -12,14 +12,15 @@
             </div>
 
         <div class="form-group">
-            {{ form_row(formulario.archivo, {'attr': {'class': 'form-control mb-2'}} ) }}
+            {{ form_row(formulario.archivo, {'attr': {'class': 'form-control mb-4'}} ) }}
 
         </div>
         <div class="form-group">
-            {{ form_row(formulario.alt, {'attr': {'class': 'form-control mb-2'}} ) }}
+            {{ form_row(formulario.alt, {'attr': {'class': 'form-control mb-4'}} ) }}
         </div>
         <div class="form-group">
-            {{ form_row(formulario.enviar, {'attr': {'class': 'form-control mb-2'}} ) }}
+            {{ form_row(formulario.enviar, {'attr': {'class': 'btn btn-primary w-100 my-4 m-auto'}} ) }}
+            <p>(*) Campo obligatorio </p>
         </div>
         {{ form_end(formulario) }}
     </main>

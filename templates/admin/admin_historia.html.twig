@@ -23,7 +23,10 @@
                 <tr>
         </table>
         <h3>Galería de imágenes</h3>
-        <a href="{{ path('app_h_galeria_post', {uid: historia.uid}) }}">Alta</a>
+        <a href="{{ path('app_h_galeria_post', {uid: historia.uid}) }}"  class="btn btn-secondary-dark">Alta</a>
+        {% if historia.galeriaImagenes is empty %}
+            <p>Todavía no ha añadido imágenes a la galería</p>
+        {% else %}
         <table class="table">
             <th>Archivo</th>
             <th>Alt</th>
@@ -36,5 +39,6 @@
                 </tr>
             {% endfor %}
         </table>
+        {% endif %}
     </main>
 {% endblock %}

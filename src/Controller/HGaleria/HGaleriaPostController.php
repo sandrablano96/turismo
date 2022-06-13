@@ -32,6 +32,7 @@ class HGaleriaPostController extends AbstractController
         $galeria = new HistoriaImagenes();
         $form = $this->createFormBuilder($galeria)
                 ->add("archivo", FileType:: class, [
+                    'label' => 'Imagen*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -40,6 +41,7 @@ class HGaleriaPostController extends AbstractController
                     ]
                 ])
                 ->add("alt", TextType:: class, [
+                    'label' => 'Titulo alternativo*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -76,7 +78,7 @@ class HGaleriaPostController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($galeria);
             $entityManager->flush();
-            $this->get('session')->getFlashBag()->clear();
+         
             $this->addFlash("aviso","Imagen añadida con éxito");
             
             return $this->redirectToRoute('admin_historia_get', [

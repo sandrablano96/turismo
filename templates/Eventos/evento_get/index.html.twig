@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ocio
+{% block title %}Ocio y eventos
 {% endblock %}
 
 {% block main %}
     <main class="w-75 mx-auto mt-5 mb-5">
-        <h2 class="text-center m-5">Ocio</h2>
+        <h2 class="text-center m-5">Ocio y eventos</h2>
         <section class="row d-flex" id="events">
             <div class="col-12 col-md-5 order-1 d-inline-flex justify-content-end h-50 mb-3">
                 {{form_start(formMeses, {'attr': {'id': 'form_meses', 'autocomplete':'off'}})}}
                 {{form_widget(formMeses.mes, { 'attr' : { 'class' : 'form-select' } })  }}
                 {{form_end(formMeses)}}
             </div>
-            <h3 class="month-chosen col-12 col-md-7 order-0">
+            <h3 class="col-12 col-md-7 order-0" id="month-chosen">
                 {% if mesEscogido is defined %}
                     {{ mesEscogido |capitalize}}
                 {% else %}
@@ -38,13 +38,13 @@
                     {% for item in eventos %}
                         <div class="col-12 col-md-6 col-lg-4 event d-flex align-content-stretch mb-2 justify-content-center">
                             <div class="card" style="width: 20rem;">
-                                <img src="{{asset('/public/media/') ~ item.imagen}}" class="card-img-bottom" alt="cartel del evento">
+                                <img src="{{asset('/media/eventos/') ~ item.imagen}}" class="card-img-bottom" alt="cartel del evento">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ item.titulo }}</h5>
                                     <p>{{ item.descripcion }}</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">{{ item.fecha | date("Y-m-d")  }}</li>
+                                    <li class="list-group-item">{{ item.fecha | date("d-m-Y")  }}</li>
                                     <li class="list-group-item">
                                         {% if item.precio is null and item.precio is empty %}
                                             Gratuita
@@ -90,58 +90,5 @@
     {{ parent() }}
     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-    <script>
-
-        $(document).ready(function () {
-            $('#form_tipos, #form_meses').on('change', function (e) {
-                event.preventDefault();
-                let types = [];
-                $(":checkbox").each(function () {
-                    var ischecked = $(this).is(":checked");
-                    if (ischecked) {
-                        types.push($(this).val());
-                    }
-                });
-                //console.log(types.length)
-                //console.log(types)
-                let monthSelected = $('#form_mes').children("option:selected").val();
-                console.log(monthSelected);
-
-                let url = Routing.generate('app_eventos_type_get');
-
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    dataType: 'JSON',
-                    data: JSON.stringify({month: monthSelected, types: types}),
-                    beforeSend: function () {
-                        $('#all-events').remove();
-                        $('#loading').removeClass('d-none');
-                        $('#no-results').addClass('d-none');
-                    },
-                    success: function (response) {
-
-                        $('#loading').addClass('d-none');
-                        if (response.response == "") {
-                            $('#no-results').removeClass('d-none');
-                        } else {
-                            $('#search-results').html(response.response);
-                            $('#search-results').removeClass('d-none');
-                            $('#no-results').addClass('d-none');
-                            
-                        }
-
-                    },
-                    complete: function () {
-                        $('#loading').addClass('d-none');
-                    },
-                    error: function () {
-                        $('#error').removeClass('d-none');
-                    }
-
-                });
-            });
-        });
-
-    </script>
+    <script src="{{ asset('js/Eventos/EventsScript.js') }}"></script>
 {% endblock %}

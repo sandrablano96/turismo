@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
@@ -31,6 +32,7 @@ class ProductoTipicoPostController extends AbstractController
        $producto = new ProductoTipico();
         $form = $this->createFormBuilder($producto)
                 ->add("nombre", TextType:: class, [
+                    'label' => 'Nombre*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -39,6 +41,7 @@ class ProductoTipicoPostController extends AbstractController
                     ]
                 ])
                 ->add("descripcion", TextareaType:: class, [
+                    'label' => 'Descripción*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -46,7 +49,18 @@ class ProductoTipicoPostController extends AbstractController
                     ])
                     ]
                 ])
+                ->add("receta", UrlType:: class, [
+                     'label' => 'Link a la receta*',
+                    'required' => true,
+                    'constraints' => [
+                    new NotBlank([
+                        'message' => 'Introduzca una receta'
+                    ]), 
+                       
+                    ]
+                ])
                 ->add("imagen", FileType:: class, [
+                    'label' => 'Imagen*',
                     'required' => true,
                     'constraints' => [
                     new NotBlank([
@@ -84,7 +98,7 @@ class ProductoTipicoPostController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($producto);
             $entityManager->flush();
-            $this->get('session')->getFlashBag()->clear();
+     
             $this->addFlash("aviso","Producto añadido con éxito");
             
             return $this->redirectToRoute('admin_gastronomia_get', [

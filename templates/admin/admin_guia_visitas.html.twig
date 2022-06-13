@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %} Gestión de visitas guiadas {% endblock %}
+{% block main %}
+    
+    <main class="w-75 mx-auto mt-5 mb-5">
+        
+        <h2>Gestión de visitas guiadas de {{ guia.nombre }}</h2>
+        <div class="messages">
+            {% for message in app.flashes('aviso') %}
+                 <div class="flash-notice">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        <a href="{{ path('app_visita_post', {uid: guia.uid}) }}" class="btn btn-secondary-dark">Alta</a>
+        {% if guia.visitasOrganizadas is empty %}
+            <p>Todavía no ha añadido visitas </p>
+        {% else %}
+        <table class="table">
+            <th>Título del evento</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+            <th>Precio</th>
+            {% for item in guia.visitasOrganizadas %}
+                <tr>
+                    <td>{{ item.titulo }}</td>
+                    <td>{{ item.descripcion }}</td>
+                    <td>{{ item.fecha | date("d-m-Y") }}</td>
+                    <td>{{ item.precio }}</td>
+                    <td><a href="{{ path('app_visita_put', {uid: item.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
+                    <td><a href="{{ path('app_visita_delete', {uid: item.uid}) }}"><i class="fa-solid fa-circle-minus"></i></a></td>
+                <tr>
+            {% endfor %}
+            
+        </table>
+        {% endif %}
+    </main>
+{% endblock %}{# empty Twig template #}

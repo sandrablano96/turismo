@@ -17,7 +17,7 @@
                         <div class="element-container__text col-12 col-lg-7 ps-4 py-3">
                             <h3>{{ item.titulo }}</h3>
                             <p>{{ item.descripcion }}
-                            <p> {{ item.fecha |  date("Y-m-d")  }}
+                            <p> {{ item.fecha |  date("d-m-Y")  }}
                             
                             <p> 
                             {% if item.precio is not null %} 

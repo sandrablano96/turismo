@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Contacto;
+use App\Entity\Consulta;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -18,14 +18,14 @@ class ContactoRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Contacto::class);
+        parent::__construct($registry, Consulta::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Contacto $entity, bool $flush = true): void
+    public function add(Consulta $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class ContactoRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Contacto $entity, bool $flush = true): void
+    public function remove(Consulta $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {

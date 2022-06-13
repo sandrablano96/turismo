@@ -8,13 +8,13 @@
         <section id="monthly-product" class="row w-100 p-5 m-0 d-flex justify-content-md-center">
             <div class="row w-75 m-auto">
                 <div class="col-12 col-xl-4 p-4 d-flex justify-content-center">
-                    <img src="{{asset('/media/') ~ gastronomia.productoMes.imagen}}">
+                    <img src="{{asset('/media/gastronomia/') ~ gastronomia.productoMes.imagen}}">
                 </div>
                 <div class="col-12 col-xl-8 ps-3 d-flex align-content-center flex-column">
                     <h3>{{ gastronomia.productoMes.nombre }}</h3>
                     <p>{{ gastronomia.productoMes.descripcion }}</p>
                     <div class="see-more d-flex justify-content-center align-content-end mt-5">
-                        <button class="col-12 col-md-4 btn btn-secondary">Ver receta</button>
+                        <a href="{{ gastronomia.productoMes.receta }}" class="col-12 col-md-4 btn btn-secondary">Ver receta</a>
                     </div>
                 </div>
             </div>

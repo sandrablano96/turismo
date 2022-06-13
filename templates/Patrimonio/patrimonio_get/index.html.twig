@@ -7,77 +7,8 @@
     {{ parent() }}
     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-    <script>
-        $(document).ready(function () {
-            $("#advancedButton").on("click", function () {
-                console.log("click");
-                $("#formFiltros").parent().toggleClass("d-none");
-            });
-        });
-
-        $(document).ready(function () {
-            $('#formFiltros').on("keyup", e => {
-                if (e.key === "Escape")
-                    e.target.value = ""
-
-                $(".element-container").each(function () {
-                    $(this).attr('id').toLowerCase().includes(e.target.value.toLowerCase())
-                            ? $(this).removeClass("d-none")
-                            : $(this).addClass("d-none")
-                })
-                if($(".element-container").children(':visible').length == 0){
-                    $("#no-results").removeClass('d-none');
-                }else{
-                    $("#no-results").addClass('d-none');
-                }
-
-            })
-            
-        })
-        
-        $(document).ready(function () {
-            $('#form_ordenar').on('change', function (e) {
-                event.preventDefault();
-                let order = $('#form_order').children("option:selected").val();
-                console.log(order);
-
-                let url = Routing.generate('app_patrimonio_ordered_get');
-
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    dataType: 'JSON',
-                    data: JSON.stringify({orden: order}),
-                    beforeSend: function () {
-                        $('#all-heritage').remove();
-                        $('#loading').removeClass('d-none');
-                    },
-                    success: function (response) {
-
-                        $('#loading').addClass('d-none');
-                        if (response.response == "") {
-                            $('#no-results').removeClass('d-none');
-                        } else {
-                            $('#search-results').html(response.response);
-                            $('#search-results').removeClass('d-none');
-                            $('#no-results').addClass('d-none');
-                            
-                        }
-
-                    },
-                    complete: function () {
-                        $('#loading').addClass('d-none');
-                    },
-                    error: function () {
-                        $('#error').removeClass('d-none');
-                    }
-
-                });
-                
-            });
-
-        });
-    </script>
+    <script src="{{ asset('js/Common/Common.js') }}"></script>
+    <script src="{{ asset('js/Patrimonio/HeritageScript.js') }}"></script>
 {% endblock %}
 {% block main %}
     <main class="w-75 mx-auto mt-5 mb-5">
@@ -87,7 +18,7 @@
                 {{form_widget(formOrder.order, { 'attr' : { 'class' : 'form-select' } })  }}
                 {{form_end(formOrder)}}
             </div>
-            <h2 class="text-center col-12 col-md-9 order-0 m-auto mb-3">Listado de búsqueda</h2>
+            <h2 class="text-center col-12 col-md-9 order-0 m-auto mb-3">Patrimonio {{ tipo }}</h2>
         </section>
         <section class="row d-flex">
             <button class="col-12 col-lg-3 mx-auto btn btn-sm btn-secondary-dark mb-3 align-self-center" id="advancedButton">Búsqueda avanzada</button>
@@ -107,7 +38,7 @@
                 {% for item in arrayPatrimonio %}
                     <div class="element-container row m-5 d-flex" id='{{item.nombre}}'>
                         <div class="element-container__img col-12 col-lg-4 p-0">
-                            <img src="{{ asset('/media/') ~ item.imagen }}" class="element__img">
+                            <img src="{{ asset('/media/patrimonio/') ~ item.imagen }}" class="element__img">
                         </div>
                         <div class="element-container__text col-12 col-lg-7 ps-4 py-3">
                             <div class="element-container__fav col-12 d-flex justify-content-end">
@@ -119,7 +50,7 @@
                                 {% else %}
                                      <img src="{{ asset('/media/icons/naturaleza.ico') }}" width="30px"></h3>
                                 {% endif %}    
-                            <p>{{ item.descripcion }} </p>
+                                <p>{{ item.descripcion | u.truncate(200) }}... </p>
                             <div class="see-more d-flex justify-content-center align-items-center mt-5">
                                 <a href="{{ path('app_patrimonio_get', {uid : item.uid}) }}" class="col-12 col-lg-4 btn btn-secondary align-self-center">Ver más</a>
                             </div>

@@ -1,0 +1,10 @@
+@import "../base/base";
+#all-opinions{
+    background-color: rgba($secondaryColor, 0.8);
+    padding: 3rem;
+    border-radius: 8px;
+    .card{
+        margin-bottom: 1rem;
+        max-height: fit-content;
+    }
+}

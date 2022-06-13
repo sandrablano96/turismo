@@ -12,7 +12,10 @@
                 </div>
             {% endfor %}
         </div>
-        <a href="{{ path('app_patrimonio_post', {type: tipo }) }}" class="btn btn-primary">Alta</a>
+        <a href="{{ path('app_patrimonio_post', {type: tipo }) }}"  class="btn btn-secondary-dark">Alta</a>
+        {% if patrimonio is empty %}
+            <p>Todavía no ha añadido ningún recurso patrimonial</p>
+        {% else %}
         <table class="table">
             <th>Tipo</th>
             <th>Nombre</th>
@@ -41,5 +44,6 @@
             {% endfor %}
             
         </table>
+            {% endif %}
     </main>
 {% endblock %}
