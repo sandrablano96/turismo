@@ -5,7 +5,7 @@
                 let form = $(e.target);
                 console.log(form);
                 
-                let url = Routing.generate('app_oficina_get', {uid: 'asda656'});
+                let url = Routing.generate('app_oficina_get', {uid: 'aaf165e2-ed80-4e3f-b8ce-3b4f9488c4ea'});
                 
                 $.ajax({
                     type: 'POST',
