@@ -31,7 +31,6 @@ class PatrimonioPostController extends AbstractController
     #[Route('/patrimonio/{type}/post', name: 'app_patrimonio_post')]
     public function post(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger, String $type): Response
     {
-        $tipos = $doctrine->getRepository(TipoPatrimonio::class)->findAll();
         $patrimonio = new Patrimonio();
          $form = $this->createFormBuilder($patrimonio)
                 ->add("nombre", TextType:: class, [
@@ -127,7 +126,7 @@ class PatrimonioPostController extends AbstractController
                 }
                 $patrimonio->setImagen($newFilename);
             }    
-
+            
             $entityManager = $doctrine->getManager();
                 $entityManager->persist($patrimonio);
                 $entityManager->flush();

@@ -15,10 +15,8 @@
         </div>
         <table class="table">
             <th>Historia</th>
-            <th>Imagen principal</th>
                 <tr>
                     <td>{{ historia.historia }}</td>
-                    <td><img src="{{ asset('media/historia/') ~ historia.imagen }}" style="width:50px"></td>
                     <td><a href="{{ path('app_historia_put', {uid: historia.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
                 <tr>
         </table>

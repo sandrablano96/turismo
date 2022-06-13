@@ -30,7 +30,7 @@ class Museo
     #[ORM\OneToMany(mappedBy: 'museo', targetEntity: PiezaMuseo::class, orphanRemoval: true)]
     private $piezas;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 36)]
     private $uid;
 
     #[ORM\Column(type: 'string', length: 200, nullable: true)]

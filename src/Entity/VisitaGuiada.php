@@ -33,7 +33,7 @@ class VisitaGuiada
     #[ORM\ManyToOne(targetEntity: GuiaTurismo::class, inversedBy: 'visitasOrganizadas')]
     private $guiaTurismo;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 36)]
     private $uid;
 
     #[ORM\OneToMany(mappedBy: 'visitaGuiada', targetEntity: OpinionesVisitasGuiadas::class, orphanRemoval: true)]

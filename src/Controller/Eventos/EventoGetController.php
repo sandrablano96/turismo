@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class EventoGetController extends AbstractController {
 
@@ -82,6 +83,7 @@ class EventoGetController extends AbstractController {
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/eventos", name="admin_eventos_get")
      * @return Response
      */

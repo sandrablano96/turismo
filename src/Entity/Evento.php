@@ -29,7 +29,7 @@ class Evento
     #[ORM\Column(type: 'string', length: 100)]
     private $tipo_evento;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 36)]
     private $uid;
 
     #[ORM\Column(type: 'string', length: 255)]

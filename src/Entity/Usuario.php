@@ -37,7 +37,7 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 150)]
     private $apellidos;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 36)]
     private $uid;
 
     #[ORM\OneToMany(mappedBy: 'usuario', targetEntity: OpinionesVisitasGuiadas::class, orphanRemoval: true)]

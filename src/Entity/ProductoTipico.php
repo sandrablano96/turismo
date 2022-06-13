@@ -23,7 +23,7 @@ class ProductoTipico
     #[ORM\JoinColumn(nullable: false)]
     private $gastronomia;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 36)]
     private $uid;
 
     #[ORM\Column(type: 'string', length: 255)]

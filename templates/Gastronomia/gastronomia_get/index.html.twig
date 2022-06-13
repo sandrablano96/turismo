@@ -5,6 +5,14 @@
 {% block main %}
     <main class="mt-5 mb-5">
         <h2 class="text-center m-5">Gastronomia</h2>
+        <section id="description" class="row w-75 p-5 m-0 d-flex justify-content-md-center m-auto">
+           {% set paragraphs = gastronomia.descripcion | split('//') %}
+
+                {% for p in paragraphs %}
+                <p>{{ p }}<p>
+                {% endfor %}
+        </section>
+        {% if gastronomia.productoMes is not null %}
         <section id="monthly-product" class="row w-100 p-5 m-0 d-flex justify-content-md-center">
             <div class="row w-75 m-auto">
                 <div class="col-12 col-xl-4 p-4 d-flex justify-content-center">
@@ -19,9 +27,14 @@
                 </div>
             </div>
         </section>
+        {% endif %}
         <section id="typical_products"class="w-75 mx-auto mt-5 mb-5">
             <h3 class="mb-3">Productos típicos de la zona</h3>
+            {% if gastronomia.productosTipicos is empty %}
+                    <p>Todavía no hay productos típicos </p>
+                {% else %}
             <div class="row order-last m-auto w-75 list d-flex justify-content-center">
+                
                 {% for item in gastronomia.productosTipicos %}
                     <div class="col-12 col-md-6 col-lg-4 event d-flex align-content-stretch  mb-2">
                         <div class="card" style="width: 20rem;">
@@ -33,6 +46,7 @@
                         </div>
                     </div>
                 {% endfor %}
+                {% endif %}
             </div>
         </section>
     </main>

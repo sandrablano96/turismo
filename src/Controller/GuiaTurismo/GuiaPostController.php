@@ -57,7 +57,9 @@ class GuiaPostController extends AbstractController
                 ->add("tipo", TextType:: class, [
                     'required' => true,
                     'label' => 'Tipo*',
-                    'placeholder' => 'Empresa / Particular'
+                    'attr' => array(
+                    'placeholder' => 'Particular/Empresa'
+      )
                 ])
                 ->add('enviar', SubmitType::class)
                 ->getForm();

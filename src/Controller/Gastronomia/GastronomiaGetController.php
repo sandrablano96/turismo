@@ -7,6 +7,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class GastronomiaGetController extends AbstractController
 {
@@ -19,6 +20,7 @@ class GastronomiaGetController extends AbstractController
     }
     
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/gastronomía/{uid}", name="admin_gastronomia_get")
      */
     public function get(Gastronomia $gastronomy): Response

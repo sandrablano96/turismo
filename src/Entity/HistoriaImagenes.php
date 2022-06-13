@@ -13,7 +13,7 @@ class HistoriaImagenes
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 36)]
     private $uid;
 
     #[ORM\ManyToOne(targetEntity: Historia::class, inversedBy: 'galeriaImagenes')]

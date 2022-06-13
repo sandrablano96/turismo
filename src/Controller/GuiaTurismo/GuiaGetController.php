@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class GuiaGetController extends AbstractController
 {
@@ -33,6 +34,7 @@ class GuiaGetController extends AbstractController
     }
     
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/guias", name="admin_guias_get")
      * @return Response
      */

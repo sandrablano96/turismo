@@ -7,6 +7,7 @@ use App\Entity\Historia;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use \Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HistoriaGetController extends AbstractController
@@ -20,6 +21,7 @@ class HistoriaGetController extends AbstractController
     }
     
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/historia/{uid}", name="admin_historia_get")
      */
     public function getHistoryData(Historia $historia): Response

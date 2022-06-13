@@ -33,7 +33,7 @@ class GuiaTurismo
     #[ORM\OneToMany(mappedBy: 'guiaTurismo', targetEntity: VisitaGuiada::class)]
     private $visitasOrganizadas;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 36)]
     private $uid;
 
     public function __construct()

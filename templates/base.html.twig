@@ -68,7 +68,7 @@
                                 <a class="nav-link {%if route_name == 'app_main_menu'%} active {%endif%}" href="{{ path('app_main_menu') }}">Inicio</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {%if route_name == 'app_historia_get'%} active {%endif%}" href="{{path('app_historia_get', {uid: 'asd5s'})}}">Historia</a>
+                                <a class="nav-link {%if route_name == 'app_historia_get'%} active {%endif%}" href="{{path('app_historia_get', {uid: 'c53169fa-e8ac-4bf4-8d21-0ef73678b489'})}}">Historia</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle {%if route_name == 'app_see_menu'%} active {%endif%}" href="{{ path("app_see_menu") }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -83,20 +83,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link {%if route_name == 'app_gastronomía_get'%} active {%endif%} dropdown-toggle" href="{{ path("app_gastronomia_get", {uid: 'asd34'}) }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                <a class="nav-link {%if route_name == 'app_gastronomía_get'%} active {%endif%} dropdown-toggle" href="{{ path("app_gastronomia_get", {uid: '82248df0-b2ec-4a3d-a4b2-655b9e8f7af9'}) }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                    aria-expanded="false">
                                     Gastronomía
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="{{ path("app_gastronomia_get", {uid: 'asd34'}) }}">Gastronomía de la zona</a></li>
-                                    <li><a class="dropdown-item" href="{{ path("app_gastronomia_get", {uid: 'asd34'}) }}#typical_products">Productos típicos</a></li>
+                                    <li><a class="dropdown-item" href="{{ path("app_gastronomia_get", {uid: '82248df0-b2ec-4a3d-a4b2-655b9e8f7af9'}) }}">Gastronomía de la zona</a></li>
+                                    <li><a class="dropdown-item" href="{{ path("app_gastronomia_get", {uid: '82248df0-b2ec-4a3d-a4b2-655b9e8f7af9'}) }}#typical_products">Productos típicos</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {%if route_name == 'app_eventos_get'%} active {%endif%}" href="{{path ("app_eventos_get")}}">Ocio</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {%if route_name == 'app_oficina_get'%} active {%endif%}" href="{{ path("app_oficina_get", {uid: 'asda656'}) }}">Contacto</a>
+                                <a class="nav-link {%if route_name == 'app_oficina_get'%} active {%endif%}" href="{{ path("app_oficina_get", {uid: 'aaf165e2-ed80-4e3f-b8ce-3b4f9488c4ea'}) }}">Contacto</a>
                             </li>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <li class="nav-item">
@@ -110,7 +110,7 @@
                         <div class="d-flex gap-3">
                             {% if app.user is not null %}
                                 <a href="{{ path('app_usuario_get', {uid:app.user.uid}) }}" class="d-flex flex-row gap-2 align-items-center" id="user"><i class="fa-solid fa-house-user"></i></a>
-                                <a href="{{ path('app_logout') }}" class="btn btn-outline-primary d-flex flex-row gap-2 align-items-center"><i class="fa-solid fa-user-large" style="font-size: 2rem"></i><span
+                                <a href="{{ path('app_logout') }}" class="btn btn-outline-primary d-flex flex-row gap-2 align-items-center"><i class="fa-solid fa-arrow-right-from-bracket" style="font-size: 2rem"></i><span
                                         class="d-none d-lg-inline"> LOGOUT </span></a>
 
                             {% else %}
@@ -133,37 +133,27 @@
                 <div class="col-12 col-md-4 p-0 m-0">
                     <h4>Navegar</h4>
                     <ul class="list-unstyled">
-                        <li><a href="">Historia</a></li>
-                        <li><a href="">Qué visitar</a></li>
-                        <li><a href="">Gastronomía</a></li>
-                        <li><a href="">Ocio</a></li>
-                        <li><a href="">Cómo llegar</a></li>
-                        <li><a href="">Contacto</a></li>
+                        <li><a href="{{path('app_historia_get', {uid: 'c53169fa-e8ac-4bf4-8d21-0ef73678b489'})}}">Historia</a></li>
+                        <li><a href="{{ path("app_see_menu") }}">Qué visitar</a></li>
+                        <li><a href="{{ path("app_gastronomia_get", {uid: '82248df0-b2ec-4a3d-a4b2-655b9e8f7af9'}) }}">Gastronomía</a></li>
+                        <li><a href="{{path ("app_eventos_get")}}">Ocio</a></li>
+                        <li><a href="{{ path("app_oficina_get", {uid: 'aaf165e2-ed80-4e3f-b8ce-3b4f9488c4ea'}) }}">Cómo llegar</a></li>
+                        
                     </ul>
                 </div>
                 <div class="col-12 col-md-4 p-0 m-0">
                     <h4>Contacto</h4>
-                    <p><i class="fa-solid fa-phone"></i> 111-111-111</p>
-                    <p> <i class="fa-solid fa-at"></i> turismoenciudadreal@gmail.com</p>
+                    <p><i class="fa-solid fa-phone"></i>926 21 64 86</p>
+                    <p> <i class="fa-solid fa-at"></i> turismo@ciudadreal.es</p>
                     <p> <i class="fa-solid fa-map-location"></i> Plaza Mayor, 1</p>
                 </div>
                 <div class="col-12 col-md-4 p-0 m-0">
                     <h4>Síguenos</h4>
                     <p>
-                        <i class="fa-brands fa-instagram" style="font-size: 1.4rem;"></i>
-                        <i class="fa-brands fa-facebook-f" style="font-size: 1.4rem;"></i>
+                        <a href="https://www.instagram.com/turismociudadreal/?hl=es"><i class="fa-brands fa-instagram" style="font-size: 1.4rem;"></i></a>
+                        <a href="https://www.facebook.com/ciudad.turismo/"><i class="fa-brands fa-facebook-f" style="font-size: 1.4rem;"></i></a>
                     </p>
                 </div>
-                {% block credits %}
-                    <a href="https://www.flaticon.es/iconos-gratis/estrella" title="estrella iconos" class="m-0 p-0 d-none">Estrella
-                        iconos creados por Freepik - Flaticon</a>
-                    <a href="https://www.flaticon.com/free-icons/phone" title="phone icons" class="m-0 p-0 d-none">Phone icons created
-                        by Freepik - Flaticon</a>
-                    <a href="https://www.flaticon.com/free-icons/home-office" title="home office icons" class="m-0 p-0 d-none">Home
-                        office icons created by Freepik - Flaticon</a>
-                    <a href="https://www.flaticon.com/free-icons/email" title="email icons" class="m-0 p-0 d-none">Email icons created
-                        by justicon - Flaticon</a>
-                    {% endblock %}
             </div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.0/dist/index.bundle.min.js"></script>

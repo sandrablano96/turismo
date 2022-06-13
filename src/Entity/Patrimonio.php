@@ -31,7 +31,7 @@ class Patrimonio
     #[ORM\Column(type: 'string', length: 255)]
     private $horario;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 36)]
     private $uid;
 
     #[ORM\ManyToOne(targetEntity: TipoPatrimonio::class, inversedBy: 'listado_patrimonio')]

@@ -35,6 +35,9 @@
 
         <section>
             <div class="col-12 mb-3 order-2 list" id="all-heritage">
+                {% if arrayPatrimonio is empty %}
+                    <p>Todavía no hay recursos patrimoniales disponibles </p>
+                {% else %}
                 {% for item in arrayPatrimonio %}
                     <div class="element-container row m-5 d-flex" id='{{item.nombre}}'>
                         <div class="element-container__img col-12 col-lg-4 p-0">
@@ -57,6 +60,7 @@
                         </div>
                     </div>
                 {% endfor %}
+                {% endif %}
             </div>
             <div id="loading" class="d-none d-flex col-12 justify-content-center align-items-center">
                 <img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px">

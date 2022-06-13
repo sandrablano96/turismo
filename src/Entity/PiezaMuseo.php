@@ -29,7 +29,7 @@ class PiezaMuseo
     #[ORM\Column(type: 'string', length: 100)]
     private $epoca;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 36)]
     private $uid;
 
     public function getId(): ?int

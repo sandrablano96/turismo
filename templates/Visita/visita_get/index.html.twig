@@ -7,11 +7,14 @@
 {% block main %}
     <main class="w-75 mx-auto mt-5 mb-5">
         <section id="search-header" class="row mb-3">
-            <h2 class="text-center col-12 order-0 m-auto mb-3">Visitas guiadas</h2>
+            <h2 class="text-center col-12 order-0 m-auto mb-3 p-0">Visitas guiadas</h2>
         </section>
 
         <section id="all-visits">
             <div class="col-12 mb-3 order-2 list">
+                {% if visitas is empty %}
+                    <p>Todavía no hay visitas guiadas disponibles</p>
+                {% else %}
                 {% for item in visitas %}
                     <div class="element-container row m-5 d-flex">
                         <div class="element-container__img col-12 col-lg-4 p-0">
@@ -82,6 +85,7 @@
                         </div>
                     </div>
                 {% endfor %}
+                {% endif %}
             </div>
         </section>
         <!-- modal -->

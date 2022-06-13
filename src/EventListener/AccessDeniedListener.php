@@ -35,7 +35,7 @@ class AccessDeniedListener implements EventSubscriberInterface
             return;
         }
         $routeName = 'app_main_menu';
-        $status = '403';
+        $status = '302';
 
         $url = $this->router->generate($routeName);
         $event->setResponse(new RedirectResponse($url, $status));

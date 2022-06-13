@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use \Symfony\Component\HttpFoundation\JsonResponse;
 use \Ramsey\Uuid\Uuid;
@@ -106,6 +107,7 @@ class OficinaGetController extends AbstractController {
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/oficina/{uid}", name="admin_oficina_get")
      */
     public function getOffice(OficinaTurismo $oficina): Response {

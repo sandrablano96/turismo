@@ -35,6 +35,9 @@
 
             <div class="row order-last m-auto w-100">
                 <div id="all-events" class="col-12 d-flex justify-content-center">
+                    {% if eventos is empty %}
+                        <p>No hay eventos disponibles</p>
+                        {% else %}
                     {% for item in eventos %}
                         <div class="col-12 col-md-6 col-lg-4 event d-flex align-content-stretch mb-2 justify-content-center">
                             <div class="card" style="width: 20rem;">
@@ -69,6 +72,7 @@
                             </div>
                         </div>
                     {% endfor %}
+                    {% endif %}
                 </div>
                 <div id="loading" class="d-none d-flex col-12 justify-content-center align-items-center">
                     <img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px">

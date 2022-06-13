@@ -21,7 +21,7 @@ class Gastronomia
     #[ORM\OneToMany(mappedBy: 'gastronomia', targetEntity: ProductoTipico::class, orphanRemoval: true)]
     private $productosTipicos;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 36)]
     private $uid;
 
     #[ORM\OneToOne(targetEntity: ProductoTipico::class, cascade: ['persist', 'remove'])]

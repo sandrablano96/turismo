@@ -18,7 +18,7 @@ class Historia
     #[ORM\Column(type: 'text')]
     private $historia;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 36)]
     private $uid;
 
     #[ORM\OneToMany(mappedBy: 'historia', targetEntity: HistoriaImagenes::class, orphanRemoval: true)]

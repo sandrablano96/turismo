@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class PatrimonioGetController extends AbstractController
@@ -72,6 +73,7 @@ class PatrimonioGetController extends AbstractController
     }
     
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/patrimonio/{type}", name="admin_patrimonio_tipo_get")
      * @return Response
      * 
