@@ -1,4 +1,4 @@
-
+    //Mostrar maximo de letras y actualizado
         $(document).ready(function () {
             $('textarea').keyup(function () {
 
@@ -40,10 +40,14 @@
             });
         });
 
+        //Mandar opinion
         $(document).ready(function () {
+
             var itemId = '';
             var button = null;
+
             $('#reviewModal').on('show.bs.modal', function (e) {
+
                 button = $(e.relatedTarget);
                 $('#error').addClass('d-none');
                 itemId = $(button).attr('data-bs-id');
@@ -51,14 +55,11 @@
 
             })
 
-            $('#comentar').on('click', function (e) {
+            $('#comentar').on('click', function () {
+
                 let opinion = $('textarea').val();
                 let url = Routing.generate('app_opiniones_post', {uid: itemId});
-                /*
-                 console.log("mostrando valores............")
-                 console.log('id' + itemId);
-                 console.log('button' + button);
-                 console.log('url'+ url)*/
+
                 $.ajax({
                     type: 'POST',
                     url: url,
@@ -105,6 +106,7 @@
             })
         });
         
+        //borrar opinion
         $(document).ready(function () {
             
             $('.opinions-list').on('click','.btn-delete', function (e){
@@ -116,9 +118,7 @@
                 
                 let visitOpinionsDiv = $(parentP).parent().parent();
                
-                let deleteUrl = Routing.generate('app_opiniones_delete', {uid: opinionId});
-                
-                
+                let deleteUrl = Routing.generate('app_opiniones_delete', {uid: opinionId}); 
                 
                 $.ajax({
                     type: 'DELETE',

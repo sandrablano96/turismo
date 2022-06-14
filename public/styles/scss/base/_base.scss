@@ -55,9 +55,11 @@ a {
         color: $primaryColor;
     }
 }
-/* Notificaciones */
+
+/* Notificaciones admin */
 .messages > div {
-    margin: auto;
+    margin-block: 1.5rem;
+    margin-inline: auto;
     width: 50%;
     padding: 1rem;
     font-stretch: condensed;
@@ -80,7 +82,7 @@ a {
 	}
 }
 
-/* Tablas */
+/* Tablas admin */
 table.table td, th{
     max-width:6rem;
     word-wrap:break-word;

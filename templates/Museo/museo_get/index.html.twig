@@ -42,10 +42,10 @@
                 {% for item in museos %}
                     <div class="element-container row m-5 d-flex" id="{{item.nombre}}">
                         <div class="element-container__img col-12 col-lg-4 p-0" >
-                            <img src="{{ asset('/media/museos/') ~ item.imagen }}" class="element__img">
+                            <img src="{{ asset('/media/museos/') ~ item.imagen }}" class="element__img" alt="{{item.nombre}}">
                         </div>
                         <div class="element-container__text col-12 col-lg-7 ps-4 py-3">
-                            <h3>{{ item.nombre }} <img src="{{ asset('/media/icons/museo.ico') }}" width="30px"></h3>
+                            <h3>{{ item.nombre }} <img src="{{ asset('/media/icons/museo.ico') }}" width="30px" alt="icono museos"></h3>
                             <p>{{ item.descripcion | u.truncate(200)}}... </p>
                             <div class="see-more d-flex justify-content-center align-content-end mt-5">
                                 <a href="{{ path('app_museo_get', {uid : item.uid}) }}" class="col-12 col-lg-4 btn btn-secondary">Ver más</a>
@@ -57,7 +57,7 @@
                 
             </div>
             <div id="loading" class="d-none d-flex col-12 justify-content-center align-items-center">
-                <img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px">
+                <img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px" alt="cargando">
             </div>
             <div id="messages">
                 <p id="no-results" class="d-none">No hay resultados que coincidan con tu búsqueda<p>

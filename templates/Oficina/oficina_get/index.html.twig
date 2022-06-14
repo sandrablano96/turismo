@@ -9,18 +9,18 @@
             <div class="row contact-info d-flex justify-content-between text-center mb-2">
                 <div class="col-12 col-md-3 contact-info__item">
                     <h3>Nuestra oficina</h3>
-                    <img src="{{asset('/media/icons/working-at-home.webp')}}" class="contact-info__image mb-4">
+                    <img src="{{asset('/media/icons/working-at-home.webp')}}" class="contact-info__image mb-4" alt="ubicacion de la oficina">
                     <p>{{ oficina.direccion }}</p>
                     <p><i class="bi bi-clock"></i> {{ oficina.horario }}</p>
                 </div>
                 <div class="col-12 col-md-3 contact-info__item mb-2">
                     <h3>Télefono de atención</h3>
-                    <img src="{{asset('/media/icons/phone.webp')}}" class="contact-info__image mb-4">
+                    <img src="{{asset('/media/icons/phone.webp')}}" class="contact-info__image mb-4" alt="telefono">
                     <p>{{ oficina.telefono }}</p>
                 </div>
                 <div class="col-12 col-md-3 contact-info__item mb-2">
                     <h3>Nuestro correo</h3>
-                    <img src="{{asset('media/icons/email_1_.webp')}}" class="contact-info__image mb-4">
+                    <img src="{{asset('media/icons/email_1_.webp')}}" class="contact-info__image mb-4" alt="email"> 
                     <p>{{ oficina.email }}</p>
                 </div>
             </div>
@@ -256,7 +256,7 @@
             <div class="col-12 pb-3 pt-5 m-auto" id="contact-form__container">
                {{ include('Oficina/oficina_post/_consulta.html.twig') }}
                 <div id="loading" class="d-none d-flex col-12 justify-content-center align-items-center">
-                    <img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px">
+                    <img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px" alt="cargando">
                 </div>               
             </div>
         </section>
@@ -270,8 +270,8 @@
       </div>
       <div class="modal-body">
         <div id="messages" class="col-12 m-auto">
-                    <p id="success" class="d-none"><img src="{{asset('media/icons/check.gif')}}">Se ha enviado correctamente. Te contestaremos lo antes posible<p>
-                    <p id="error" class="d-none"><img src="{{asset('media/icons/error.gif')}}">Ha habido un error. Inténtelo de nuevo<p>
+                    <p id="success" class="d-none"><img src="{{asset('media/icons/check.gif')}}" alt="exito">Se ha enviado correctamente. Te contestaremos lo antes posible<p>
+                    <p id="error" class="d-none"><img src="{{asset('media/icons/error.gif')}}" alt="error">Ha habido un error. Inténtelo de nuevo<p>
                 </div>
       </div>
       <div class="modal-footer">

@@ -1,130 +1,136 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Visitas guiadas{% endblock %}
-
+{% block title %}Visitas guiadas
+{% endblock %}
 
 
 {% block main %}
-    <main class="w-75 mx-auto mt-5 mb-5">
-        <section id="search-header" class="row mb-3">
-            <h2 class="text-center col-12 order-0 m-auto mb-3 p-0">Visitas guiadas</h2>
-        </section>
+	<main class="w-75 mx-auto mt-5 mb-5">
+		<section id="search-header" class="row mb-3">
+			<h2 class="text-center col-12 order-0 m-auto mb-3 p-0">Visitas guiadas</h2>
+		</section>
 
-        <section id="all-visits">
-            <div class="col-12 mb-3 order-2 list">
-                {% if visitas is empty %}
-                    <p>Todavía no hay visitas guiadas disponibles</p>
-                {% else %}
-                {% for item in visitas %}
-                    <div class="element-container row m-5 d-flex">
-                        <div class="element-container__img col-12 col-lg-4 p-0">
-                            <img src="{{ asset('/media/icons/visita.webp')}}" class="element__img" alt="icono visita">
-                        </div>
-                        <div class="element-container__text col-12 col-lg-7 ps-4 py-3">
-                            {% if app.user and not is_granted('ROLE_ADMIN')  %}
-                                <div class="col-12 d-flex justify-content-end">
-                                    <button type="button" class="btn btn-transparent" data-bs-toggle="modal" data-bs-target="#reviewModal" data-bs-id="{{ item.uid }}">
-                                        <i class="fa-solid fa-comment"></i>
-                                    </button>
-                                </div>
+		<section id="all-visits">
+			<div class="col-12 mb-3 order-2 list">
+				{% if visitas is empty %}
+					<p>Todavía no hay visitas guiadas disponibles</p>
+				{% else %}
+					{% for item in visitas %}
+						<div class="element-container row m-5 d-flex">
+							<div class="element-container__img col-12 col-lg-4 p-0">
+								<img src="{{ asset('/media/icons/visita.webp')}}" class="element__img" alt="visita guiada">
+							</div>
+							<div class="element-container__text col-12 col-lg-7 ps-4 py-3">
+								{% if app.user and not is_granted('ROLE_ADMIN')  %}
+									<div class="col-12 d-flex justify-content-end">
+										<button type="button" class="btn btn-transparent" data-bs-toggle="modal" data-bs-target="#reviewModal" data-bs-id="{{ item.uid }}">
+											<i class="fa-solid fa-comment"></i>
+										</button>
+									</div>
 
-                            {% endif %}
-                            <h3>
-                                {{ item.titulo }}
-                                <img src="{{ asset('/media/icons/map.ico') }}" width="30px">
-                            </h3>
-                            <p>{{ item.descripcion }}
-                            <p> {{ item.fecha | date("d-m-Y")  }}
+								{% endif %}
+								<h3>
+									{{ item.titulo }}
+									<img src="{{ asset('/media/icons/map.ico') }}" width="30px" alt="icono visita">
+								</h3>
+								<p>{{ item.descripcion }}</p>
+								<p>{{ item.fecha | date("d-m-Y")  }}
+								</p>
+								<p>
+									{% if item.precio is not null %}
+										{{ item.precio  }}
+									{% else %}
+										Gratuita
+									{% endif %}
+								</p>
+								<div class="d-flex justify-content-center align-content-end mt-5 row">
+									<div class="col-12 opinions-list" id="opinions-{{item.uid}}">
+										{% if item.opiniones is not empty %}
+											<div class="comment-card">
+												{% for op in item.opiniones %}
 
-                            <p> 
-                                {% if item.precio is not null %} 
-                                    {{ item.precio  }}
-                                {% else %} 
-                                    Gratuita
-                                {% endif %}
-                            </p>
-                            <div class="d-flex justify-content-center align-content-end mt-5 row">
-                                <div class="col-12 opinions-list" id="opinions-{{item.uid}}">
-                                    {% if item.opiniones is not empty %}
-                                        <div class="comment-card">
-                                            {% for op in item.opiniones %}
-                                                
-                                                <p data-id="opinion-{{op.uid}}">
-                                                    {% if app.user and op.usuario.id == app.user.id %}
-                                                        <button class="btn btn-transparent btn-delete"><i class="fa-solid fa-circle-minus"></i></button>
-                                                    
-                                                    {% endif %}
-                                                    <span class="font-weight-bold">{{ op.usuario.nombre |capitalize  }}</span>  opina: {{ op.opinion |capitalize }} ({{ op.fecha | date('d-m-Y') }}) 
+													<p data-id="opinion-{{op.uid}}">
+														{% if app.user and op.usuario.id == app.user.id %}
+															<button class="btn btn-transparent btn-delete">
+																<i class="fa-solid fa-circle-minus"></i>
+															</button>
 
-                                                    
-                                                </p> 
-
-                                            {% endfor %}
-                                        </div>
-                                    {% else %}
-                                        <p>Todavía no hay comentarios</p>
-                                    {% endif %}
-                                    <div class="messages">
-                                        <p id="deleting" class="d-none">Borrando comentario...</p>
-                                        <p id="delete_err" class="d-none">Error al eliminar. Inténtelo de nuevo</p>
-                                    </div>
+														{% endif %}
+														<span class="font-weight-bold">{{ op.usuario.nombre |capitalize  }}</span>
+														opina:
+														{{ op.opinion |capitalize }}
+														({{ op.fecha | date('d-m-Y') }})
 
 
-                                </div>
-                                <div class="col-12 d-flex justify-content-center align-items-center">
-                                    {% if item.guiaTurismo is not null %}
+													</p>
 
-                                        <a href="{{ path('app_guia_get', {uid : item.guiaTurismo.uid}) }}" class="col-12 col-lg-5 btn btn-secondary">Más de este guía</a>
+												{% endfor %}
+											</div>
+										{% else %}
+											<p>Todavía no hay comentarios</p>
+										{% endif %}
+										<div class="messages">
+											<p id="deleting" class="d-none">Borrando comentario...</p>
+											<p id="delete_err" class="d-none">Error al eliminar. Inténtelo de nuevo</p>
+										</div>
 
-                                    {% else %}
-                                        <a href="{{ path('app_oficina_get', {uid : item.oficinaTurismo.uid}) }}#contact-form" class="col-12 col-lg-5 btn btn-secondary">Más información</a>
-                                    {% endif %}
-                                </div>
-                            </div>
 
-                        </div>
-                    </div>
-                {% endfor %}
-                {% endif %}
-            </div>
-        </section>
-        <!-- modal -->
-        <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="reviewModalLabel">Comparte tu experiencia</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body p-5">
-                        <form autocomplete="off">
-                            <textarea maxlength="255" rows="4" col="10" " id="textarea"></textarea>
-                            <div id="the-count">
-                                <span id="current">0</span>
-                                <span id="maximum">/ 255</span>
-                            </div>
-                            <div id="loading" class="d-none d-flex col-12 justify-content-center align-items-center">
-                                <img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px">
-                            </div>
-                            <div class="messages">
-                                <p id="error" class="d-none"><p>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" id="comentar">Comentar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+									</div>
+									<div class="col-12 d-flex justify-content-center align-items-center">
+										{% if item.guiaTurismo is not null %}
 
-    </main>
+											<a href="{{ path('app_guia_get', {uid : item.guiaTurismo.uid}) }}" class="col-12 col-lg-5 btn btn-secondary">Más de este guía</a>
+
+										{% else %}
+											<a href="{{ path('app_oficina_get', {uid : item.oficinaTurismo.uid}) }}#contact-form" class="col-12 col-lg-5 btn btn-secondary">Más información</a>
+										{% endif %}
+									</div>
+								</div>
+
+							</div>
+						</div>
+					{% endfor %}
+				{% endif %}
+			</div>
+		</section>
+		<!-- modal -->
+		<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="reviewModalLabel">Comparte tu experiencia</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body p-5">
+						<form autocomplete="off">
+							<textarea maxlength="255" rows="4" col="10" id="textarea"></textarea>
+							<div id="the-count">
+								<span id="current">0</span>
+								<span id="maximum">/ 255</span>
+							</div>
+							<div id="loading" class="d-none d-flex col-12 justify-content-center align-items-center">
+								<img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px" alt="cargando">
+							</div>
+							<div class="messages">
+								<p id="error" class="d-none"></p>
+								<p></p>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-primary" id="comentar">Comentar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</main>
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
-    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-    <script src="{{ asset('js/Visitas/VisitsSript.js') }}"></script>
+	{{ parent() }}
+	<script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+	<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+	<script src="{{ asset('js/Visitas/VisitsSript.js') }}"></script>
 {% endblock %}

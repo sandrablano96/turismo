@@ -1,78 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Patrimonio {{ tipo }}
+{% block title %}Patrimonio
+	{{ tipo }}
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
-    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-    <script src="{{ asset('js/Common/Common.js') }}"></script>
-    <script src="{{ asset('js/Patrimonio/HeritageScript.js') }}"></script>
+	{{ parent() }}
+	<script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+	<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+	<script src="{{ asset('js/Common/Common.js') }}"></script>
+	<script src="{{ asset('js/Patrimonio/HeritageScript.js') }}"></script>
 {% endblock %}
 {% block main %}
-    <main class="w-75 mx-auto mt-5 mb-5">
-        <section id="search-header" class="row mb-3">
-            <div class="col-12 col-md-3 order-1 d-inline-flex justify-content-end h-50">
-                {{form_start(formOrder, {'attr': {'id': 'form_ordenar', 'autocomplete':'off'}})}}
-                {{form_widget(formOrder.order, { 'attr' : { 'class' : 'form-select' } })  }}
-                {{form_end(formOrder)}}
-            </div>
-            <h2 class="text-center col-12 col-md-9 order-0 m-auto mb-3">Patrimonio {{ tipo }}</h2>
-        </section>
-        <section class="row d-flex">
-            <button class="col-12 col-lg-3 mx-auto btn btn-sm btn-secondary-dark mb-3 align-self-center" id="advancedButton">Búsqueda avanzada</button>
-            <div class="col-12 col-lg-5 m-auto d-none">
-                <form id="formFiltros" autocomplete="off">
-                    <label for="nombre" class="form-label">Búscar por nombre:
-                    </label>
-                    <input type="text" name="nombre" id="nombre" class="form-control">
-                    <div class="text-center mt-3">
-                    </div>
-                </form>
-            </div>
-        </section>
+	<main class="w-75 mx-auto mt-5 mb-5">
+		<section id="search-header" class="row mb-3">
+			<div class="col-12 col-md-3 order-1 d-inline-flex justify-content-end h-50">
+				{{form_start(formOrder, {'attr': {'id': 'form_ordenar', 'autocomplete':'off'}})}}
+				{{form_widget(formOrder.order, { 'attr' : { 'class' : 'form-select' } })  }}
+				{{form_end(formOrder)}}
+			</div>
+			<h2 class="text-center col-12 col-md-9 order-0 m-auto mb-3">Patrimonio
+				{{ tipo }}</h2>
+		</section>
+		<section class="row d-flex">
+			<button class="col-12 col-lg-3 mx-auto btn btn-sm btn-secondary-dark mb-3 align-self-center" id="advancedButton">Búsqueda avanzada</button>
+			<div class="col-12 col-lg-5 m-auto d-none">
+				<form id="formFiltros" autocomplete="off">
+					<label for="nombre" class="form-label">Búscar por nombre:
+					</label>
+					<input type="text" name="nombre" id="nombre" class="form-control">
+					<div class="text-center mt-3"></div>
+				</form>
+			</div>
+		</section>
 
-        <section>
-            <div class="col-12 mb-3 order-2 list" id="all-heritage">
-                {% if arrayPatrimonio is empty %}
-                    <p>Todavía no hay recursos patrimoniales disponibles </p>
-                {% else %}
-                {% for item in arrayPatrimonio %}
-                    <div class="element-container row m-5 d-flex" id='{{item.nombre}}'>
-                        <div class="element-container__img col-12 col-lg-4 p-0">
-                            <img src="{{ asset('/media/patrimonio/') ~ item.imagen }}" class="element__img">
-                        </div>
-                        <div class="element-container__text col-12 col-lg-7 ps-4 py-3">
-                            
-                            <h3>{{ item.nombre }}
-                                {% if item.tipo.tipo == "cultural" %}
-                                    <img src="{{ asset('/media/icons/monumento.ico') }}" width="30px"></h3>
-                                {% else %}
-                                     <img src="{{ asset('/media/icons/naturaleza.ico') }}" width="30px"></h3>
-                                {% endif %}    
-                                <p>{{ item.descripcion | u.truncate(200) }}... </p>
-                            <div class="see-more d-flex justify-content-center align-items-center mt-5">
-                                <a href="{{ path('app_patrimonio_get', {uid : item.uid}) }}" class="col-12 col-lg-4 btn btn-secondary align-self-center">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-                {% endif %}
-            </div>
-            <div id="loading" class="d-none d-flex col-12 justify-content-center align-items-center">
-                <img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px">
-            </div>
-            <div id="messages">
-                <p id="no-results" class="d-none">No hay resultados que coincidan con tu búsqueda<p>
-                <p id="error" class="d-none">Ha habido un error. Inténtelo de nuevo<p>
-            </div>
-            <div id="search-results">
+		<section>
+			<div class="col-12 mb-3 order-2 list" id="all-heritage">
+				{% if arrayPatrimonio is empty %}
+					<p>Todavía no hay recursos patrimoniales disponibles
+					</p>
+				{% else %}
+					{% for item in arrayPatrimonio %}
+						<div class="element-container row m-5 d-flex" id='{{item.nombre}}'>
+							<div class="element-container__img col-12 col-lg-4 p-0">
+								<img src="{{ asset('/media/patrimonio/') ~ item.imagen }}" class="element__img" alt=""{{item.nombre}}>
+							</div>
+							<div class="element-container__text col-12 col-lg-7 ps-4 py-3">
 
-            </div>
-        </section>
+								<h3>{{ item.nombre }}
+									{% if item.tipo.tipo == "cultural" %}
+										<img src="{{ asset('/media/icons/monumento.ico') }}" width="30px" alt="icono monumento"></h3>
+								{% else %}
+									<img src="{{ asset('/media/icons/naturaleza.ico') }}" width="30px" alt="icono naturaleza"></h3>
+							{% endif %}
+							<p>{{ item.descripcion | u.truncate(200) }}...
+							</p>
+							<div class="see-more d-flex justify-content-center align-items-center mt-5">
+								<a href="{{ path('app_patrimonio_get', {uid : item.uid}) }}" class="col-12 col-lg-4 btn btn-secondary align-self-center">Ver más</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>
+		<div id="loading" class="d-none d-flex col-12 justify-content-center align-items-center">
+			<img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px" alt="cargando">
+		</div>
+		<div id="messages">
+			<p id="no-results" class="d-none">No hay resultados que coincidan con tu búsqueda</p>
+			<p></p>
+			<p id="error" class="d-none">Ha habido un error. Inténtelo de nuevo</p>
+			<p></p>
+		</div>
+		<div id="search-results"></div>
+	</section>
 
 
-    </main>
-{% endblock %}
-
+</main>{% endblock %}
