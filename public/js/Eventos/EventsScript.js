@@ -1,7 +1,7 @@
 
         $(document).ready(function () {
             $('#form_tipos, #form_meses').on('change', function (e) {
-                event.preventDefault();
+                e.preventDefault();
                 let types = [];
                 $(":checkbox").each(function () {
                     var ischecked = $(this).is(":checked");
