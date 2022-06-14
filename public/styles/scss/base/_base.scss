@@ -88,4 +88,10 @@ table.table td, th{
     word-wrap:break-word;
 }
 
+//textareas
+textarea.form-control{
+    min-height: 30rem;
+    overflow-y: auto;
+}
+
 

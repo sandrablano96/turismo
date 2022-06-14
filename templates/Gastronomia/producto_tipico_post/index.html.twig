@@ -5,6 +5,7 @@
 {% block main %}
     
     <main class="w-75 mx-auto mt-5 mb-5">
+    <a href="{{ path('admin_gastronomia_get', {uid: '82248df0-b2ec-4a3d-a4b2-655b9e8f7af9'}) }}">Volver</a>
         <h2>Añadir productos tipicos</h2>
             {{ form_start(formulario, {'attr': {'class': 'w-50 m-auto'}} ) }}
              <div class="form_error">

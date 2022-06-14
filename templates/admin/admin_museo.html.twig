@@ -4,7 +4,7 @@
 {% block main %}
     
     <main class="w-75 mx-auto mt-5 mb-5">
-        
+        <a href="{{path('admin_museos_get')}}">Volver</a>
         <h2>Actualizar museo</h2>
         <div class="messages">
             {% for message in app.flashes('aviso') %}
@@ -58,5 +58,6 @@
             {% endfor %}
         </table>
         {% endif %}
+        
     </main>
 {% endblock %}

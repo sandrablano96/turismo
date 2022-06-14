@@ -27,10 +27,7 @@ class HistoriaPutController extends AbstractController
     #[Route('/historia/put/{uid}', name: 'app_historia_put')]
     public function put(ManagerRegistry $doctrine, Historia $historia, Request $request,SluggerInterface $slugger): Response
     {
-        $imagen = $historia->getImagen();
-        $historia->setImagen(
-            new File($this->getParameter('history_directory').'/'.$historia->getImagen())
-        );
+        
         $form = $this->createFormBuilder($historia)
                 ->add("historia", TextareaType:: class, [
                     'required' => true,
@@ -40,37 +37,12 @@ class HistoriaPutController extends AbstractController
                     ])
                     ]
                 ])
-                ->add('imagen', FileType:: class, [
-                    'required' => false,
-                    'data_class' => null,
-                    'mapped' => false
-                    
-                ])
+                
                 ->add('enviar', SubmitType::class)
                 ->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $historia = $form->getData();
-            $foto = $form->get('imagen')->getData();
-            //subimos la imagen
-            if ($foto) {
-                $originalFilename = pathinfo($foto->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$foto->guessExtension();
-
-                // Move the file to the directory where brochures are stored
-                try {
-                    $foto->move($this->getParameter('history_directory'),
-                        $newFilename
-                    );
-                    $historia->setImagen($newFilename);
-                } catch (FileException $e) {
-                    console.log($e);
-                }
-            } else{
-                $historia->setImagen($imagen);
-            }    
             
 
             $entityManager = $doctrine->getManager();
@@ -82,7 +54,7 @@ class HistoriaPutController extends AbstractController
             return $this->redirectToRoute("admin_historia_get", [
                 'uid' => $historia->getUid()]);
         } else{
-            return $this->renderForm("Historia/historia_put/index.html.twig", ['formulario' => $form, "imagen" => $imagen, 'alt'=>$imagen]);
+            return $this->renderForm("Historia/historia_put/index.html.twig", ['formulario' => $form]);
         }
     
     }

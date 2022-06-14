@@ -3,7 +3,7 @@
 {% block main %}
     
     <main class="w-75 mx-auto mt-5 mb-5">
-        
+        <a href="{{path('app_guias_get')}}">Volver</a>
         <h2>Gestión de visitas guiadas de {{ guia.nombre }}</h2>
         <div class="messages">
             {% for message in app.flashes('aviso') %}
@@ -34,5 +34,6 @@
             
         </table>
         {% endif %}
+        
     </main>
 {% endblock %}{# empty Twig template #}

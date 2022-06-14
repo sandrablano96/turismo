@@ -4,7 +4,7 @@
 {% block main %}
     
     <main class="w-75 mx-auto mt-5 mb-5">
-        
+        <a href="{{path('app_admin_menu')}}">Volver</a>
         <h2>Gastronomía</h2>
         <div class="messages">
             {% for message in app.flashes('aviso') %}
@@ -15,10 +15,18 @@
         </div>
         <table class="table">
             <th>Descripción</th>
+            
             <th>Producto del mes</th>
                 <tr>
                     <td>{{ gastronomia.descripcion }}</td>
-                    <td>{{ gastronomia.productoMes.nombre }}</td>
+                    
+                    <td>
+                    {% if gastronomia.productoMes is not null %}
+                    {{ gastronomia.productoMes.nombre }}
+                    {% else %}
+                    Escoja un producto entre los existentes o cree uno nuevo
+                    </td>
+                    {% endif %}
                     <td><a href="{{ path('app_gastronomia_put', {uid: gastronomia.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
                 <tr>
         </table>
@@ -44,5 +52,6 @@
             {% endfor %}
         </table>
         {% endif %}
+        
     </main>
 {% endblock %}

@@ -59,9 +59,10 @@ a:hover {
   color: #55aacc;
 }
 
-/* Notificaciones */
+/* Notificaciones admin */
 .messages > div {
-  margin: auto;
+  margin-block: 1.5rem;
+  margin-inline: auto;
   width: 50%;
   padding: 1rem;
   font-stretch: condensed;
@@ -95,10 +96,15 @@ a:hover {
     opacity: 1;
   }
 }
-/* Tablas */
+/* Tablas admin */
 table.table td, th {
   max-width: 6rem;
   word-wrap: break-word;
+}
+
+textarea.form-control {
+  min-height: 30rem;
+  overflow-y: auto;
 }
 
 i {
@@ -252,9 +258,10 @@ a:hover {
   color: #55aacc;
 }
 
-/* Notificaciones */
+/* Notificaciones admin */
 .messages > div {
-  margin: auto;
+  margin-block: 1.5rem;
+  margin-inline: auto;
   width: 50%;
   padding: 1rem;
   font-stretch: condensed;
@@ -277,10 +284,15 @@ a:hover {
     opacity: 1;
   }
 }
-/* Tablas */
+/* Tablas admin */
 table.table td, th {
   max-width: 6rem;
   word-wrap: break-word;
+}
+
+textarea.form-control {
+  min-height: 30rem;
+  overflow-y: auto;
 }
 
 #header {
@@ -448,9 +460,10 @@ a:hover {
   color: #55aacc;
 }
 
-/* Notificaciones */
+/* Notificaciones admin */
 .messages > div {
-  margin: auto;
+  margin-block: 1.5rem;
+  margin-inline: auto;
   width: 50%;
   padding: 1rem;
   font-stretch: condensed;
@@ -473,10 +486,15 @@ a:hover {
     opacity: 1;
   }
 }
-/* Tablas */
+/* Tablas admin */
 table.table td, th {
   max-width: 6rem;
   word-wrap: break-word;
+}
+
+textarea.form-control {
+  min-height: 30rem;
+  overflow-y: auto;
 }
 
 #footer {
@@ -625,9 +643,10 @@ a:hover {
   color: #55aacc;
 }
 
-/* Notificaciones */
+/* Notificaciones admin */
 .messages > div {
-  margin: auto;
+  margin-block: 1.5rem;
+  margin-inline: auto;
   width: 50%;
   padding: 1rem;
   font-stretch: condensed;
@@ -650,10 +669,15 @@ a:hover {
     opacity: 1;
   }
 }
-/* Tablas */
+/* Tablas admin */
 table.table td, th {
   max-width: 6rem;
   word-wrap: break-word;
+}
+
+textarea.form-control {
+  min-height: 30rem;
+  overflow-y: auto;
 }
 
 * {
@@ -708,9 +732,10 @@ a:hover {
   color: #55aacc;
 }
 
-/* Notificaciones */
+/* Notificaciones admin */
 .messages > div {
-  margin: auto;
+  margin-block: 1.5rem;
+  margin-inline: auto;
   width: 50%;
   padding: 1rem;
   font-stretch: condensed;
@@ -733,10 +758,15 @@ a:hover {
     opacity: 1;
   }
 }
-/* Tablas */
+/* Tablas admin */
 table.table td, th {
   max-width: 6rem;
   word-wrap: break-word;
+}
+
+textarea.form-control {
+  min-height: 30rem;
+  overflow-y: auto;
 }
 
 #header {
@@ -1091,9 +1121,10 @@ a:hover {
   color: #55aacc;
 }
 
-/* Notificaciones */
+/* Notificaciones admin */
 .messages > div {
-  margin: auto;
+  margin-block: 1.5rem;
+  margin-inline: auto;
   width: 50%;
   padding: 1rem;
   font-stretch: condensed;
@@ -1116,10 +1147,15 @@ a:hover {
     opacity: 1;
   }
 }
-/* Tablas */
+/* Tablas admin */
 table.table td, th {
   max-width: 6rem;
   word-wrap: break-word;
+}
+
+textarea.form-control {
+  min-height: 30rem;
+  overflow-y: auto;
 }
 
 * {
@@ -1174,9 +1210,10 @@ a:hover {
   color: #55aacc;
 }
 
-/* Notificaciones */
+/* Notificaciones admin */
 .messages > div {
-  margin: auto;
+  margin-block: 1.5rem;
+  margin-inline: auto;
   width: 50%;
   padding: 1rem;
   font-stretch: condensed;
@@ -1199,10 +1236,15 @@ a:hover {
     opacity: 1;
   }
 }
-/* Tablas */
+/* Tablas admin */
 table.table td, th {
   max-width: 6rem;
   word-wrap: break-word;
+}
+
+textarea.form-control {
+  min-height: 30rem;
+  overflow-y: auto;
 }
 
 #header {
@@ -1588,9 +1630,10 @@ a:hover {
   color: #55aacc;
 }
 
-/* Notificaciones */
+/* Notificaciones admin */
 .messages > div {
-  margin: auto;
+  margin-block: 1.5rem;
+  margin-inline: auto;
   width: 50%;
   padding: 1rem;
   font-stretch: condensed;
@@ -1613,10 +1656,15 @@ a:hover {
     opacity: 1;
   }
 }
-/* Tablas */
+/* Tablas admin */
 table.table td, th {
   max-width: 6rem;
   word-wrap: break-word;
+}
+
+textarea.form-control {
+  min-height: 30rem;
+  overflow-y: auto;
 }
 
 #item {
@@ -1819,9 +1867,10 @@ a:hover {
   color: #55aacc;
 }
 
-/* Notificaciones */
+/* Notificaciones admin */
 .messages > div {
-  margin: auto;
+  margin-block: 1.5rem;
+  margin-inline: auto;
   width: 50%;
   padding: 1rem;
   font-stretch: condensed;
@@ -1844,10 +1893,15 @@ a:hover {
     opacity: 1;
   }
 }
-/* Tablas */
+/* Tablas admin */
 table.table td, th {
   max-width: 6rem;
   word-wrap: break-word;
+}
+
+textarea.form-control {
+  min-height: 30rem;
+  overflow-y: auto;
 }
 
 #all-opinions {

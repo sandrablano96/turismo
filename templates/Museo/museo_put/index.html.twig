@@ -5,10 +5,12 @@
 {% block main %}
     
     <main class="w-75 mx-auto mt-5 mb-5">
+    <a href="{{ path('admin_museos_get') }}">Volver a museos</a>
              {{ form_start(formulario, {'attr': {'class': 'w-50 m-auto'}} ) }}
             <div class="form_error">
                  {{ form_errors(formulario) }}
             </div>
+            <p>Separe los diferentes párrafos con '//'</p>
             <div class="form-group">
                 {{ form_row(formulario.nombre, {'attr': {'class': 'form-control mb-4'}} ) }}
             </div>

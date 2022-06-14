@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
-{% block title %} Gestión de recursos patrimoniales {% endblock %}
+{% block title %} Gestión de museos {% endblock %}
 {% block main %}
     
     <main class="w-75 mx-auto mt-5 mb-5">
-        
-        <h2>Gestión de recursos patrimoniales</h2>
+        <a href="{{path('app_admin_menu')}}">Volver</a>
+        <h2>Gestión de museos</h2>
         <div class="messages">
             {% for message in app.flashes('aviso') %}
                  <div class="flash-notice">
@@ -27,5 +27,6 @@
             {% endfor %} 
         </table>
         {% endif %}
+        
     </main>
 {% endblock %}

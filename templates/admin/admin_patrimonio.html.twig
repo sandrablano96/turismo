@@ -3,7 +3,7 @@
 {% block main %}
     
     <main class="w-75 mx-auto mt-5 mb-5">
-        
+        <a href="{{path('app_admin_menu')}}">Volver</a>
         <h2>Gestión de recursos patrimoniales</h2>
         <div class="messages">
             {% for message in app.flashes('aviso') %}
@@ -45,5 +45,6 @@
             
         </table>
             {% endif %}
+            
     </main>
 {% endblock %}

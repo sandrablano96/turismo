@@ -1,19 +1,18 @@
+        //nav responsive
+        $(document).ready(function(){
+            $('.navbar-toggler').on('click', function(){
+                $('.fa-bars').toggleClass('d-none');
+                $('.fa-xmark').toggleClass('d-none');
+                
+            });
+        })
+        
         //Boton búesqueda avanzada//
         $(document).ready(function () {
             $("#advancedButton").on("click", function () {
                 console.log("click");
                 $("#formFiltros").parent().toggleClass("d-none");
             });
-        });
-
-        //resize de los textarea
-        $(document).ready(function () {
-        $("textarea").each(function () {
-            this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
-          }).on("input", function () {
-            this.style.height = "auto";
-            this.style.height = (this.scrollHeight) + "px";
-          });
         });
 
         //Búsquedas en keyup
