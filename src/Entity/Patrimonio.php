@@ -22,13 +22,13 @@ class Patrimonio
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $email;
 
-    #[ORM\Column(type: 'string', length: 10)]
+    #[ORM\Column(type: 'string', length: 20)]
     private $telefono;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $precio;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'text')]
     private $horario;
 
     #[ORM\Column(type: 'string', length: 36)]

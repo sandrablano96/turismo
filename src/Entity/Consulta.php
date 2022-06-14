@@ -19,7 +19,7 @@ class Consulta
     #[ORM\Column(type: 'string', length: 100)]
     private $email;
 
-    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
     private $telefono;
 
     #[ORM\Column(type: 'string', length: 255)]

@@ -24,7 +24,7 @@ class OficinaTurismo
     #[ORM\Column(type: 'string', length: 100)]
     private $email;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'text')]
     private $horario;
 
     #[ORM\OneToMany(mappedBy: 'oficinaTurismo', targetEntity: VisitaGuiada::class)]
@@ -106,7 +106,7 @@ class OficinaTurismo
     {
         if (!$this->visitasOrganizadas->contains($visitasOrganizada)) {
             $this->visitasOrganizadas[] = $visitasOrganizada;
-            $visitasOrganizada->setOrganizador1($this);
+            $visitasOrganizada->setOficinaTurismo($this);
         }
 
         return $this;
@@ -116,8 +116,8 @@ class OficinaTurismo
     {
         if ($this->visitasOrganizadas->removeElement($visitasOrganizada)) {
             // set the owning side to null (unless already changed)
-            if ($visitasOrganizada->getOrganizador1() === $this) {
-                $visitasOrganizada->setOrganizador1(null);
+            if ($visitasOrganizada->getOficinaTurismo() === $this) {
+                $visitasOrganizada->setOficinaTurismo(null);
             }
         }
 

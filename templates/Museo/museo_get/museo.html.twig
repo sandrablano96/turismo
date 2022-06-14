@@ -1,59 +1,111 @@
 {# empty Twig template #}
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ museo.nombre }}
+{% block title %}
+	{{ museo.nombre }}
 {% endblock %}
 
 {% block main %}
-    <main class="mt-5 mb-5">
-        <h2 class="text-center m-5">Museos de Ciudad Real</h2>
-        <section id="item" class="row w-100 m-0 d-flex justify-content-md-center">
-            <div class="col-12 col-lg-4 p-4">
-                <img src="{{ asset('/media/museos/') ~ museo.imagen }}" alt="{{ museo.nombre }}">
-            </div>
-            <div class="col-12 col-lg-8 ps-3 d-flex align-content-center flex-column">
-                <h3>{{ museo.nombre }}</h3>
-                <div>
-                    {% set paragraphs = museo.descripcion | split('//') %}
+	<main class="mt-5 mb-5">
+		<h2 class="text-center m-5">Museos de Ciudad Real</h2>
+		<section id="item" class="row w-100 m-0 d-flex justify-content-md-center">
+			<div class="col-12 col-lg-4 p-4">
+				<img src="{{ asset('/media/museos/') ~ museo.imagen }}" alt="{{ museo.nombre }}">
+			</div>
+			<div class="col-12 col-lg-8 ps-3 d-flex align-content-center flex-column">
+				<h3>{{ museo.nombre }}</h3>
+				<div>
+					{% set paragraphs = museo.descripcion | split('//') %}
 
-                    {% for p in paragraphs %}
-                        <p>{{ p }}<p>
-                        {% endfor %}
-                </div>
-            </div>
-        </section>
-        <section id="museum_bestof" class="w-75 mx-auto mt-5 mb-5">
-            <div class="row order-last m-auto w-75 list">
-                {% for pieza in museo.piezas %}
-                    <div class="col-12 col-md-6 col-lg-4 event d-flex align-content-stretch mb-2">
-                        <div class="card" style="width: 20rem;">
-                            <img src="{{ asset('/media/museos/') ~ pieza.imagen }}" class="card-img-bottom" alt="{{ pieza.titulo }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ pieza.titulo }}</h5>
-                                <p>{{ pieza.descripcion }}</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">{{ pieza.epoca }}</li>
-                            </ul>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </section>
-        <section id="info" class="w-50 mx-auto mt-5 mb-5 p-5">
-            <h3>Información de interés</h3>
-            <p><span>Direccion: </span> {{ museo.direccion }}</p>
-            <p><span>Email de contacto: </span>{{ museo.email }}</p>
-            <p><span>Web: </span>{{ museo.web }}</p>
-            <p><span>Teléfono: </span>{{ museo.telefono }}</p>
-            <p><span>Horario de visita: </span>{{ museo.horario }}</p>
-            <p><span>Precio: </span>
-                {% if museo.precio is not null and museo.precio is not empty %}
-                    {{ museo.precio }}
-                {% else %}
-                    Gratuito
-                {% endif %}
-            </p>
-        </section>
-    </main>
-{% endblock %}
+					{% for p in paragraphs %}
+						<p></p>
+						{{ p }}
+						<p>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+			<section id="museum_bestof" class="w-75 mx-auto mt-5 mb-5">
+				<div class="row order-last m-auto w-75 justify-content-evenly">
+					{% for pieza in museo.piezas %}
+						<div class="col-12 col-md-6 col-lg-4 event d-flex align-content-stretch mb-2">
+							<div class="card" style="width: 20rem;">
+								<img src="{{ asset('/media/museos/') ~ pieza.imagen }}" class="card-img-bottom" alt="{{ pieza.titulo }}">
+								<div class="card-body">
+									<h5 class="card-title">{{ pieza.titulo }}</h5>
+									<p>{{ pieza.descripcion | u.truncate(100) }}...
+									</p>
+								</div>
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item">{{ pieza.epoca }}</li>
+								</ul>
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#piezaModal" data-bs-whatever="{{pieza.uid}}">
+									Ver más
+								</button>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</section>
+			<section id="info" class="w-50 mx-auto mt-5 mb-5 p-5">
+				<h3>Información de interés</h3>
+				<p>
+					<span>Direccion:
+					</span>
+					{{ museo.direccion }}</p>
+				<p>
+					<span>Email de contacto:
+					</span>
+					{{ museo.email }}</p>
+				<p>
+					<span>Web:
+					</span>
+					{{ museo.web }}</p>
+				<p>
+					<span>Teléfono:
+					</span>
+					{{ museo.telefono }}</p>
+				<p>
+					<span>Horario de visita:
+					</span>
+					{{ museo.horario }}</p>
+				<p>
+					<span>Precio:
+					</span>
+					{% if museo.precio is not null and museo.precio is not empty %}
+						{{ museo.precio }}
+					{% else %}
+						Gratuito
+					{% endif %}
+				</p>
+			</section>
+		</main>
+
+
+		<!-- Modal -->
+		<div class="modal fade" id="piezaModal" tabindex="-1" aria-labelledby="piezaModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="piezaModalLabel"></h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div id="loading" class="d-none d-flex col-12 justify-content-center align-items-center">
+							<img src="{{ asset('media/icons/Pulse-1s-200px.svg') }}" style="width:50px" alt="cargando">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+	{% block javascripts %}
+		{{parent()}}
+		<script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+		<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+		<script src="{{ asset('js/Museo/MuseumScript.js') }}"></script>
+
+	{% endblock %}

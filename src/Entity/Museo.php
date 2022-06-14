@@ -24,7 +24,7 @@ class Museo
     #[ORM\Column(type: 'string', length: 20)]
     private $telefono;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'text')]
     private $horario;
 
     #[ORM\OneToMany(mappedBy: 'museo', targetEntity: PiezaMuseo::class, orphanRemoval: true)]
