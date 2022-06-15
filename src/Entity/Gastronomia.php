@@ -98,7 +98,7 @@ class Gastronomia
         return $this->productoMes;
     }
 
-    public function setProductoMes(ProductoTipico $productoMes): self
+    public function setProductoMes(?ProductoTipico $productoMes): self
     {
         $this->productoMes = $productoMes;
 

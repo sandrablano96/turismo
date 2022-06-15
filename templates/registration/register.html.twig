@@ -5,8 +5,8 @@
 {% block main %}
     <main class="w-75 mx-auto mt-5 mb-5">
         <h2 class="text-center m-5">Registrarme</h2>
-        <div>
-            {{ form_start(registrationForm, {'attr': {'class': 'w-50 m-auto'}} ) }}
+        <div id="registro" class="w-75 m-auto">
+            {{ form_start(registrationForm, {'attr': {'class': 'w-75 m-auto'}} ) }}
             <div class="form-group">
                 {{ form_row(registrationForm.nombre, {'attr': {'class': 'form-control mb-4'}}) }}
             </div>

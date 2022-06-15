@@ -9,14 +9,14 @@
             </div>
             <div class="login-body py-3">
                 <div class="row justify-content-center">
-                    <div class="col-md-6 col-lg-8">
+                    <div class="col-12 col-lg-8">
                         <div class="login-wrap p-0">
                             <div class="messages">
                                 {% if error %}
                                     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                                 {% endif %}
                             </div>
-                            <form action="{{ path('app_login') }}" method="post" class="signin-form w-50 m-auto" id="loginModal">
+                            <form action="{{ path('app_login') }}" method="post" class="signin-form m-auto" id="loginModal">
                                 <input type="hidden" name="_target_path" value="/" />
                                 <div class="form-group">
                                     <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control text-center p-3" placeholder="Email"/>
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="login-footer m-auto w-50">
-                <a href="{{path('app_register')}}" class="btn btn-secondary d-flex align-items-center justify-content-center w-25 m-auto">Registrarme</a>
+                <a href="{{path('app_register')}}" class="btn btn-secondary d-flex align-items-center justify-content-center m-auto">Registrarme</a>
             </div>
             <img src="{{ asset("media/svg/wave(7).svg") }}" alt="motivo decorativo">
         </div>
