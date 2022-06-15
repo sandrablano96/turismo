@@ -2,12 +2,12 @@
  
  #header{
 	background: $primaryColor;
-	
  }
 
 /* NAVBAR */
 
 .navbar-light .navbar-brand {
+	
 	color: white;
 	font-size: 2rem;
 	text-transform: uppercase;
@@ -19,7 +19,12 @@
 	  font-size: 1.4rem;
   }
 
-  @media screen and (min-width:1200px) {
+  @media screen and (min-width:992px) {
+
+	.navbar-expand-lg{
+		margin-right: 3rem;
+	margin-left: 3rem;
+	}
 	.navbar-light .navbar-brand {
 		font-size: 3rem;
 

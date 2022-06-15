@@ -5,8 +5,8 @@
 {% block main %}
 <main class="mt-5 mb-5">
         <h2 class="text-center m-5">Historia de Ciudad Real</h2>
-        <section class="row w-100 p-5 m-0 d-flex justify-content-md-center" id="history">
-            <div class="col-12 col-lg-4 history__gallery p-4">
+        <section class="row w-100 p-5 m-0 d-flex justify-content-center" id="history">
+            <div class="col-12 col-lg-4 history__gallery mb-4">
                 <a href="{{ asset('media/historia/' ~ historia.galeriaImagenes[0].archivo) }}" data-toggle="lightbox" data-gallery="hidden-images"
                     data-title="{{historia.galeriaImagenes[0].alt}}" data-caption="{{historia.galeriaImagenes[0].alt}}" class="gallery_img d-block" style="background-image: url('{{asset("media/historia/" ~ historia.galeriaImagenes[0].archivo)}}')">
                     <div class="cta text-center">

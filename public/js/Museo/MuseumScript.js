@@ -2,7 +2,7 @@
 //museos
         $(document).ready(function (event) {
             $('#form_ordenar').on('change', function (e) {
-                event.preventDefault();
+                e.preventDefault();
                 let order = $('#form_order').children("option:selected").val();
                 //console.log(order);
                 
