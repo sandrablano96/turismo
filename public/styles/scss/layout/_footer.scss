@@ -1,12 +1,23 @@
 @import  "../base/base";
 
 #footer{
-    height: 17rem;
+    min-height: 17rem;
     background-color: $primaryColorDark;
     color: white;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     line-height: normal;
+    .footer_element{
+        margin-bottom: 1rem;
+    }
 }
+
+@media screen and (min-width: 992px){
+    .footer_element{
+        margin-bottom: 0;
+        font-size: 1.2rem;
+    }
+}
+
 
 #footer a{
     color: white;
