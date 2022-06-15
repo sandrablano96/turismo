@@ -4,12 +4,11 @@
                             <img src="{{ asset('/media/museos/') ~ item.imagen }}" class="element__img" alt="{{item.nombre}}">
                         </div>
                         <div class="element-container__text col-12 col-lg-7 ps-4 py-3">
-                            <h3>{{ item.nombre }}</h3>
-                            <p>{{ item.descripcion }}
-                            </p>
+                            <h3>{{ item.nombre }} <img src="{{ asset('/media/icons/museo.ico') }}" width="30px" alt="icono museos"></h3>
+                            <p>{{ item.descripcion | u.truncate(200)}}... </p>
                             <div class="see-more d-flex justify-content-center align-content-end mt-5">
                                 <a href="{{ path('app_museo_get', {uid : item.uid}) }}" class="col-12 col-lg-4 btn btn-secondary">Ver más</a>
                             </div>
                         </div>
                     </div>
-                {% endfor %}{# empty Twig template #}
+                {% endfor %}
