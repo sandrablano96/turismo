@@ -83,9 +83,13 @@ a {
 }
 
 /* Tablas admin */
-table.table td, th{
+table.table{
+max-width: 100%;
+
+ td, th{
     max-width:6rem;
     word-wrap:break-word;
+}
 }
 
 //textareas

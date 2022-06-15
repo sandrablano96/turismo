@@ -16,7 +16,8 @@
         {% if patrimonio is empty %}
             <p>Todavía no ha añadido ningún recurso patrimonial</p>
         {% else %}
-        <table class="table">
+        <div class="table-responsive-md">
+        <table class="table ">
             <th>Tipo</th>
             <th>Nombre</th>
             <th>Descripción</th>
@@ -45,6 +46,7 @@
             
         </table>
             {% endif %}
+            </div>
             
     </main>
 {% endblock %}

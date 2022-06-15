@@ -17,6 +17,7 @@
         {% if eventos is empty %}
             <p>Todavía no se han añadido eventos</p>
         {% else %}
+        <div class="table-responsive-md">
         <table class="table">
             <th>Título del evento</th>
             <th>Descripción</th>
@@ -38,6 +39,7 @@
             {% endfor %}
             
         </table>
+        </div>
         {% endif %}
         
     </main>

@@ -13,6 +13,7 @@
                 </div>
             {% endfor %}
         </div>
+        <div class="table-responsive-md">
         <table class="table">
             <th>Dirección</th>
             <th>Télefono de contacto</th>
@@ -26,11 +27,13 @@
                     <td><a href="{{ path('app_oficina_put', {uid: oficina.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
                 <tr>
         </table>
+        </div>
         <h3>Visitas programadas por la oficina</h3>
         <a href="{{ path('app_visita_post', {uid: oficina.uid}) }}" class="btn btn-secondary-dark">Alta</a>
         {% if oficina.visitasOrganizadas is empty %}
             <p>La Oficina no ha programado ninguna visita</p>
         {% else %}
+        <div class="table-responsive-md">
         <table class="table">
             <th>Título del evento</th>
             <th>Descripción</th>
@@ -47,7 +50,9 @@
                 <tr>
             {% endfor %}
         </table>
+        </div>
         {% endif %}
+        
         
     </main>
 {% endblock %}{# empty Twig template #}

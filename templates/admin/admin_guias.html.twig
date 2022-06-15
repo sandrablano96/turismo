@@ -17,6 +17,7 @@
         {% if guias is empty %}
             <p>Todavía no ha añadido guías turísticos</p>
         {% else %}
+        <div class="table-responsive-md">
         <table class="table">
             <th>Nombre</th>
             <th>Teléfono de contacto</th>
@@ -36,6 +37,7 @@
                 <tr>
             {% endfor %}      
         </table>
+        </div>
         {% endif %}
     </main>
     

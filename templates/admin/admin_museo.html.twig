@@ -13,6 +13,7 @@
                 </div>
             {% endfor %}
         </div>
+        <div class="table-responsive-md">
         <table class="table">
             <th>Nombre</th>
             <th>Descripción</th>
@@ -36,11 +37,13 @@
                     <td><a href="{{ path('app_museo_put', {uid: museo.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
                 <tr>
         </table>
+        </div>
         <h3>Piezas relevantes</h3>
         <a href="{{ path('app_pieza_museo_post', {uid: museo.uid}) }}"  class="btn btn-secondary-dark">Alta</a>
         {% if museo.piezas is empty %}
             <p>Todavía no ha añadido piezas al museo</p>
         {% else %}
+        <div class="table-responsive-md">
         <table class="table">
             <th>Nombre</th>
             <th>Descripción</th>
@@ -57,6 +60,7 @@
                 </tr>
             {% endfor %}
         </table>
+        </div>
         {% endif %}
         
     </main>

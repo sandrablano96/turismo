@@ -13,6 +13,7 @@
                 </div>
             {% endfor %}
         </div>
+        <div class="table-responsive-md">
         <table class="table">
             <th>Descripción</th>
             
@@ -30,11 +31,13 @@
                     <td><a href="{{ path('app_gastronomia_put', {uid: gastronomia.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
                 <tr>
         </table>
+        </div>
         <h3>Productos tipicos</h3>
         <a href="{{ path('app_producto_tipico_post', {uid: gastronomia.uid}) }}" class="btn btn-secondary-dark">Alta</a>
         {% if gastronomia.productosTipicos is empty %}
             <p>Todavía no se han añadido productos </p>
         {% else %}
+        <div class="table-responsive-md">
         <table class="table">
             <th>Nombre</th>
             <th>Descripción</th>
@@ -51,6 +54,7 @@
                 </tr>
             {% endfor %}
         </table>
+        </div>
         {% endif %}
         
     </main>

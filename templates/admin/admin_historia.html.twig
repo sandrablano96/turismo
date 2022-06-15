@@ -13,6 +13,7 @@
                 </div>
             {% endfor %}
         </div>
+        <div class="table-responsive-md">
         <table class="table">
             <th>Historia</th>
                 <tr>
@@ -20,11 +21,13 @@
                     <td><a href="{{ path('app_historia_put', {uid: historia.uid}) }}"><i class="fa-solid fa-file-pen"></i></a></td>
                 <tr>
         </table>
+        </div>
         <h3>Galería de imágenes</h3>
         <a href="{{ path('app_h_galeria_post', {uid: historia.uid}) }}"  class="btn btn-secondary-dark">Alta</a>
         {% if historia.galeriaImagenes is empty %}
             <p>Todavía no ha añadido imágenes a la galería</p>
         {% else %}
+        <div class="table-responsive-md">
         <table class="table">
             <th>Archivo</th>
             <th>Alt</th>
@@ -37,6 +40,7 @@
                 </tr>
             {% endfor %}
         </table>
+        </div>
         {% endif %}
         
     </main>

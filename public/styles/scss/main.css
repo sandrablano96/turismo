@@ -97,7 +97,10 @@ a:hover {
   }
 }
 /* Tablas admin */
-table.table td, th {
+table.table {
+  max-width: 100%;
+}
+table.table td, table.table th {
   max-width: 6rem;
   word-wrap: break-word;
 }
@@ -285,7 +288,10 @@ a:hover {
   }
 }
 /* Tablas admin */
-table.table td, th {
+table.table {
+  max-width: 100%;
+}
+table.table td, table.table th {
   max-width: 6rem;
   word-wrap: break-word;
 }
@@ -492,7 +498,10 @@ a:hover {
   }
 }
 /* Tablas admin */
-table.table td, th {
+table.table {
+  max-width: 100%;
+}
+table.table td, table.table th {
   max-width: 6rem;
   word-wrap: break-word;
 }
@@ -684,7 +693,10 @@ a:hover {
   }
 }
 /* Tablas admin */
-table.table td, th {
+table.table {
+  max-width: 100%;
+}
+table.table td, table.table th {
   max-width: 6rem;
   word-wrap: break-word;
 }
@@ -773,7 +785,10 @@ a:hover {
   }
 }
 /* Tablas admin */
-table.table td, th {
+table.table {
+  max-width: 100%;
+}
+table.table td, table.table th {
   max-width: 6rem;
   word-wrap: break-word;
 }
@@ -1167,7 +1182,10 @@ a:hover {
   }
 }
 /* Tablas admin */
-table.table td, th {
+table.table {
+  max-width: 100%;
+}
+table.table td, table.table th {
   max-width: 6rem;
   word-wrap: break-word;
 }
@@ -1256,7 +1274,10 @@ a:hover {
   }
 }
 /* Tablas admin */
-table.table td, th {
+table.table {
+  max-width: 100%;
+}
+table.table td, table.table th {
   max-width: 6rem;
   word-wrap: break-word;
 }
@@ -1681,7 +1702,10 @@ a:hover {
   }
 }
 /* Tablas admin */
-table.table td, th {
+table.table {
+  max-width: 100%;
+}
+table.table td, table.table th {
   max-width: 6rem;
   word-wrap: break-word;
 }
@@ -1929,7 +1953,10 @@ a:hover {
   }
 }
 /* Tablas admin */
-table.table td, th {
+table.table {
+  max-width: 100%;
+}
+table.table td, table.table th {
   max-width: 6rem;
   word-wrap: break-word;
 }
