@@ -63,9 +63,11 @@ class PatrimonioRepository extends ServiceEntityRepository
      * @return Patrimonio[] Returns an array of Patrimonio objects
      */
     
-    public function findAllDesc() : array
+    public function findAllDesc($type) : array
     {
         return $this->createQueryBuilder('p')
+            ->andWhere('p.tipo = :type')
+            ->setParameter('type', $type)
             ->addOrderBy('p.nombre', 'DESC')
             ->getQuery()
             ->getResult()
@@ -75,9 +77,11 @@ class PatrimonioRepository extends ServiceEntityRepository
      * @return Patrimonio[] Returns an array of Patrimonio objects
      */
     
-    public function findAllAsc() : array
+    public function findAllAsc($type) : array
     {
         return $this->createQueryBuilder('p')
+        ->andWhere('p.tipo = :type')
+        ->setParameter('type', $type)
             ->addOrderBy('p.nombre', 'ASC')
             ->getQuery()
             ->getResult()

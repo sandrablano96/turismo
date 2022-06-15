@@ -3,15 +3,16 @@
             $('#form_ordenar').on('change', function (event) {
                 event.preventDefault();
                 let order = $('#form_order').children("option:selected").val();
-                //console.log(order);
-
+                
+                let type = $('.main-section').attr('id');
+                
                 let url = Routing.generate('app_patrimonio_ordered_get');
-
+                
                 $.ajax({
                     type: 'POST',
                     url: url,
                     dataType: 'JSON',
-                    data: JSON.stringify({orden: order}),
+                    data: JSON.stringify({orden: order, type: type }),
                     beforeSend: function () {
                         $('#all-heritage').remove();
                         $('#loading').removeClass('d-none');
@@ -39,6 +40,7 @@
                 });
                 
             });
+
 
         });
 

@@ -30,7 +30,7 @@ class PatrimonioGetController extends AbstractController
                 ])
                 ->getForm();
         return $this->renderForm('Patrimonio/patrimonio_get/index.html.twig', [
-            'arrayPatrimonio' => $arrayPatrimonio, 'tipo' => $type, 'formOrder' => $orderForm
+            'arrayPatrimonio' => $arrayPatrimonio, 'tipo' => $type, 'tipoId' => $typeId, 'formOrder' => $orderForm
         ]);
     }
 
@@ -47,10 +47,11 @@ class PatrimonioGetController extends AbstractController
                 $parametersAsArray = json_decode($content, true);
             }
             $order = $parametersAsArray['orden'];
+            $type = $parametersAsArray['type'];
             if($order == 'asc'){
-                $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findAllAsc();
+                $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findAllAsc($type);
             }else{
-                $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findAllDesc();
+                $arrayPatrimonio = $doctrine->getRepository(Patrimonio::class)->findAllDesc($type);
             }
             
             $html = $this->render( 'Patrimonio/patrimonio_get/patrimonio_ajax.html.twig', ['arrayPatrimonio' => $arrayPatrimonio] )->getContent();
