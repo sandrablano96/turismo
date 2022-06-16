@@ -9,6 +9,7 @@ Symfony (PHP, Doctrine, Twig), Xampp, MySQL, Sass, Bootstrap, JQuery, Figma, Her
 
 Proyecto desplegado
 http://turismo-ciudadreal.herokuapp.com
+Después de la presentación, me di cuenta que el almacenamiento de Heroku es efímero, por lo que las imagenes subidas dejan de verse tras un tiempo.
 
 Memoria
-Pendiente de añadir
+https://github.com/sandrablano96/turismo_ciudadreal/blob/main/Presentaci%C3%B3nTFG.pdf
